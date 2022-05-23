@@ -1,37 +1,76 @@
-# Masterwork requirements for the Fullstack API course
+# Planty - Szobanövény Applikáció   
+[GitHub repository](https://github.com/green-fox-academy/noroon-masterwork)
 
-Your task is to create a fullstack web application.
 
-## Requirements
+## Tartalomjegyzék
+* [Leírás](#leírás)
+* [Funkciók](#funkciók)
+* [Technikai követelmények](#technikai-követelmények)
+* [Használat](#használat)
 
-| Requirement                                            | Size/Complexity                                                                                                   |
-| :----------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------- |
-| Must solve a real life problem                         | It should have at least 5 different pages. Some of these pages should be accessible only after login/registration |
-| Uses NoSQL database                                    | At least five MongoDB collections                                                                                 |
-| Uses three-layer architecture                          | At least 2 services                                                                                               |
-| Client side must be responsive                         | Look and function correctly on at least 360px wide mobile screens and on at least 1366px wide desktop screens     |
-| Source-code must follow the clean code principals      |                                                                                                                   |
-| Endpoints must be documented by OpenAPI standards      | At least one test case for every endpoint and at least 2 REST resource which contains at least 6 endpoints        |
-| The application is containerized                       | Has a `Dockerfile` which starts the app                                                                           |
-| The documentation should be written in markdown format |                                                                                                                   |
 
-## Package to submit
+## Leírás
+A felhasználók az adatbázisban szereplő szobanövények között kereshetnek, megnézhetik a növények specifikációját, gondozási útmutatóját.
+Regisztrációt követően a felhasználónak lehetősége nyílik saját kollekció létrehozására a már meglévő növényei számára, illetve létre tud hozni kívánságlistát, amiben a még be nem szerzett növényeket tudja tárolni. A már meglévő növényekhez tartozik egy naptár, amiben vezetni lehet az ültetés idejét, az ültetéshez használt földkeverék arányait, összetételét, a tápoldatozást és az öntözést. Egy-egy növénykártya alatti kommentszekcióban lehetősége van a felhasználóknak egymással tippeket és bevált gondozási módszereket megosztani.
+A felhasználók létrehozhatnak új növénykártyákat.
 
-The package you submit must contain:
 
-- the goal of the software
-- technical implementation
-- how it works
-- source code
+## Funkciók
 
-## Documentation
+### Regisztráció nélküli felhasználó funkciói
+- Növények keresése név és egyéb jellemzők alapján
+- Regisztráció email és jelszó alapján
 
-- Create a one-pager documentation about the problem you're solving and typical
-  use-cases
-- Document the required environment and setup guide
-- Document the configuration of the application
+### Regisztrációval rendelkező felhasználó funkciói
+- Minden regisztráció nélküli felhasználó által elérhető funkció
+- Ki- és bejelentkezés
+- Saját profil adatok szerkesztése, avatar feltöltése, jelszó módosítása
+- Profil törlése
+- Saját kollekció szerkesztése
+- A saját kollekcióban szereplő növényekhez ültetőmixek hozzárendelése, gondozási naptár hozzáadása, szerkesztése  
+- Saját kívánságlista szerkesztése
+- A növénykártyákhoz komment írása
+- Növénykártyák létrehozása
 
-## Presentation
+### Adminisztrátori funkciók
+- Felhasználók kezelése
+- A felhasználók által létrehozott növénykártyák szerkesztése, törlése
 
-You'll have to create a max. 15 minute long presentation which about the 
-software you created.
+
+## Technikai követelmények
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB, Mongoose
+- Json Web Token
+- Docker
+
+### Frontend
+- React
+- Bootstrap
+
+
+### API dokumentáció
+- [OpenAPI/Swagger](open-api-doc)
+
+
+## Használat
+
+### Backend
+- `.env` fájl létrehozása az `.env.example` alapján
+- Parancsok:
+  - `yarn install` - függőségek installálása
+  - `yarn start` - alkalmazás indítása
+  - `yarn test` - teszt fájlok futtatása
+  - `yarn lint` - linter futtatása
+  - `yarn build` - alkalmazás buildelése
+
+### Frontend
+- `.env` fájl létrehozása az `.env.example` alapján
+- Parancsok:
+  - `yarn install` - függőségek installálása
+  - `yarn start` - alkalmazás indítása
+  - `yarn test` - teszt fájlok futtatása
+  - `yarn lint` - linter futtatása
+  - `yarn build` - alkalmazás buildelése
