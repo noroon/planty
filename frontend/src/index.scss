@@ -1,0 +1,48 @@
+@import "~bootstrap/scss/bootstrap.scss";
+@import "~bootstrap-icons/font/bootstrap-icons.scss";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.login-form,
+.register-form,
+.profile-form {
+  position: relative;
+  transform: translate(0, 10vh);
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 55px 45px 30px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+a.text-center{
+  margin-top: 2rem;
+  font-size: smaller;
+}
+
+div.input-group-text{
+  background:rgba(163, 255, 232, 0.349);
+}
+
+i.bi{
+  color:rgb(97, 25, 231);
+  font-weight: bold;
+}
+
+.navbar{
+  z-index: $zindex-sticky;
+}

@@ -1,0 +1,29 @@
+@mixin line-clamp($name, $number-of-lines) {
+  .#{$name}-line-clamp {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: #{$number-of-lines};
+    line-clamp: #{$number-of-lines};
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+  }
+}
+
+@include line-clamp("news-title", "2");
+@include line-clamp("card-text.news-content", "5");
+
+.card-header {
+  background-color: #fff;
+  height: 5rem;
+}
+
+.card-body {
+  height: 14rem;
+}
+
+.card-text.news-publish-date {
+  font-size: 0.7rem;
+  font-weight: bolder;
+  text-align: right;
+}
