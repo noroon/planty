@@ -1,15 +1,19 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { registerSchema } from './registerValidation';
-import { handleChange } from '../../utils';
+import { registerSchema } from '../utils/validationSchemas';
+import { handleChange } from '../utils';
 
-import InputField from '../../components/InputField';
-import Alert from '../../components/Alert';
+import {
+  Alert,
+  Button,
+  InputField,
+} from '../components/general';
 
 function Register() {
   const [userData, setUserData] = useState({});
   const [alertMessage, setAlertMessage] = useState('');
+  const navigate = useNavigate();
 
   function validateForm() {
     const result = registerSchema.validate(userData);
@@ -29,7 +33,6 @@ function Register() {
 
     if (validateForm()) {
       const { name, email, password } = userData;
-      const navigate = useNavigate();
 
       const options = {
         method: 'POST',
@@ -109,9 +112,11 @@ function Register() {
           onChange={(e) => handleChange(e, userData, setUserData)}
           iconClass="bi bi-asterisk"
         />
-        <button type="submit" className="btn btn-primary mt-2 mb-2 mx-auto">
-          Register
-        </button>
+        <Button
+          type="submit"
+          className="btn-primary mt-2 mb-2 mx-auto"
+          value="Regisztrálok!"
+        />
       </form>
       <Link to="/login" className="text-center">
         If you already have an account, click here to login

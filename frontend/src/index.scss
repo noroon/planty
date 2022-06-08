@@ -1,5 +1,5 @@
-@import "~bootstrap/scss/bootstrap.scss";
-@import "~bootstrap-icons/font/bootstrap-icons.scss";
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-icons/font/bootstrap-icons.scss';
 
 body {
   margin: 0;
@@ -21,7 +21,7 @@ code {
   position: relative;
   transform: translate(0, 10vh);
   z-index: 1;
-  background: #FFFFFF;
+  background: #ffffff;
   max-width: 360px;
   margin: 0 auto 100px;
   padding: 55px 45px 30px;
@@ -29,20 +29,20 @@ code {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-a.text-center{
+a.text-center {
   margin-top: 2rem;
   font-size: smaller;
 }
 
-div.input-group-text{
-  background:rgba(163, 255, 232, 0.349);
+div.input-group-text {
+  background: rgba(163, 255, 232, 0.349);
 }
 
-i.bi{
-  color:rgb(97, 25, 231);
+i.bi {
+  color: rgb(97, 25, 231);
   font-weight: bold;
 }
 
-.navbar{
+.navbar {
   z-index: $zindex-sticky;
 }

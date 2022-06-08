@@ -1,4 +1,5 @@
-import { userService } from '../services';
+import { userService } from './userService';
+
 
 export const userController = {
   async register(req, res, next) {

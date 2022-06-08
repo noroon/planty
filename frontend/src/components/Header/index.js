@@ -5,7 +5,7 @@ import { useAuthState } from '../../context';
 import PlantyLogo from '../../assets/images/planty_logo.png';
 import navLinks from './navLinks';
 import NavBar from './NavBar';
-import Icon from '../Icon';
+import Icon from '../general/Icon';
 
 export default function Header() {
   const user = useAuthState();

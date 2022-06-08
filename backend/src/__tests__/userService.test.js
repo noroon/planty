@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
-import { userService } from './userService';
+import { userService } from '../users/userService';
 import config from '../config';
-import User from '../models/userModel';
+import User from '../users/userModel';
 import {
   TEST_EXCEPTION,
   anyUserEmail,

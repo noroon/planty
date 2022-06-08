@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Joi from 'joi';
 
 import { useAuthState } from '../context';
 import { handleChange } from '../utils';
-import axios from '../api/axios';
-import InputField from '../components/InputField';
-import Alert from '../components/Alert';
-import Button from '../components/Button';
+import axios from '../config/axiosConfig';
+import { profileSchema } from '../utils/validationSchemas';
+
+import {
+  Alert,
+  Button,
+  InputField,
+} from '../components/general';
 
 function Profile() {
   const [userData, setUserData] = useState({});
@@ -22,35 +25,8 @@ function Profile() {
     setUserData({ name, email });
   }, []);
 
-  const schema = Joi.object({
-    name: Joi.string().messages({
-      'any.required': 'A field is required to be filled.',
-      'string.empty': 'A field is required to be filled.',
-    }),
-    password: Joi.string().min(8).messages({
-      'any.required': 'A field is required to be filled.',
-      'string.empty': 'A field is required to be filled.',
-      'string.min': 'Password must be at least 8 characters.',
-    }),
-    email: Joi.string()
-      .email({ tlds: { allow: false } })
-      .messages({
-        'string.email': 'Email must be a valid email.',
-        'string.empty': 'A field is required to be filled.',
-        'any.required': 'A field is required to be filled.',
-      }),
-    passwordConfirm: Joi.string()
-      .required()
-      .valid(Joi.ref('password'))
-      .messages({
-        'any.required': 'Password confirmation is required.',
-        'string.empty': 'Password confirmation is required.',
-        'any.only': "Password and it's confirmation are not same",
-      }),
-  });
-
   function validateForm() {
-    const result = schema.validate(userData);
+    const result = profileSchema.validate(userData);
     const { error } = result;
     if (error) {
       setAlertMessage({
@@ -166,7 +142,7 @@ function Profile() {
         <Button
           type="submit"
           className="btn-primary mt-2 mb-2 mx-auto"
-          value="Update"
+          value="Frissítés"
         />
       </form>
     </div>

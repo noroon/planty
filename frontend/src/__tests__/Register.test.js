@@ -3,7 +3,7 @@ import {
 } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import fetchMock from 'jest-fetch-mock';
-import Register from '.';
+import Register from '../pages/Register';
 import * as Utils from './registerUtils';
 
 fetchMock.enableMocks();

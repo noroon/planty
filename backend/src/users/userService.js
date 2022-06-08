@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import createHttpError from 'http-errors';
 import jwt from 'jsonwebtoken';
-import User from '../models/userModel';
+import User from './userModel';
 import config from '../config';
 
 export const userService = {

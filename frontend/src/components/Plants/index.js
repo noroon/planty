@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react';
-import moment from 'moment';
-import axios from '../../api/axios';
+import axios from '../../config/axiosConfig';
 import PlantCard from './PlantCard';
 
 export default function Plants() {
-  const [plants, setPlants] = useState('');
+  const [plants, setPlants] = useState([]);
 
   async function getPlants() {
     try {
-      const res = await axios.get('/articles');
-      return res.data.articles;
-    } catch (error) {
-      return error;
+      const res = await axios.get('/plants');
+      return res.data.plants;
+    } catch (err) {
+      return err;
     }
   }
 
@@ -23,18 +22,31 @@ export default function Plants() {
 
   return (
     <div className="row row-cols-1 row-cols-lg-5 row-cols-sm-3 mx-auto">
-      {plants
+      {plants.length > 0
       && plants.map((plant) => {
-        const { title, content } = plant;
+        const {
+          name,
+          moisture,
+          water,
+          light,
+          petfriendly,
+          edible,
+          easyToCare,
+          care,
+        } = plant;
         const id = plant._id;
-        const publishDate = moment(plant.publish_date).fromNow();
 
         return (
           <PlantCard
             key={id}
-            title={title}
-            content={content}
-            publishDate={publishDate}
+            name={name}
+            moisture={moisture}
+            water={water}
+            light={light}
+            petfriendly={petfriendly}
+            edible={edible}
+            easyToCare={easyToCare}
+            care={care}
           />
         );
       })}

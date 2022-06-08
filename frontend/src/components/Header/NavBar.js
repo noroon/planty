@@ -7,7 +7,7 @@ export default function NavBar({ linkList }) {
 
   const handleLogout = () => {
     logout(dispatch);
-    navigate('/login');
+    navigate('/');
   };
 
   return (

@@ -4,9 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { loginUser, useAuthDispatch } from '../context';
 import { handleChange } from '../utils';
 
-import InputField from '../components/InputField';
-import Alert from '../components/Alert';
-import Button from '../components/Button';
+import {
+  Alert,
+  Button,
+  InputField,
+} from '../components/general';
 
 export default function Login() {
   const dispatch = useAuthDispatch();
@@ -78,10 +80,10 @@ export default function Login() {
         <Button
           type="submit"
           className="btn-primary mt-2 mb-2 mx-auto"
-          value="Login"
+          value="Bejelentkezés"
         />
         <Link to="/register" className="text-center">
-          If you dont have an account, click here to register
+          Ha még nem regisztráltál, kattints ide!
         </Link>
       </form>
     </div>

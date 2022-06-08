@@ -1,8 +1,11 @@
 export const handleChange = ({ target }, formData, setFormData) => {
+  const isCheckbox = target.type === 'checkbox';
+
   setFormData({
     ...formData,
-    [target.name]: target.value,
+    [target.name]: isCheckbox ? target.checked : target.value,
   });
+  console.log(formData);
 };
 
 export const getValidationClassName = (errorMessage, wasValidated) => {
