@@ -1,9 +1,11 @@
 export const handleChange = ({ target }, formData, setFormData) => {
   const isCheckbox = target.type === 'checkbox';
+  const isImage = target.type === 'file';
 
   setFormData({
     ...formData,
-    [target.name]: isCheckbox ? target.checked : target.value,
+    /* eslint-disable */
+    [target.name]: isCheckbox ? target.checked : (isImage ? target.files[0] : target.value),
   });
   console.log(formData);
 };

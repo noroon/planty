@@ -4,14 +4,27 @@ import { useState } from 'react';
 // import axios from '../api/axios';
 import { handleChange } from '../utils';
 
+import ImageUpload from './ImageUpload';
 import {
-  Alert, Button, InputField, Range, Switch,
+  Alert,
+  Button,
+  InputField,
+  Range,
+  Switch,
 } from '../components/general';
 
 export default function AddPlant() {
   const [plantData, setPlantData] = useState({});
   const [alertMessage, setAlertMessage] = useState('');
   // const navigate = useNavigate();
+  // plantData.append('image', image);
+
+  // const [file, setFile] = useState();
+  // const fileSelected = (event) => {
+  //   const img = event.target.files[0];
+  //   console.log(img);
+  //   setFile(img);
+  // };
 
   const validate = () => {
     let err = '';
@@ -67,12 +80,14 @@ export default function AddPlant() {
         method: 'POST',
         body: JSON.stringify({
           ...plantData,
+          // image: file,
         }),
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data',
         },
       };
 
+      console.log(options);
       fetch(`${process.env.REACT_APP_API_SERVER}/admin/new-plant`, options)
         .then((res) => {
           return res.json();
@@ -91,6 +106,7 @@ export default function AddPlant() {
   return (
     <div className="container login-form">
       {alertMessage && <Alert className="alert-danger" value={alertMessage} />}
+      <ImageUpload />
       <form
         onSubmit={handleSubmit}
         noValidate
@@ -102,8 +118,8 @@ export default function AddPlant() {
           name="name"
           id="name"
           placeholder="név"
-          value={plantData.name}
           onChange={(e) => handleChange(e, plantData, setPlantData)}
+          value={plantData.name}
           autoComplete="off"
         />
         <InputField
@@ -111,7 +127,9 @@ export default function AddPlant() {
           name="image"
           id="image"
           onChange={(e) => handleChange(e, plantData, setPlantData)}
-          multiple
+          // onChange={fileSelected}
+          // value={plantData.image}
+          accept="/image/*"
         />
         <Range
           name="light"

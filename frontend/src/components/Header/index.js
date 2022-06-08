@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useAuthState } from '../../context';
 import PlantyLogo from '../../assets/images/planty_logo.png';
 import navLinks from './navLinks';
 import NavBar from './NavBar';
-import Icon from '../general/Icon';
+import { Icon } from '../general';
+import './style.scss';
 
 export default function Header() {
   const user = useAuthState();
@@ -13,9 +14,7 @@ export default function Header() {
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
   return (
-    <nav
-      className="navbar navbar-expand-lg navbar-light bg-white mb-0 position-sticky top-0 w-100 mb-3"
-    >
+    <nav className="navbar navbar-expand-lg navbar-light bg-white mb-0 position-sticky top-0 w-100 mb-3">
       <div className="container-fluid">
         <Link className="navbar-brand bg-white overflow-hidden" to="/">
           <img src={PlantyLogo} alt="logo" width="70px" />
@@ -32,6 +31,7 @@ export default function Header() {
         >
           <Icon className="bi bi-list" />
         </button>
+
         <div
           className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`}
           id="navbar"

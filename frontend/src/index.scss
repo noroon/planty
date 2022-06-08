@@ -46,3 +46,33 @@ i.bi {
 .navbar {
   z-index: $zindex-sticky;
 }
+
+/* From uiverse.io by @hritik5102 */
+button.btn.btn-primary {
+  position: relative;
+  font-weight: 600;
+  height: 40px;
+  padding: .2rem 20px;
+  outline: none;
+  border: 1px solid rgb(116, 116, 116);
+  background-color: transparent;
+  border-radius: 0;
+}
+
+button.btn.btn-primary:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  top: 5px;
+  left: 5px;
+  height: 100%;
+  background-color: rgb(155, 123, 241);
+  z-index: -1;
+  transition: all 0.35s;
+  border-radius: inherit;
+}
+
+button.btn.btn-primary:hover:after {
+  top: 0px;
+  left: 0px;
+}
