@@ -13,6 +13,12 @@ export const plantController = {
     try {
       const plants = await plantService.getPlants();
 
+        // console.log(req.params);
+        // const key = req.params.key;
+        const readStream = getFileStream(e3eaffc80715bdfdcd27153849e066fe);
+
+        readStream.pipe(res);
+
       res.status(200).json({ plants });
     } catch (err) {
       console.log('vmi');
@@ -20,31 +26,24 @@ export const plantController = {
     }
   },
   async addNew(req, res, next) {
-    console.log(req.body);
-    console.log(req.body.image);
-    // const {
-    //   name,
-    //   moisture,
-    //   water,
-    //   light,
-    //   petfriendly,
-    //   edible,
-    //   easyToCare,
-    //   care,
-    // } = req.body;
-    //   const file = req.file;
-    //   console.log(file);
-
-    //   // apply filter
-    //   // resize
-
-    //   const result = await uploadFile(file);
-    //   await unlinkFile(file.path);
-    //   console.log(result);
-    //   // const description = req.body.description;
-    //   res.send({ imagePath: `/images/${result.Key}` });
+    const {
+      name,
+      moisture,
+      water,
+      light,
+      petfriendly,
+      edible,
+      easyToCare,
+      care,
+    } = req.body;
+    const file = req.file;
 
     try {
+      const result = await uploadFile(file);
+      await unlinkFile(file.path);
+      console.log(result);
+      const imageKey = result.Key;
+
       const { statusCode, responseObj } = await plantService.addPlant(
         name,
         moisture,
@@ -53,7 +52,8 @@ export const plantController = {
         petfriendly,
         edible,
         easyToCare,
-        care
+        care,
+        imageKey,
       );
 
       res.status(statusCode).json(responseObj);

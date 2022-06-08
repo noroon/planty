@@ -1,10 +1,9 @@
 import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 
-// import axios from '../api/axios';
 import { handleChange } from '../utils';
+import axios from '../config/axiosConfig';
 
-import ImageUpload from './ImageUpload';
 import {
   Alert,
   Button,
@@ -16,15 +15,14 @@ import {
 export default function AddPlant() {
   const [plantData, setPlantData] = useState({});
   const [alertMessage, setAlertMessage] = useState('');
-  // const navigate = useNavigate();
-  // plantData.append('image', image);
 
-  // const [file, setFile] = useState();
-  // const fileSelected = (event) => {
-  //   const img = event.target.files[0];
-  //   console.log(img);
-  //   setFile(img);
-  // };
+  const [file, setFile] = useState();
+
+  const fileSelected = (event) => {
+    const img = event.target.files[0];
+    console.log(img);
+    setFile(img);
+  };
 
   const validate = () => {
     let err = '';
@@ -37,58 +35,52 @@ export default function AddPlant() {
     return true;
   };
 
+  async function postImage({ image }) {
+    const formData = new FormData();
+    formData.append('image', image);
+    // Object.entries(plantData).forEach(([key, value]) => {
+    //   let defaultValue;
+    //   if (key === 'care') defaultValue = 'feltöltés alatt';
+    //   if (key === 'moisture' || key === 'water' || key === 'light') {
+    //     defaultValue = 0;
+    //   }
+    //   if (key === 'petfriendly' || key === 'edible' || key === 'easyToCare') {
+    //     defaultValue = false;
+    //   }
+    //   formData.append(key, value || defaultValue);
+    // });
+    const {
+      name,
+      moisture,
+      water,
+      light,
+      petfriendly,
+      edible,
+      easyToCare,
+      care,
+    } = plantData;
+    formData.append('name', name);
+    formData.append('moisture', moisture || 0);
+    formData.append('water', water || 0);
+    formData.append('light', light || 0);
+    formData.append('petfriendly', petfriendly || false);
+    formData.append('edible', edible || false);
+    formData.append('easyToCare', easyToCare || false);
+    formData.append('care', care || 'feltöltés alatt');
+
+    const result = await axios.post('/admin/new-plant', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return result.data;
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const isValid = validate();
 
     if (isValid) {
-      // const {
-      //   name,
-      //   moisture,
-      //   water,
-      //   light,
-      //   petfriendly,
-      //   edible,
-      //   easyToCare,
-      //   care,
-      // } = plantData;
-
-      // try {
-      //   const response = await axios.put(
-      //     `${process.env.REACT_APP_API_SERVER}/admin/new-plant`,
-      //     {
-      //       name,
-      //       moisture,
-      //       water,
-      //       light,
-      //       petfriendly,
-      //       edible,
-      //       easyToCare,
-      //       care,
-      //     },
-      //   );
-      //   if (!response.token) return;
-      //   navigate('/');
-      // } catch (error) {
-      //   console.log(error);
-      // }
-
-      // setPlantData({});
-      // setAlertMessage('');
-      const options = {
-        method: 'POST',
-        body: JSON.stringify({
-          ...plantData,
-          // image: file,
-        }),
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      };
-
-      console.log(options);
-      fetch(`${process.env.REACT_APP_API_SERVER}/admin/new-plant`, options)
+      postImage({ image: file })
         .then((res) => {
           return res.json();
         })
@@ -96,23 +88,20 @@ export default function AddPlant() {
           console.log(data);
         })
         .catch(() => {
-          setAlertMessage(
-            "Something went wrong. But don't worry, our best people are on it!",
-          );
+          setAlertMessage('Something went wrong.');
         });
     }
   };
 
   return (
-    <div className="container login-form">
+    <div className="container login-form mt-0">
       {alertMessage && <Alert className="alert-danger" value={alertMessage} />}
-      <ImageUpload />
       <form
         onSubmit={handleSubmit}
         noValidate
         className="align-middle mx-auto d-flex flex-column justify-content-center"
       >
-        {/* name, moisture, water, light, petFriendly, edible, easyToCare, care, */}
+        {/* name, moisture, water, light, petfriendly, edible, easyToCare, care, */}
         <InputField
           type="text"
           name="name"
@@ -126,8 +115,8 @@ export default function AddPlant() {
           type="file"
           name="image"
           id="image"
-          onChange={(e) => handleChange(e, plantData, setPlantData)}
-          // onChange={fileSelected}
+          // onChange={(e) => handleChange(e, plantData, setPlantData)}
+          onChange={fileSelected}
           // value={plantData.image}
           accept="/image/*"
         />

@@ -7,7 +7,6 @@ export const handleChange = ({ target }, formData, setFormData) => {
     /* eslint-disable */
     [target.name]: isCheckbox ? target.checked : (isImage ? target.files[0] : target.value),
   });
-  console.log(formData);
 };
 
 export const getValidationClassName = (errorMessage, wasValidated) => {
