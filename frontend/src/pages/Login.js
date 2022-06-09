@@ -52,17 +52,18 @@ export default function Login() {
 
   return (
     <div className="container login-form">
-      {alertMessage && <Alert className="alert-danger" value={alertMessage} />}
       <form
         onSubmit={handleSubmit}
         noValidate
         className="align-middle mx-auto d-flex flex-column justify-content-center"
       >
+        <legend className="mb-5">Bejelentkezés</legend>
+        {alertMessage && <Alert className="alert-danger" value={alertMessage} />}
         <InputField
           type="text"
           name="email"
           id="email"
-          placeholder="Email"
+          placeholder="email-cím"
           value={userData.email}
           onChange={(e) => handleChange(e, userData, setUserData)}
         />
@@ -70,7 +71,7 @@ export default function Login() {
           type="password"
           name="password"
           id="password"
-          placeholder="Password"
+          placeholder="jelszó"
           value={userData.password}
           onChange={(e) => handleChange(e, userData, setUserData)}
           autoComplete="current-password"
@@ -82,9 +83,7 @@ export default function Login() {
         />
         <div className="text-center card-info">
           Ha még nem regisztráltál,
-          <Link to="/register">
-            kattints ide!
-          </Link>
+          <Link to="/register">kattints ide!</Link>
         </div>
       </form>
     </div>

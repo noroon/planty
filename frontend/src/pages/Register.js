@@ -72,7 +72,7 @@ function Register() {
         noValidate
         className="align-middle mx-auto d-flex flex-column justify-content-center"
       >
-        <h2 className="mt-3 mb-3">Registration</h2>
+        <legend className="mb-5">Regisztráció</legend>
         {alertMessage && (
           <Alert className="alert-danger" value={alertMessage} />
         )}
@@ -80,7 +80,7 @@ function Register() {
           type="text"
           name="name"
           id="name"
-          placeholder="Username"
+          placeholder="felhasználónév"
           value={userData.name}
           onChange={(e) => handleChange(e, userData, setUserData)}
         />
@@ -88,7 +88,7 @@ function Register() {
           type="text"
           name="email"
           id="email"
-          placeholder="Email"
+          placeholder="email-cím"
           value={userData.email}
           onChange={(e) => handleChange(e, userData, setUserData)}
         />
@@ -96,7 +96,7 @@ function Register() {
           type="password"
           name="password"
           id="password"
-          placeholder="Password"
+          placeholder="jelszó"
           value={userData.password}
           onChange={(e) => handleChange(e, userData, setUserData)}
         />
@@ -104,7 +104,7 @@ function Register() {
           type="password"
           name="passwordConfirm"
           id="passwordConfirm"
-          placeholder="Re-enter your password"
+          placeholder="jelszó újra"
           value={userData.passwordConfirm}
           onChange={(e) => handleChange(e, userData, setUserData)}
         />

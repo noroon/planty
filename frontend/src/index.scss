@@ -2,9 +2,11 @@
 @import '~bootstrap-icons/font/bootstrap-icons.scss';
 
 $primary: rgb(155, 123, 241);
+$secondary: #7a8088;
 
 $theme-colors: (
   'primary': $primary,
+  'secondary': $secondary,
 );
 
 $border-radius: 1rem;
@@ -16,17 +18,17 @@ $component-active-bg: $primary;
 
 @import '../node_modules/bootstrap/scss/bootstrap';
 
-*{
-    font-family: CerebriSans-Regular,-apple-system,BlinkMacSystemFont,Roboto,sans-serif;
-
+* {
+  font-family: CerebriSans-Regular, -apple-system, BlinkMacSystemFont, Roboto,
+    sans-serif;
 }
 body {
   margin: 0;
   // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   //   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
   //   sans-serif;
-//   -webkit-font-smoothing: antialiased;
-//   -moz-osx-font-smoothing: grayscale;
+  //   -webkit-font-smoothing: antialiased;
+  //   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
@@ -51,71 +53,167 @@ code {
 }
 
 input.form-control {
-	border-radius: 0px;
-	border-color: #fff;
-	z-index: 1;
-	background-color: transparent;
-	border-bottom: 2px solid #eee; 
-	font: inherit;
-	font-size: 1.125rem;
-	padding: .25rem 0;
-	&:focus, &:valid {
-		outline: 0;
-		border-bottom-color: $primary;
-		&+.input-label {
-			color: $primary;
-			transform: translateY(-1.5rem);
-		}
-	}
-  margin-bottom: 1rem
-
+  border-radius: 0px;
+  border-color: #fff;
+  z-index: 1;
+  background-color: transparent;
+  border-bottom: 2px solid #eee;
+  // font: inherit;
+  font-size: 1.125rem;
+  padding: 0.25rem 0;
+  &:focus,
+  &:valid {
+    outline: 0;
+    border-bottom-color: $primary;
+    & + .input-label {
+      color: $primary;
+      transform: translateY(-1.5rem);
+    }
+  }
+  margin-bottom: 1rem;
 }
 
-input.form-range {
-	z-index: 1;
-	background-color: transparent;
-	border-bottom: 2px solid #eee; 
-	font: inherit;
-	font-size: 1.125rem;
-	padding: .25rem 0;
-
+// input.form-range {
+//   z-index: 1;
+//   background-color: transparent;
+//   border-bottom: 2px solid #eee;
+//   // font: inherit;
+//   font-size: 1.125rem;
+//   padding: 0.25rem 0;
+// }
+.range-slider {
 }
+.box-minmax {
+  // margin-top: .2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: $primary;
+  margin-top: -1rem;
 
+  // span:first-child {
+  //   margin-left: 10px;
+  // }
+}
+.rs-range {
+  // margin-top: 1rem;
+  -webkit-appearance: none;
+  &:focus {
+    outline: none;
+  }
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 0.2rem;
+    cursor: pointer;
+    box-shadow: none;
+    background: $primary;
+    border-radius: 0px;
+    // border: 0px solid #010101;
+  }
+  &::-moz-range-track {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    box-shadow: none;
+    background: $primary;
+    border-radius: 0px;
+    // border: 0px solid #010101;
+  }
+
+  &::-webkit-slider-thumb {
+    box-shadow: none;
+    border: 0px solid $primary;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 1.5rem;
+    width: 1.2rem;
+    border-radius: 1.2rem;
+    background: $primary;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -.75rem;
+  }
+  &::-moz-range-thumb {
+    box-shadow: none;
+    border: 0px solid $primary;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+    height: 1.5rem;
+    width: 1.2rem;
+    border-radius: 1.2rem;
+    background: $primary;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -.75rem;
+  }
+  &::-moz-focus-outer {
+    border: 0;
+  }
+}
+label {
+  font-size: 1.125rem;
+  font: inherit;
+  color: $secondary;
+}
+// .rs-label {
+//   position: relative;
+//   transform-origin: center center;
+//   display: block;
+//   height: 98px;
+//   background: transparent;
+//   border-radius: 50%;
+//   line-height: 30px;
+//   text-align: center;
+//   font-weight: bold;
+//   padding-top: 22px;
+//   box-sizing: border-box;
+//   border: 2px solid #fff;
+//   margin-top: 20px;
+//   margin-left: -38px;
+//   left: attr(value);
+//   color: #fff;
+//   font-style: normal;
+//   font-weight: normal;
+//   line-height: normal;
+//   font-size: 36px;
+//   &::after {
+//     content: 'kg';
+//     display: block;
+//     font-size: 1rem;
+//     letter-spacing: 0.07em;
+//     margin-top: -2px;
+//   }
+// }
 
 a.text-center {
   font-size: smaller;
 }
 .card-info {
   margin-top: 1rem;
-  font-size: .875rem;
-	padding: 1rem 1rem;
-	text-align: center;
-	color: #8597a3;
-	a {
-		display: block;
-		color: #6658d3;
-		text-decoration: none;
-	}
+  font-size: 0.875rem;
+  padding: 1rem 1rem;
+  text-align: center;
+  color: #8597a3;
+  a {
+    display: block;
+    color: #6658d3;
+    text-decoration: none;
+  }
 }
 div.input-group-text {
   background: rgba(163, 255, 232, 0.349);
 }
 
-i.bi {
-  color: rgb(97, 25, 231);
-  font-weight: bold;
-}
-
+////////// navbar ///////////
 .navbar {
   z-index: $zindex-sticky;
 }
-
+////////// button /////////////
 /* From uiverse.io by @hritik5102 */
 button.btn.btn-primary {
   position: relative;
   font-weight: 600;
   height: 40px;
-  padding: .2rem 20px;
+  padding: 0.2rem 20px;
   outline: none;
   border: 1px solid rgb(116, 116, 116);
   background-color: transparent;
@@ -125,7 +223,7 @@ button.btn.btn-primary {
 }
 
 button.btn.btn-primary:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   top: 5px;
@@ -140,4 +238,10 @@ button.btn.btn-primary:after {
 button.btn.btn-primary:hover:after {
   top: 0px;
   left: 0px;
+}
+
+///////////// common ////////////////
+i.bi {
+  color: $primary;
+  font-weight: bold;
 }
