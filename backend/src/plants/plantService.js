@@ -7,20 +7,19 @@ export const plantService = {
     return plants;
   },
 
-  async addPlant(
-    name,
-    moisture,
-    water,
-    light,
-    petfriendly,
-    edible,
-    easyToCare,
-    care,
-    imageKey,
-    location,
-  ) {
-    if (!name)
-      throw createHttpError(400, { message: 'Kérlek, adj nevet a növénynek!' });
+  async addPlant(reqBody, imageKey) {
+    const {
+      name,
+      moisture,
+      water,
+      light,
+      petfriendly,
+      edible,
+      easyToCare,
+      care,
+    } = reqBody;
+
+    if (!name) throw createHttpError(400, { message: 'Kérlek, adj nevet a növénynek!' });
 
     const nameExist = await Plant.findOne({ name });
     if (nameExist)
@@ -38,7 +37,6 @@ export const plantService = {
       easyToCare,
       care,
       imageKey,
-      location,
     });
 
     try {
@@ -49,7 +47,6 @@ export const plantService = {
         responseObj: {
           id: savedPlant._id,
           name: savedPlant.name,
-          // care: savedPlant.care,
         },
       };
     } catch (err) {

@@ -18,9 +18,9 @@ export default function AddPlant() {
 
   const [file, setFile] = useState();
 
-  const fileSelected = (event) => {
+  const selectFile = (event) => {
     const img = event.target.files[0];
-    console.log(img);
+    console.log(img.name);
     setFile(img);
   };
 
@@ -116,8 +116,8 @@ export default function AddPlant() {
           name="image"
           id="image"
           // onChange={(e) => handleChange(e, plantData, setPlantData)}
-          onChange={fileSelected}
-          // value={plantData.image}
+          onChange={selectFile}
+          value={file ? file.name : 'Nincs fájl kiválasztva'}
           accept="/image/*"
         />
         <Range

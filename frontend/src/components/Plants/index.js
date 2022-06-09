@@ -40,7 +40,6 @@ export default function Plants() {
           easyToCare,
           care,
           imageKey,
-          location,
         } = plant;
         const id = plant._id;
 
@@ -56,7 +55,6 @@ export default function Plants() {
             easyToCare={easyToCare}
             care={care}
             imageKey={imageKey}
-            location={location}
           />
         );
       })}
