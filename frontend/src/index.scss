@@ -7,7 +7,7 @@ $theme-colors: (
   'primary': $primary,
 );
 
-$border-radius: 0px;
+$border-radius: 1rem;
 $form-range-thumb-height: 2rem;
 $form-range-thumb-width: 1rem;
 $form-range-thumb-focus-box-shadow-width: 0px;
@@ -33,7 +33,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+//////////// forms //////////////
 .login-form,
 .register-form,
 .profile-form {
@@ -43,16 +43,60 @@ code {
   background: #ffffff;
   max-width: 360px;
   margin: 0 auto;
-  padding: 55px 45px 30px;
+  padding: 55px 45px;
   text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius: $border-radius;
+  box-shadow: rgba(0, 0, 0, 0.336) 0px 18px 50px -10px;
+  // box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+
+input.form-control {
+	border-radius: 0px;
+	border-color: #fff;
+	z-index: 1;
+	background-color: transparent;
+	border-bottom: 2px solid #eee; 
+	font: inherit;
+	font-size: 1.125rem;
+	padding: .25rem 0;
+	&:focus, &:valid {
+		outline: 0;
+		border-bottom-color: $primary;
+		&+.input-label {
+			color: $primary;
+			transform: translateY(-1.5rem);
+		}
+	}
+  margin-bottom: 1rem
+
+}
+
+input.form-range {
+	z-index: 1;
+	background-color: transparent;
+	border-bottom: 2px solid #eee; 
+	font: inherit;
+	font-size: 1.125rem;
+	padding: .25rem 0;
+
+}
+
 
 a.text-center {
-  margin-top: 2rem;
   font-size: smaller;
 }
-
+.card-info {
+  margin-top: 1rem;
+  font-size: .875rem;
+	padding: 1rem 1rem;
+	text-align: center;
+	color: #8597a3;
+	a {
+		display: block;
+		color: #6658d3;
+		text-decoration: none;
+	}
+}
 div.input-group-text {
   background: rgba(163, 255, 232, 0.349);
 }
@@ -76,6 +120,8 @@ button.btn.btn-primary {
   border: 1px solid rgb(116, 116, 116);
   background-color: transparent;
   border-radius: 0;
+  margin: 2rem 0 0;
+  // color: #fff;
 }
 
 button.btn.btn-primary:after {

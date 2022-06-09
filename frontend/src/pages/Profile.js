@@ -96,7 +96,7 @@ function Profile() {
         noValidate
         className="align-middle mx-auto d-flex flex-column justify-content-center"
       >
-        <h2 className="mt-3 mb-3">Edit profile</h2>
+        <legend className="mb-5">Profil szerkesztése</legend>
         {alertMessage.value && (
           <Alert
             className={alertMessage.className}
@@ -107,37 +107,33 @@ function Profile() {
           type="text"
           name="name"
           id="name"
-          placeholder="Username"
+          placeholder="felhasználónév"
           value={userData.name}
           onChange={(e) => handleChange(e, userData, setUserData)}
-          iconClass="bi bi-person-fill"
         />
         <InputField
           type="text"
           name="email"
           id="email"
-          placeholder="Email"
+          placeholder="email-cím"
           value={userData.email}
           onChange={(e) => handleChange(e, userData, setUserData)}
-          iconClass="bi bi-envelope"
         />
         <InputField
           type="password"
           name="password"
           id="password"
-          placeholder="Password"
+          placeholder="jelszó"
           value={userData.password}
           onChange={(e) => handleChange(e, userData, setUserData)}
-          iconClass="bi bi-asterisk"
         />
         <InputField
           type="password"
           name="passwordConfirm"
           id="passwordConfirm"
-          placeholder="Re-enter your password"
+          placeholder="jelszó újra"
           value={userData.passwordConfirm}
           onChange={(e) => handleChange(e, userData, setUserData)}
-          iconClass="bi bi-asterisk"
         />
         <Button
           type="submit"

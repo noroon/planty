@@ -83,7 +83,6 @@ function Register() {
           placeholder="Username"
           value={userData.name}
           onChange={(e) => handleChange(e, userData, setUserData)}
-          iconClass="bi bi-person-fill"
         />
         <InputField
           type="text"
@@ -92,7 +91,6 @@ function Register() {
           placeholder="Email"
           value={userData.email}
           onChange={(e) => handleChange(e, userData, setUserData)}
-          iconClass="bi bi-envelope"
         />
         <InputField
           type="password"
@@ -101,7 +99,6 @@ function Register() {
           placeholder="Password"
           value={userData.password}
           onChange={(e) => handleChange(e, userData, setUserData)}
-          iconClass="bi bi-asterisk"
         />
         <InputField
           type="password"
@@ -110,7 +107,6 @@ function Register() {
           placeholder="Re-enter your password"
           value={userData.passwordConfirm}
           onChange={(e) => handleChange(e, userData, setUserData)}
-          iconClass="bi bi-asterisk"
         />
         <Button
           type="submit"
@@ -118,9 +114,10 @@ function Register() {
           value="Regisztrálok!"
         />
       </form>
-      <Link to="/login" className="text-center">
-        If you already have an account, click here to login
-      </Link>
+      <div className="text-center card-info">
+        Ha rendelkezel regisztrációval,
+        <Link to="/login">kattints ide!</Link>
+      </div>
     </div>
   );
 }

@@ -65,7 +65,6 @@ export default function Login() {
           placeholder="Email"
           value={userData.email}
           onChange={(e) => handleChange(e, userData, setUserData)}
-          iconClass="bi bi-envelope"
         />
         <InputField
           type="password"
@@ -74,7 +73,6 @@ export default function Login() {
           placeholder="Password"
           value={userData.password}
           onChange={(e) => handleChange(e, userData, setUserData)}
-          iconClass="bi bi-asterisk"
           autoComplete="current-password"
         />
         <Button
@@ -82,9 +80,12 @@ export default function Login() {
           className="btn-primary mt-2 mb-2 mx-auto"
           value="Bejelentkezés"
         />
-        <Link to="/register" className="text-center">
-          Ha még nem regisztráltál, kattints ide!
-        </Link>
+        <div className="text-center card-info">
+          Ha még nem regisztráltál,
+          <Link to="/register">
+            kattints ide!
+          </Link>
+        </div>
       </form>
     </div>
   );
