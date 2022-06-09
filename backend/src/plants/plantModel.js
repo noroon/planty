@@ -36,6 +36,9 @@ const plantSchema = new mongoose.Schema({
   imageKey: {
     type: String,
   },
+  location: {
+    type: String,
+  },
 });
 
 export default mongoose.model('plant', plantSchema);

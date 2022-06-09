@@ -13,12 +13,15 @@ export const plantController = {
     try {
       const plants = await plantService.getPlants();
 
-        // console.log(req.params);
-        // const key = req.params.key;
-        const readStream = getFileStream(e3eaffc80715bdfdcd27153849e066fe);
-
+      plants.forEach(plant => {
+        const readStream = getFileStream(plant.imageKey);
+        console.log(readStream);
         readStream.pipe(res);
+      });
 
+      // const readStream = getFileStream(plants[0].imageKey);
+      // readStream.pipe(res);
+      // res.send({ imagePath: `images/${plants[0].imageKey}` });
       res.status(200).json({ plants });
     } catch (err) {
       console.log('vmi');
@@ -43,6 +46,7 @@ export const plantController = {
       await unlinkFile(file.path);
       console.log(result);
       const imageKey = result.Key;
+      const location = result.Location;
 
       const { statusCode, responseObj } = await plantService.addPlant(
         name,
@@ -54,6 +58,7 @@ export const plantController = {
         easyToCare,
         care,
         imageKey,
+        location,
       );
 
       res.status(statusCode).json(responseObj);

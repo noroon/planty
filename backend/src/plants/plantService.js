@@ -17,6 +17,7 @@ export const plantService = {
     easyToCare,
     care,
     imageKey,
+    location,
   ) {
     if (!name)
       throw createHttpError(400, { message: 'Kérlek, adj nevet a növénynek!' });
@@ -37,6 +38,7 @@ export const plantService = {
       easyToCare,
       care,
       imageKey,
+      location,
     });
 
     try {
