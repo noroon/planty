@@ -1,13 +1,32 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-icons/font/bootstrap-icons.scss';
 
+$primary: rgb(155, 123, 241);
+
+$theme-colors: (
+  'primary': $primary,
+);
+
+$border-radius: 0px;
+$form-range-thumb-height: 2rem;
+$form-range-thumb-width: 1rem;
+$form-range-thumb-focus-box-shadow-width: 0px;
+$form-range-track-height: 1.2rem;
+$component-active-bg: $primary;
+
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+*{
+    font-family: CerebriSans-Regular,-apple-system,BlinkMacSystemFont,Roboto,sans-serif;
+
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  //   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  //   sans-serif;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
@@ -19,11 +38,11 @@ code {
 .register-form,
 .profile-form {
   position: relative;
-  transform: translate(0, 9vh);
+  // transform: translate(0, 9vh);
   z-index: 1;
   background: #ffffff;
   max-width: 360px;
-  margin: 0 auto 100px;
+  margin: 0 auto;
   padding: 55px 45px 30px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);

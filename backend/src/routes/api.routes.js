@@ -17,7 +17,6 @@ router.use(users);
 router.use(plants);
 
 router.get('/images/:key', (req, res) => {
-  console.log(req.params);
   const key = req.params.key;
   const readStream = getFileStream(key);
 

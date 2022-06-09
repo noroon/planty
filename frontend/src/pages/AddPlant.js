@@ -94,7 +94,7 @@ export default function AddPlant() {
   };
 
   return (
-    <div className="container login-form mt-0">
+    <div className="container login-form mx-auto">
       {alertMessage && <Alert className="alert-danger" value={alertMessage} />}
       <form
         onSubmit={handleSubmit}
@@ -117,7 +117,7 @@ export default function AddPlant() {
           id="image"
           // onChange={(e) => handleChange(e, plantData, setPlantData)}
           onChange={selectFile}
-          value={file ? file.name : 'Nincs fájl kiválasztva'}
+          // value={file ? file.name : 'Nincs fájl kiválasztva'}
           accept="/image/*"
         />
         <Range
