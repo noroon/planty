@@ -15,7 +15,8 @@ export default function NavBar({ linkList }) {
       {linkList.map((link) => {
         const { title, id, path } = link;
         return (
-          <li key={id} className="nav-item text-end">
+          /* <li key={id} className="nav-item text-end"> */
+          <li key={id} className="nav-item">
             {id === 'logout-link' ? (
               <NavLink
                 id={id}

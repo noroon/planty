@@ -98,7 +98,6 @@ export default function AddPlant() {
       <form
         onSubmit={handleSubmit}
         noValidate
-        className="align-middle mx-auto d-flex flex-column justify-content-center"
       >
         <legend className="mb-5">Növény hozzáadása</legend>
         {/* name, moisture, water, light, petfriendly, edible, easyToCare, care, */}

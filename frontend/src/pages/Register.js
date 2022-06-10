@@ -67,7 +67,6 @@ function Register() {
       <form
         onSubmit={handleSubmit}
         noValidate
-        className="align-middle mx-auto d-flex flex-column justify-content-center"
       >
         <legend className="mb-5">Regisztráció</legend>
         {alertMessage && (

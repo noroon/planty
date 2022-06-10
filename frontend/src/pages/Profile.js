@@ -94,7 +94,6 @@ function Profile() {
       <form
         onSubmit={handleOnSubmit}
         noValidate
-        className="align-middle mx-auto d-flex flex-column justify-content-center"
       >
         <legend className="mb-5">Profil szerkesztése</legend>
         {alertMessage.value && (
