@@ -43,7 +43,7 @@ nav {
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 760px) {
   #menuToggle {
     margin: 2rem;
     z-index: 2;
@@ -68,8 +68,8 @@ nav {
         transform: rotate(-45deg) translate(0, -1px);
       }
       &:checked ~ ul {
-      transform: translate(0, 0);
-             box-shadow: rgba(0, 0, 0, 0.479) 0px 18px 50px -10px;
+        transform: translate(0, 0);
+        box-shadow: rgba(0, 0, 0, 0.479) 0px 18px 50px -10px;
       }
     }
     span {
@@ -96,10 +96,10 @@ nav {
       justify-content: flex-start;
       position: absolute;
       top: 0;
-      right:0;
+      right: 0;
       width: 80vw;
       padding: 100px 0 3rem 2rem;
-      
+
       font-size: larger;
       background: #fff;
       list-style-type: none;

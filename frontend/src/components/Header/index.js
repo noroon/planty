@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 import { useAuthState } from '../../context';
 import PlantyLogo from '../../assets/images/planty_logo.png';
@@ -8,6 +10,14 @@ import './style.scss';
 
 export default function Header() {
   const user = useAuthState();
+  const [checked, setChecked] = useState(false);
+  const isMobile = useMediaQuery({ query: '(max-width: 760px)' });
+
+  const handleChange = () => {
+    if (isMobile) setChecked(!checked);
+  };
+  console.log('checked: ', checked);
+  console.log('mobil:', isMobile);
 
   return (
     <section className="navigation">
@@ -19,11 +29,11 @@ export default function Header() {
         </div>
         <nav>
           <div id="menuToggle">
-            <input type="checkbox" id="hamburger" />
+            <input onChange={handleChange} type="checkbox" id="hamburger" checked={checked ? 'checked' : ''} />
             <span />
             <span />
             <span />
-            <ul>
+            <ul onFocus={handleChange}>
               {user.userDetails ? (
                 <NavBar linkList={navLinks.registeredUser} />
               ) : (
