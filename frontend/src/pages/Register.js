@@ -19,10 +19,7 @@ function Register() {
     const result = registerSchema.validate(userData);
     const { error } = result;
     if (error) {
-      setAlertMessage({
-        className: 'alert-danger',
-        value: result.error.message,
-      });
+      setAlertMessage(error.message);
       return false;
     }
     return true;

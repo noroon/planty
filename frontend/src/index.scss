@@ -1,3 +1,11 @@
+//////////// Content //////////////
+// FORMS
+//// inputs
+////// range
+// NAVBAR
+// COMMON
+//// button
+
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-icons/font/bootstrap-icons.scss';
 
@@ -31,11 +39,7 @@ body {
   //   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-//////////// forms //////////////
+//////////// FORMS //////////////
 .login-form,
 .register-form,
 .profile-form {
@@ -43,7 +47,7 @@ code {
   // transform: translate(0, 9vh);
   z-index: 1;
   background: #ffffff;
-  max-width: 360px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 55px 45px;
   text-align: center;
@@ -51,7 +55,25 @@ code {
   box-shadow: rgba(0, 0, 0, 0.336) 0px 18px 50px -10px;
   // box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+.card-info {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  padding: 1rem 1rem;
+  text-align: center;
+  color: #8597a3;
+  a {
+    display: block;
+    color: #6658d3;
+    text-decoration: none;
+  }
+}
 
+//////////// inputs //////////////
+label {
+  font-size: 1.125rem;
+  font: inherit;
+  color: $secondary;
+}
 input.form-control {
   border-radius: 0px;
   border-color: #fff;
@@ -72,7 +94,7 @@ input.form-control {
   }
   margin-bottom: 1rem;
 }
-
+//////////// range //////////////
 // input.form-range {
 //   z-index: 1;
 //   background-color: transparent;
@@ -81,8 +103,8 @@ input.form-control {
 //   font-size: 1.125rem;
 //   padding: 0.25rem 0;
 // }
-.range-slider {
-}
+// .range-slider {
+// }
 .box-minmax {
   // margin-top: .2rem;
   width: 100%;
@@ -120,7 +142,6 @@ input.form-control {
     border-radius: 0px;
     // border: 0px solid #010101;
   }
-
   &::-webkit-slider-thumb {
     box-shadow: none;
     border: 0px solid $primary;
@@ -131,7 +152,7 @@ input.form-control {
     background: $primary;
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: -.75rem;
+    margin-top: -0.75rem;
   }
   &::-moz-range-thumb {
     box-shadow: none;
@@ -143,17 +164,13 @@ input.form-control {
     background: $primary;
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: -.75rem;
+    margin-top: -0.75rem;
   }
   &::-moz-focus-outer {
     border: 0;
   }
 }
-label {
-  font-size: 1.125rem;
-  font: inherit;
-  color: $secondary;
-}
+
 // .rs-label {
 //   position: relative;
 //   transform-origin: center center;
@@ -184,30 +201,27 @@ label {
 //   }
 // }
 
-a.text-center {
-  font-size: smaller;
-}
-.card-info {
-  margin-top: 1rem;
-  font-size: 0.875rem;
-  padding: 1rem 1rem;
-  text-align: center;
-  color: #8597a3;
-  a {
-    display: block;
-    color: #6658d3;
-    text-decoration: none;
-  }
-}
-div.input-group-text {
-  background: rgba(163, 255, 232, 0.349);
-}
 
-////////// navbar ///////////
+// div.input-group-text {
+//   background: rgba(163, 255, 232, 0.349);
+// }
+
+//////////// NAVBAR //////////////
 .navbar {
   z-index: $zindex-sticky;
 }
-////////// button /////////////
+
+
+///////////// COMMON ////////////////
+i.bi {
+  color: $primary;
+  font-weight: bold;
+}
+a.text-center {
+  font-size: smaller;
+}
+
+//////////// button //////////////
 /* From uiverse.io by @hritik5102 */
 button.btn.btn-primary {
   position: relative;
@@ -221,7 +235,6 @@ button.btn.btn-primary {
   margin: 2rem 0 0;
   // color: #fff;
 }
-
 button.btn.btn-primary:after {
   content: '';
   position: absolute;
@@ -234,14 +247,7 @@ button.btn.btn-primary:after {
   transition: all 0.35s;
   border-radius: inherit;
 }
-
 button.btn.btn-primary:hover:after {
   top: 0px;
   left: 0px;
-}
-
-///////////// common ////////////////
-i.bi {
-  color: $primary;
-  font-weight: bold;
 }
