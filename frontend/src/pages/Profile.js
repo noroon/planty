@@ -137,7 +137,7 @@ function Profile() {
         />
         <Button
           type="submit"
-          className="btn-primary mt-2 mb-2 mx-auto"
+          className="btn-primary"
           value="Frissítés"
         />
       </form>

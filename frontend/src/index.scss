@@ -1,6 +1,7 @@
 //////////// Content //////////////
 // FORMS
 //// inputs
+////// switch
 ////// range
 // NAVBAR
 // COMMON
@@ -10,13 +11,17 @@
 @import '~bootstrap-icons/font/bootstrap-icons.scss';
 
 $primary: rgb(155, 123, 241);
+$primary-light: rgb(197, 181, 241);
 $secondary: #7a8088;
+$turquoise: #1abc9c;
+$greensea: #16a085;
 
 $theme-colors: (
   'primary': $primary,
   'secondary': $secondary,
 );
 
+$transition: all 0.5s ease;
 $border-radius: 1rem;
 $form-range-thumb-height: 2rem;
 $form-range-thumb-width: 1rem;
@@ -32,44 +37,45 @@ $component-active-bg: $primary;
 }
 body {
   margin: 0;
-  // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  //   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  //   sans-serif;
-  //   -webkit-font-smoothing: antialiased;
-  //   -moz-osx-font-smoothing: grayscale;
 }
 
 //////////// FORMS //////////////
-.login-form,
-.register-form,
-.profile-form {
-  position: relative;
-  // transform: translate(0, 9vh);
-  z-index: 1;
-  background: #ffffff;
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 55px 45px;
-  text-align: center;
-  border-radius: $border-radius;
-  box-shadow: rgba(0, 0, 0, 0.336) 0px 18px 50px -10px;
-  // box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-.card-info {
-  margin-top: 1rem;
-  font-size: 0.875rem;
-  padding: 1rem 1rem;
-  text-align: center;
-  color: #8597a3;
-  a {
-    display: block;
-    color: #6658d3;
-    text-decoration: none;
+@mixin form($name) {
+  .#{$name}-form {
+    position: relative;
+    z-index: 1;
+    background: #ffffff;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 55px 45px;
+    text-align: center;
+    border-radius: $border-radius;
+    box-shadow: rgba(0, 0, 0, 0.336) 0px 18px 50px -10px;
+    .card-info {
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      padding: 1rem 1rem;
+      text-align: center;
+      color: #8597a3;
+      a {
+        display: block;
+        color: $primary;
+        text-decoration: none;
+      }
+    }
+    form legend {
+      color: $secondary;
+    }
   }
 }
+@include form('login');
+@include form('register');
+@include form('profile');
+@include form('plant');
 
 //////////// inputs //////////////
-label {
+label,
+.switch-label {
   font-size: 1.125rem;
   font: inherit;
   color: $secondary;
@@ -94,6 +100,58 @@ input.form-control {
   }
   margin-bottom: 1rem;
 }
+
+//////////// switch //////////////
+.switch-label {
+  width: 60%;
+  text-align: left;
+}
+input[type='checkbox'] {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.check-trail {
+  display: flex;
+  align-items: center;
+  width: 2.6rem;
+  height: 1.6rem;
+  background: $primary-light;
+  border-radius: 0.8rem;
+  transition: $transition;
+  cursor: pointer;
+}
+.check-handler {
+  display: flex;
+  margin-left: 0.3rem;
+  justify-content: center;
+  align-items: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  background: $primary;
+  border-radius: 50%;
+  transition: $transition;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.171);
+  &:before {
+    content: '\00D7';
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0.1rem 0 0 -0.1rem;
+  }
+}
+input[type='checkbox']:checked + .check-trail {
+  background: $greensea;
+  .check-handler {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.171);
+    margin-left: 45%;
+    background: $turquoise;
+    &::before {
+      content: '\2714';
+    }
+  }
+}
+
 //////////// range //////////////
 // input.form-range {
 //   z-index: 1;
@@ -103,8 +161,10 @@ input.form-control {
 //   font-size: 1.125rem;
 //   padding: 0.25rem 0;
 // }
-// .range-slider {
-// }
+.range-label {
+  width: 40%;
+  text-align: left;
+}
 .box-minmax {
   // margin-top: .2rem;
   width: 100%;
@@ -201,7 +261,6 @@ input.form-control {
 //   }
 // }
 
-
 // div.input-group-text {
 //   background: rgba(163, 255, 232, 0.349);
 // }
@@ -211,14 +270,10 @@ input.form-control {
   z-index: $zindex-sticky;
 }
 
-
 ///////////// COMMON ////////////////
 i.bi {
   color: $primary;
   font-weight: bold;
-}
-a.text-center {
-  font-size: smaller;
 }
 
 //////////// button //////////////
@@ -226,14 +281,14 @@ a.text-center {
 button.btn.btn-primary {
   position: relative;
   font-weight: 600;
-  height: 40px;
+  height: 3rem;
   padding: 0.2rem 20px;
   outline: none;
-  border: 1px solid rgb(116, 116, 116);
+  border: 1px solid $secondary;
   background-color: transparent;
   border-radius: 0;
-  margin: 2rem 0 0;
-  // color: #fff;
+  margin: 1.2rem 0 0;
+  color: #fff;
 }
 button.btn.btn-primary:after {
   content: '';
@@ -242,7 +297,7 @@ button.btn.btn-primary:after {
   top: 5px;
   left: 5px;
   height: 100%;
-  background-color: rgb(155, 123, 241);
+  background-color: $primary;
   z-index: -1;
   transition: all 0.35s;
   border-radius: inherit;

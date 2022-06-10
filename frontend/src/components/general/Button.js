@@ -8,7 +8,7 @@ export default function Button({
   return (
     <button
       type={type === 'submit' ? 'submit' : 'button'}
-      className={`btn ${className}`}
+      className={`btn ${className} mb-2 mx-auto`}
       onClick={onClick}
       id={id}
     >

@@ -20,7 +20,6 @@ export default function AddPlant() {
 
   const selectFile = (event) => {
     const img = event.target.files[0];
-    console.log(img.name);
     setFile(img);
   };
 
@@ -94,7 +93,7 @@ export default function AddPlant() {
   };
 
   return (
-    <div className="container login-form mx-auto">
+    <div className="container plant-form mx-auto">
       {alertMessage && <Alert className="alert-danger" value={alertMessage} />}
       <form
         onSubmit={handleSubmit}
@@ -180,7 +179,7 @@ export default function AddPlant() {
         />
         <Button
           type="submit"
-          className="btn-primary mt-2 mb-2 mx-auto"
+          className="btn-primary"
           value="Hozzáadás"
         />
       </form>

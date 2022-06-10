@@ -78,7 +78,7 @@ export default function Login() {
         />
         <Button
           type="submit"
-          className="btn-primary mt-2 mb-2 mx-auto"
+          className="btn-primary"
           value="Bejelentkezés"
         />
         <div className="text-center card-info">
