@@ -37,6 +37,26 @@ div.plant-card {
       font-weight: 700;
       margin: 1.6rem 0;
     }
+    .plant-needs div {
+      width: fit-content;
+      align-content: center;
+      margin-bottom: .2rem;
+      .image-container {
+        width: fit-content;
+        margin-right: 1rem;
+        padding: .8rem;
+        border-radius: 40px;
+        background: #f1f1f1;
+        img{
+          margin: .8rem;
+          // box-shadow: rgba(33, 35, 38, 0.247) 0px 10px 10px -10px;
+        }
+      }
+      p {
+        padding-top: 1rem;
+        margin-right: 1.4rem;
+      }
+    }
   }
   .card-body {
     margin: 1.6rem 3rem;

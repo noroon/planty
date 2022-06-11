@@ -49,22 +49,22 @@ const profileSchema = Joi.object({
   }),
 });
 
-export default function validateForm(schema, formData, setAlertMessage) {
-  let schema2;
-  switch (schema) {
+export default function validateForm(schemaName, formData, setState) {
+  let schema;
+  switch (schemaName) {
     case 'profileSchema':
-      schema2 = profileSchema;
+      schema = profileSchema;
       break;
     case 'registerSchema':
-      schema2 = registerSchema;
+      schema = registerSchema;
       break;
     default:
-      setAlertMessage('Hiányzó validációs séma');
+      setState('Hiányzó validációs séma');
   }
-  const result = schema2.validate(formData);
+  const result = schema.validate(formData);
   const { error } = result;
   if (error) {
-    setAlertMessage(error.message);
+    setState(error.message);
     return false;
   }
   return true;

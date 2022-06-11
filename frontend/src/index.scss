@@ -34,9 +34,14 @@ $component-active-bg: $primary;
 * {
   font-family: CerebriSans-Regular, -apple-system, BlinkMacSystemFont, Roboto,
     sans-serif;
+  font-weight: 500;
+  color: $secondary;
 }
 body {
   margin: 0;
+}
+p {
+  color: #7c7c7c;
 }
 
 //////////// FORMS //////////////
