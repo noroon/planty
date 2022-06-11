@@ -1,0 +1,79 @@
+$secondary: #969696;
+
+div.plant-card {
+  background-color: #fff;
+  border-radius: 1rem;
+  border-color: #fff;
+  padding: 8px;
+  min-height: 80wh;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+  display: flex;
+  flex-direction: column;
+  .card-head {
+    padding: 0.8em 0;
+    text-align: left;
+    display: flex;
+    .card-image {
+      border-radius: 7px;
+      width: 400px;
+      height: 500px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 3rem 1rem;
+      img {
+        min-width: 400px;
+        min-height: 500px;
+        height: auto;
+        width: 100%;
+        overflow: hidden;
+        transition: all 200ms;
+      }
+    }
+    .card-title {
+      color: $secondary;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin: 1.6rem 0;
+    }
+  }
+  .card-body {
+    margin: 1.6rem 3rem;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 990px) and (min-width: 360px) {
+  div.plant-card {
+    .card-head {
+      margin: 1.6rem 2rem;
+      padding: 0;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      .card-image {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        margin: 0 3rem;
+      }
+      .card-title {
+        margin: 2rem 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  div.plant-card {
+    margin: -1rem;
+    padding: 0;
+    .card-head {
+      margin: 0 2rem;
+    }
+    .card-body {
+      margin: 0 2rem;
+    }
+  }
+}

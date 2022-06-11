@@ -10,7 +10,7 @@
   }
 }
 
-@include line-clamp("card-title", "1");
+@include line-clamp('card-title', '1');
 
 div.card {
   background-color: #fff;
@@ -23,35 +23,32 @@ div.card {
   padding: 8px;
   transition: all 350ms;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
-}
-
-div.card:hover {
-  box-shadow: rgba(0,12,32,.04) 0 0 1px 0,rgba(0,12,32,.04) 0 10px 16px 0;
-}
-
-div.card-image {
-  border-radius: 7px;
-  max-height: 200px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-div.card div.card-image img {
-  height: auto;
-  overflow: hidden;
-  transition: all 200ms;
-  width: 100%
-}
-
-div.card-body {
-  padding: .8em .2em;
-}
-
-p.card-title {
-  color: #333;
-  font-size: 1em;
-  font-weight: 700;
-  margin-bottom: .7em;
+  &:hover {
+    box-shadow: rgba(0, 12, 32, 0.04) 0 0 1px 0,
+      rgba(0, 12, 32, 0.04) 0 10px 16px 0;
+  }
+  .card-image {
+    border-radius: 7px;
+    max-height: 200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      height: auto;
+      overflow: hidden;
+      transition: all 200ms;
+      width: 100%;
+    }
+  }
+  .card-body {
+    padding: 0.8em 0.2em;
+    text-align: left;
+    p.card-title {
+      color: #333;
+      font-size: 1em;
+      font-weight: 700;
+      margin-bottom: 0.7em;
+    }
+  }
 }

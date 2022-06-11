@@ -14,7 +14,7 @@ nav {
   height: 100%;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: end;
   ul {
     list-style: none;
     margin: 0;
@@ -22,7 +22,7 @@ nav {
     height: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: end;
     li {
       a,
       a:visited {

@@ -27,9 +27,9 @@ export default function Plant() {
   }, []);
 
   return (
-    <>
+    <div className="container">
       {plant && <PlantCard plant={plant} />}
       {alertMessage && <Alert className="alert-danger" value={alertMessage} />}
-    </>
+    </div>
   );
 }

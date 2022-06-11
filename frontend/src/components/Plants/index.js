@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from '../../config/axiosConfig';
 import PlantCard from './PlantCard';
-import './style.scss';
 
 export default function Plants() {
   const [plants, setPlants] = useState([]);
