@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { registerSchema } from '../utils/validationSchemas';
+import validateForm from '../utils/validation';
 import { handleChange } from '../utils';
 
 import {
@@ -10,25 +10,15 @@ import {
   InputField,
 } from '../components/general';
 
-function Register() {
+export default function Register() {
   const [userData, setUserData] = useState({});
   const [alertMessage, setAlertMessage] = useState('');
   const navigate = useNavigate();
 
-  function validateForm() {
-    const result = registerSchema.validate(userData);
-    const { error } = result;
-    if (error) {
-      setAlertMessage(error.message);
-      return false;
-    }
-    return true;
-  }
-
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (validateForm()) {
+    if (validateForm('registerSchema', userData, setAlertMessage)) {
       const { name, email, password } = userData;
 
       const options = {
@@ -55,12 +45,10 @@ function Register() {
           }
         })
         .catch(() => {
-          setAlertMessage(
-            "Something went wrong. But don't worry, our best people are on it!",
-          );
+          setAlertMessage('Something went wrong.');
         });
     }
-  }
+  };
 
   return (
     <div className="container register-form">
@@ -117,5 +105,3 @@ function Register() {
     </div>
   );
 }
-
-export default Register;

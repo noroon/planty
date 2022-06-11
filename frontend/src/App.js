@@ -5,7 +5,6 @@ import PrivateRoute from './components/PrivateRoute';
 
 import { routes, privateRoutes } from './config/routes';
 import { AuthProvider } from './context';
-import './App.scss';
 
 function App() {
   return (

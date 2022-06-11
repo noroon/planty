@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthState } from '../context';
 import { handleChange } from '../utils';
 import axios from '../config/axiosConfig';
-import { profileSchema } from '../utils/validationSchemas';
+import validateForm from '../utils/validation';
 
 import {
   Alert,
@@ -12,7 +12,7 @@ import {
   InputField,
 } from '../components/general';
 
-function Profile() {
+export default function Profile() {
   const [userData, setUserData] = useState({});
   const [alertMessage, setAlertMessage] = useState('');
 
@@ -24,19 +24,6 @@ function Profile() {
   useEffect(() => {
     setUserData({ name, email });
   }, []);
-
-  function validateForm() {
-    const result = profileSchema.validate(userData);
-    const { error } = result;
-    if (error) {
-      setAlertMessage({
-        className: 'alert-danger',
-        value: result.error.message,
-      });
-      return false;
-    }
-    return true;
-  }
 
   const putUser = async () => {
     const authAxios = axios.create({
@@ -53,10 +40,7 @@ function Profile() {
       };
       const res = await authAxios.patch('/users', patchData);
       if (res.data.message) {
-        setAlertMessage({
-          className: 'alert-danger',
-          value: res.data.message,
-        });
+        setAlertMessage(res.data.message);
       } else {
         // const accessToken = res.data.token;
         // setUser(accessToken);
@@ -64,44 +48,28 @@ function Profile() {
         //   'user',
         //   JSON.stringify(accessToken),
         // );
-        setAlertMessage({
-          className: 'alert-success',
-          value: 'Update sucsessful.',
-        });
         setUserData({});
         setAlertMessage('');
         navigate('/');
       }
     } catch (err) {
-      setAlertMessage({
-        className: 'alert-danger',
-        value:
-          "Something went wrong. But don't worry, our best people are on it!",
-      });
+      setAlertMessage('Something went wrong');
     }
   };
 
-  function handleOnSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (validateForm()) {
+    if (validateForm('profileSchema', userData, setAlertMessage)) {
       putUser();
     }
-  }
+  };
 
   return (
     <div className="container profile-form">
-      <form
-        onSubmit={handleOnSubmit}
-        noValidate
-      >
+      <form onSubmit={handleSubmit} noValidate>
         <legend className="mb-5">Profil szerkesztése</legend>
-        {alertMessage.value && (
-          <Alert
-            className={alertMessage.className}
-            value={alertMessage.value}
-          />
-        )}
+        {alertMessage && (<Alert className="alert-danger" value={alertMessage} />)}
         <InputField
           type="text"
           name="name"
@@ -134,14 +102,8 @@ function Profile() {
           value={userData.passwordConfirm}
           onChange={(e) => handleChange(e, userData, setUserData)}
         />
-        <Button
-          type="submit"
-          className="btn-primary"
-          value="Frissítés"
-        />
+        <Button type="submit" className="btn-primary" value="Frissítés" />
       </form>
     </div>
   );
 }
-
-export default Profile;

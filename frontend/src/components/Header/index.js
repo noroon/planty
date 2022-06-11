@@ -16,8 +16,6 @@ export default function Header() {
   const handleChange = () => {
     if (isMobile) setChecked(!checked);
   };
-  console.log('checked: ', checked);
-  console.log('mobil:', isMobile);
 
   return (
     <section className="navigation">

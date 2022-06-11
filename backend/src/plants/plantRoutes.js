@@ -7,6 +7,7 @@ const upload = multer({ dest: 'uploads/' });
 const router = express.Router();
 
 router.get('/plants', plantController.get);
+router.get('/plant/:id', plantController.getById);
 
 router.post('/admin/new-plant', upload.single('image'), plantController.addNew);
 

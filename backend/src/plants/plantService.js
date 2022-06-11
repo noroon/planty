@@ -3,10 +3,21 @@ import Plant from './plantModel';
 
 export const plantService = {
   async getPlants() {
-    const plants = await Plant.find();
-    return plants;
+    try {
+      const plants = await Plant.find();
+      return plants;
+    } catch (err) {
+      throw createHttpError(400, { message: err.message });
+    }
   },
-
+  async getPlantById(id) {
+    try {
+      const plantById = await Plant.findById({ _id: id });
+      return plantById;
+    } catch (err) {
+      throw createHttpError(400, { message: err.message });
+    }
+  },
   async addPlant(reqBody, imageKey) {
     const {
       name,
@@ -19,7 +30,8 @@ export const plantService = {
       care,
     } = reqBody;
 
-    if (!name) throw createHttpError(400, { message: 'Kérlek, adj nevet a növénynek!' });
+    if (!name)
+      throw createHttpError(400, { message: 'Kérlek, adj nevet a növénynek!' });
 
     const nameExist = await Plant.findOne({ name });
     if (nameExist)

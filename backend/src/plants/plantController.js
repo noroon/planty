@@ -12,7 +12,15 @@ export const plantController = {
       const plants = await plantService.getPlants();
       res.status(200).json({ plants });
     } catch (err) {
-      console.log('vmi');
+      next(err);
+    }
+  },
+  async getById(req, res) {
+    const {id} = req.params;
+    try {
+      const plantById = await plantService.getPlantById(id);
+      res.status(200).json({ plantById });
+    } catch (err) {
       next(err);
     }
   },

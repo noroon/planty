@@ -3,6 +3,7 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 import AddPlant from '../pages/AddPlant';
+import Plant from '../pages/Plant';
 
 export const routes = [
   {
@@ -16,6 +17,10 @@ export const routes = [
   {
     path: '/register',
     element: Register,
+  },
+  {
+    path: '/plant/:id',
+    element: Plant,
   },
 ];
 
