@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 
 import { useAuthState } from '../../context';
@@ -65,11 +65,34 @@ export default function Header() {
                     >
                       ADMIN
                     </button>
+                    <ul
+                      className="dropdown-menu"
+                      aria-labelledby="admin-dropdown"
+                    >
+                      {navLinks.admin.map((link) => {
+                        console.log(link);
+                        const { title, id, path } = link;
+                        return (
+                          <li key={id} className="nav-item">
+                            <NavLink
+                              id={id}
+                              className="dropdown-item"
+                              to={path}
+                            >
+                              {title}
+                            </NavLink>
+                          </li>
+                        );
+                      })}
+                    </ul>
                   </div>
                 )}
-              <ul>
-                <NavBar linkList={navLinks.admin} />
-              </ul>
+              {!isMobile
+                && (
+                  <ul>
+                    <NavBar linkList={navLinks.admin} />
+                  </ul>
+                )}
             </nav>
           </div>
         </section>

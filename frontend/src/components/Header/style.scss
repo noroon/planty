@@ -24,8 +24,28 @@ $secondary: #969696;
       a:visited {
         font-size: smaller;
         background-color: transparent;
+        &:hover{
+          border-bottom: 0rem $primary solid;
+          color: #fff;
+        }
         }
       }
+  }
+  button{
+    color: #fff;
+    padding-bottom: 0;
+    margin: 0 1.2rem -.4rem;
+    &:focus{
+      box-shadow: none;
+    }
+  }
+  .dropdown-menu.show{
+    background-color: $primary;
+    border: none;
+    border-radius: 0;
+    color: #fff;
+    margin-top: -1rem;
+
   }
 }
 .brand {
