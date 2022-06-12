@@ -18,29 +18,62 @@ export default function Header() {
   };
 
   return (
-    <section className="navigation">
-      <div className="nav-container d-flex container">
-        <div className="brand">
-          <Link className="navbar-brand bg-white overflow-hidden" to="/">
-            <img src={PlantyLogo} alt="logo" width="70px" />
-          </Link>
-        </div>
-        <nav>
-          <div id="menuToggle">
-            <input onChange={handleChange} type="checkbox" id="hamburger" checked={checked ? 'checked' : ''} />
-            <span />
-            <span />
-            <span />
-            <ul onFocus={handleChange}>
-              {user.userDetails ? (
-                <NavBar linkList={navLinks.registeredUser} />
-              ) : (
-                <NavBar linkList={navLinks.visitor} />
-              )}
-            </ul>
+    <>
+      <section className="navigation">
+        <div className="nav-container d-flex container">
+          <div className="brand">
+            <Link className="navbar-brand bg-white overflow-hidden" to="/">
+              <img src={PlantyLogo} alt="logo" width="70px" />
+            </Link>
           </div>
-        </nav>
-      </div>
-    </section>
+          <nav>
+            <div id="menuToggle">
+              <input
+                onChange={handleChange}
+                type="checkbox"
+                id="hamburger"
+                checked={checked ? 'checked' : ''}
+              />
+              <span />
+              <span />
+              <span />
+              <ul onFocus={handleChange}>
+                {user.userDetails ? (
+                  <NavBar linkList={navLinks.registeredUser} />
+                ) : (
+                  <NavBar linkList={navLinks.visitor} />
+                )}
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </section>
+      {user.userDetails.isAdmin && (
+        <section className="navigation admin-nav">
+          <div className="admin-nav-container d-flex container">
+            {!isMobile && <p className="role">ADMIN</p>}
+            <nav>
+              {isMobile
+                && (
+                  <div className="dropdown">
+                    <button
+                      className="btn dropdown-toggle"
+                      type="button"
+                      id="admin-dropdown"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      ADMIN
+                    </button>
+                  </div>
+                )}
+              <ul>
+                <NavBar linkList={navLinks.admin} />
+              </ul>
+            </nav>
+          </div>
+        </section>
+      )}
+    </>
   );
 }

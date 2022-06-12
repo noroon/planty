@@ -7,6 +7,27 @@ $secondary: #969696;
   background: $nav-background;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+.navigation.admin-nav{
+  height: 2rem;
+  background: $primary;
+  p, a {
+    color:#fff;
+  }
+  .role{
+    margin: .4rem 0 0 .5rem;
+    font-weight: 600;
+  }
+    ul {
+    padding: 0 0;
+    li {
+      a,
+      a:visited {
+        font-size: smaller;
+        background-color: transparent;
+        }
+      }
+  }
+}
 .brand {
   margin: 0.6rem 0;
 }

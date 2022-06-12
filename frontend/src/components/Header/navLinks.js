@@ -3,17 +3,17 @@ const navLinks = {
     {
       title: 'Főoldal',
       path: '/',
-      id: 'home-link',
+      id: 'home',
     },
     {
       title: 'Regisztráció',
       path: '/register',
-      id: 'register-link',
+      id: 'register',
     },
     {
       title: 'Bejelentkezés',
       path: '/login',
-      id: 'login-link',
+      id: 'login',
     },
   ],
 
@@ -21,17 +21,25 @@ const navLinks = {
     {
       title: 'Főoldal',
       path: '/',
-      id: 'home-link',
+      id: 'home',
     },
     {
       title: 'Adatlap',
       path: '/profile',
-      id: 'my-profile-link',
+      id: 'my-profile',
     },
     {
       title: 'Kijelentkezés',
       path: '/',
-      id: 'logout-link',
+      id: 'logout',
+    },
+  ],
+
+  admin: [
+    {
+      title: 'Növény hozzáadása',
+      path: '/add-plant',
+      id: 'add-plant',
     },
   ],
 };
