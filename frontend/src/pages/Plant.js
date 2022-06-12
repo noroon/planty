@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from '../config/axiosConfig';
+import axios from '../api/axios';
 
 import { Alert } from '../components/general';
 import PlantCard from '../components/PlantCard';

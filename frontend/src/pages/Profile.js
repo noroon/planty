@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import { useAuthState } from '../context';
 import { handleChange } from '../utils';
-import axios from '../config/axiosConfig';
 import validateForm from '../utils/validation';
 
 import {
@@ -17,43 +17,46 @@ export default function Profile() {
   const [alertMessage, setAlertMessage] = useState('');
 
   const user = useAuthState();
-  const { name, email } = user.userDetails;
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    setUserData({ name, email });
+    setUserData({
+      name: user.userDetails.name,
+      email: user.userDetails.email,
+    });
   }, []);
 
   const putUser = async () => {
     const authAxios = axios.create({
+      baseURL: process.env.REACT_APP_API_SERVER,
       headers: {
         Authorization: `Bearer ${user.token}`,
       },
     });
     try {
-      const { password } = userData;
+      const { name, email, password } = userData;
       const patchData = {
         name,
         email,
         password,
       };
       const res = await authAxios.patch('/users', patchData);
+      console.log(res.data);
       if (res.data.message) {
+        console.log(res.data.message);
         setAlertMessage(res.data.message);
       } else {
         // const accessToken = res.data.token;
         // setUser(accessToken);
-        // localStorage.setItem(
-        //   'user',
-        //   JSON.stringify(accessToken),
-        // );
+        localStorage.setItem('currentUser', JSON.stringify(res.data.token));
+
         setUserData({});
         setAlertMessage('');
         navigate('/');
       }
     } catch (err) {
-      setAlertMessage('Something went wrong');
+      setAlertMessage('Sajnáljuk, valami hiba történt');
     }
   };
 

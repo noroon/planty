@@ -45,7 +45,7 @@ export default function Register() {
           }
         })
         .catch(() => {
-          setAlertMessage('Something went wrong.');
+          setAlertMessage('Sajnáljuk, valami hiba történt');
         });
     }
   };

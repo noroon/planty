@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from '../../config/axiosConfig';
+import axios from '../../api/axios';
 import PlantCard from './PlantCard';
 
 export default function Plants() {

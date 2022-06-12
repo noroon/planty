@@ -5,7 +5,9 @@ import User from './userModel';
 import config from '../config';
 
 export const userService = {
-  async registerUser(name, email, password) {
+  async registerUser(reqBody) {
+    const { name, email, password } = reqBody;
+
     const emailExist = await User.findOne({ email });
     if (emailExist) {
       throw createHttpError(400, { message: 'Email is already taken.' });
@@ -35,19 +37,19 @@ export const userService = {
     }
   },
 
-  async loginUser(email, password) {
-    if (!email && !password) throw createHttpError(400, { message: 'All fields are required.' });
+  async loginUser(reqBody) {
+    const { email, password } = reqBody;
+    if (!email && !password)
+      throw createHttpError(400, { message: 'All fields are required.' });
     if (!email) throw createHttpError(400, { message: 'Email is required.' });
-    if (!password) throw createHttpError(400, { message: 'Password is required.' });
+    if (!password)
+      throw createHttpError(400, { message: 'Password is required.' });
 
     try {
-      // Validate if user exists in the database - email is unique
       const user = await User.findOne({ email });
 
       if (user && (await bcrypt.compare(password, user.password))) {
-        const {
-          _id, name, isAdmin, isVerified,
-        } = user;
+        const { _id, name, isAdmin, isVerified } = user;
 
         const token = jwt.sign(
           {
@@ -58,7 +60,7 @@ export const userService = {
             isVerified,
           },
           config.token_key,
-          { expiresIn: '2h' },
+          { expiresIn: '2h' }
         );
         return { statusCode: 200, resObj: { status: 'ok', token } };
       }
@@ -68,18 +70,37 @@ export const userService = {
     throw createHttpError(400, { message: 'Email or password is incorrect.' });
   },
 
-  async updateUser(_id, name, email, password) {
-    const userData = await User.findById({ _id });
+  async updateUser(_id, reqBody) {
+    const { name, email, password } = reqBody;
+    let userData = new User();
+    let emailExist;
 
-    if (name) userData.name = name;
+    try {
+      userData = await User.findById({ _id });
+    } catch (err) {
+      if (err instanceof mongoose.Error.CastError)
+        throw createHttpError(400, { message: 'Invalid user id' });
+      throw createHttpError(500, { message: err.message });
+    }
 
-    if (email) {
-      const emailExist = await User.findOne({ email });
+    if (!userData) {
+      throw createHttpError(400, { message: 'User not found' });
+    }
+
+    if (email && email !== userData.email) {
+      try {
+        emailExist = await User.findOne({ email });
+      } catch (err) {
+        throw createHttpError(500, { message: err.message });
+      }
+
       if (emailExist) {
         throw createHttpError(400, { message: 'Email is already taken.' });
       }
       userData.email = email;
     }
+
+    if (name) userData.name = name;
 
     if (password) {
       const salt = await bcrypt.genSalt(10);
@@ -87,19 +108,19 @@ export const userService = {
       userData.password = encryptedPassword;
     }
 
+    const user = new User(userData);
     try {
-      const savedUser = await userData.save();
-      const { isAdmin, isVerified } = savedUser;
+      const savedUser = await user.save();
       const newToken = jwt.sign(
         {
-          _id,
-          isAdmin,
-          isVerified,
-          name,
-          email,
+          userId: savedUser._id,
+          isAdmin: savedUser.isAdmin,
+          isVerified: savedUser.isVerified,
+          name: savedUser.name,
+          email: savedUser.email,
         },
         config.token_key,
-        { expiresIn: '2h' },
+        { expiresIn: '2h' }
       );
 
       return {
@@ -112,8 +133,7 @@ export const userService = {
         },
       };
     } catch (err) {
-      throw createHttpError(400, { message: err });
+      throw createHttpError(400, { message: err.message });
     }
   },
-
 };

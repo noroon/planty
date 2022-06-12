@@ -31,3 +31,8 @@ export async function logout(dispatch) {
   dispatch({ type: 'LOGOUT' });
   localStorage.removeItem('currentUser');
 }
+
+export async function update(dispatch) {
+  dispatch({ type: 'LOGOUT' });
+  localStorage.removeItem('currentUser');
+}

@@ -3,12 +3,9 @@ import { userService } from './userService';
 
 export const userController = {
   async register(req, res, next) {
-    const { name, email, password } = req.body;
     try {
       const { statusCode, responseObj } = await userService.registerUser(
-        name,
-        email,
-        password,
+        req.body
       );
 
       res.status(statusCode).json(responseObj);
@@ -18,12 +15,8 @@ export const userController = {
   },
 
   async login(req, res, next) {
-    const { email, password } = req.body;
     try {
-      const { statusCode, resObj } = await userService.loginUser(
-        email,
-        password,
-      );
+      const { statusCode, resObj } = await userService.loginUser(req.body);
       return res.status(statusCode).json(resObj);
     } catch (error) {
       return next(error);
@@ -31,14 +24,11 @@ export const userController = {
   },
 
   async update(req, res, next) {
-    const { name, email, password } = req.body;
     const { userId } = req.user;
     try {
       const { statusCode, resObj } = await userService.updateUser(
         userId,
-        name,
-        email,
-        password,
+        req.body
       );
       return res.status(statusCode).json(resObj);
     } catch (error) {

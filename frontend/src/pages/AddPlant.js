@@ -2,7 +2,8 @@ import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 
 import { handleChange } from '../utils';
-import axios from '../config/axiosConfig';
+import { useAuthState } from '../context/context';
+import axios from '../api/axios';
 
 import {
   Alert,
@@ -13,14 +14,18 @@ import {
 } from '../components/general';
 
 export default function AddPlant() {
+  const user = useAuthState();
+
   const [plantData, setPlantData] = useState({});
   const [alertMessage, setAlertMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const [file, setFile] = useState();
 
-  const selectFile = (event) => {
-    const img = event.target.files[0];
+  const selectFile = (e) => {
+    const img = e.target.files[0];
     setFile(img);
+    handleChange(e, plantData, setPlantData);
   };
 
   const validate = () => {
@@ -67,10 +72,13 @@ export default function AddPlant() {
     formData.append('easyToCare', easyToCare || false);
     formData.append('care', care || 'feltöltés alatt');
 
-    const result = await axios.post('/admin/new-plant', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
+    const res = await axios.post('/admin/new-plant', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${user.token}`,
+      },
     });
-    return result.data;
+    return res;
   }
 
   const handleSubmit = async (event) => {
@@ -80,27 +88,26 @@ export default function AddPlant() {
 
     if (isValid) {
       postImage({ image: file })
-        .then((res) => {
-          return res.json();
-        })
         .then((data) => {
-          console.log(data);
+          if (data.status === 200) setSuccessMessage('Sikeres felvitel');
         })
         .catch(() => {
-          setAlertMessage('Something went wrong.');
+          setAlertMessage('Sajnáljuk, valami hiba történt');
         });
     }
+    setPlantData({});
+    setAlertMessage('');
+    setSuccessMessage('');
   };
 
   return (
     <div className="container plant-form mx-auto">
       {alertMessage && <Alert className="alert-danger" value={alertMessage} />}
-      <form
-        onSubmit={handleSubmit}
-        noValidate
-      >
+      {successMessage && (
+        <Alert className="alert-success" value={successMessage} />
+      )}
+      <form onSubmit={handleSubmit} noValidate>
         <legend className="mb-5">Növény hozzáadása</legend>
-        {/* name, moisture, water, light, petfriendly, edible, easyToCare, care, */}
         <InputField
           type="text"
           name="name"
@@ -114,10 +121,10 @@ export default function AddPlant() {
           type="file"
           name="image"
           id="image"
-          // onChange={(e) => handleChange(e, plantData, setPlantData)}
           onChange={selectFile}
-          // value={file ? file.name : 'Nincs fájl kiválasztva'}
+          value={plantData.image}
           accept="/image/*"
+          data-buttonText="Kép feltöltése"
         />
         <Range
           name="light"
@@ -176,11 +183,7 @@ export default function AddPlant() {
           onChange={(e) => handleChange(e, plantData, setPlantData)}
           autoComplete="off"
         />
-        <Button
-          type="submit"
-          className="btn-primary"
-          value="Hozzáadás"
-        />
+        <Button type="submit" className="btn-primary" value="Hozzáadás" />
       </form>
     </div>
   );

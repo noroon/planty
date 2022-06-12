@@ -1,6 +1,7 @@
 //////////// Content //////////////
 // FORMS
 //// inputs
+////// file
 ////// switch
 ////// range
 // NAVBAR
@@ -28,6 +29,10 @@ $form-range-thumb-width: 1rem;
 $form-range-thumb-focus-box-shadow-width: 0px;
 $form-range-track-height: 1.2rem;
 $component-active-bg: $primary;
+
+$form-file-button-color: #fff;
+$form-file-button-bg: $primary;
+$form-file-button-hover-bg: $primary;
 
 @import '../node_modules/bootstrap/scss/bootstrap';
 
@@ -91,7 +96,6 @@ input.form-control {
   z-index: 1;
   background-color: transparent;
   border-bottom: 2px solid #eee;
-  // font: inherit;
   font-size: 1.125rem;
   padding: 0.25rem 0;
   &:focus,
@@ -104,6 +108,25 @@ input.form-control {
     }
   }
   margin-bottom: 1rem;
+}
+
+//////////// file //////////////
+input[type='file']{
+  border: 2px solid $primary;
+  color: $secondary;
+  padding: .4rem .6rem;
+  font-size: 1em;
+  // &::file-selector-button{
+  //   background-color: $primary;
+  //   color:#fff;
+  //   &:hover{
+  //     background-color: $primary;
+  //     color:#fff;
+  //   }
+  // }
+  &:focus{
+    box-shadow: none;
+  }
 }
 
 //////////// switch //////////////
@@ -294,6 +317,9 @@ button.btn.btn-primary {
   border-radius: 0;
   margin: 1.2rem 0 0;
   color: #fff;
+  &:focus{
+    box-shadow: none;
+  }
 }
 button.btn.btn-primary:after {
   content: '';
