@@ -29,6 +29,9 @@ export const privateRoutes = [
     path: '/profile',
     element: Profile,
   },
+];
+
+export const adminRoutes = [
   {
     path: '/add-plant',
     element: AddPlant,
