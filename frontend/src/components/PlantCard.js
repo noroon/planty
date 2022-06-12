@@ -26,7 +26,7 @@ export default function PlantCard({ plant }) {
             alt=""
           />
         </div>
-        <div className="w-50">
+        <div className="">
           <h1 className="card-title mb-5">{name}</h1>
           <div className="plant-needs">
             <div className="d-flex">
@@ -45,7 +45,7 @@ export default function PlantCard({ plant }) {
               </div>
               <p className="">
                 {/* eslint-disable */}
-                {water < 2 ? 'alacsony ' : water > 2 ? 'nagy ' : 'közepes '}
+                {water < 2 ? 'alacsony ' : water > 2 ? 'nagy ' : 'átlagos '}
                 vízigényű
               </p>
             </div>
@@ -58,8 +58,8 @@ export default function PlantCard({ plant }) {
                 {moisture < 2
                   ? 'alacsony '
                   : moisture > 2
-                  ? 'nagy '
-                  : 'közepes '}
+                  ? 'magas '
+                  : 'átlagos '}
                 páratartalmat kedveli
               </p>
             </div>

@@ -40,15 +40,15 @@ div.plant-card {
     .plant-needs div {
       width: fit-content;
       align-content: center;
-      margin-bottom: .2rem;
+      margin-bottom: 0.2rem;
       .image-container {
         width: fit-content;
         margin-right: 1rem;
-        padding: .8rem;
+        padding: 0.8rem;
         border-radius: 40px;
         background: #f1f1f1;
-        img{
-          margin: .8rem;
+        img {
+          margin: 0.8rem;
           // box-shadow: rgba(33, 35, 38, 0.247) 0px 10px 10px -10px;
         }
       }
@@ -80,6 +80,9 @@ div.plant-card {
       }
       .card-title {
         margin: 2rem 0;
+      }
+      .plant-needs {
+        margin: -1rem 0 2rem;
       }
     }
   }
