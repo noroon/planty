@@ -91,8 +91,8 @@ export default function AddPlant() {
         .then((data) => {
           if (data.status === 200) setSuccessMessage('Sikeres felvitel');
         })
-        .catch(() => {
-          setAlertMessage('Sajnáljuk, valami hiba történt');
+        .catch((err) => {
+          setAlertMessage(err.message);
         });
     }
     setPlantData({});

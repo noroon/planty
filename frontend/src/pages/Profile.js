@@ -38,8 +38,8 @@ export default function Profile() {
         const response = await updateUser(dispatch, { name, email, password }, user.token);
         if (!response.token) return;
         navigate('/');
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        setAlertMessage(err.message);
       }
     }
   };

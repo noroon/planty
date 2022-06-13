@@ -16,6 +16,7 @@ $primary-light: rgb(197, 181, 241);
 $secondary: #969696;
 $turquoise: #1abc9c;
 $greensea: #16a085;
+$success: rgb(0, 202, 175);
 
 $theme-colors: (
   'primary': $primary,
@@ -33,6 +34,13 @@ $component-active-bg: $primary;
 $form-file-button-color: #fff;
 $form-file-button-bg: $primary;
 $form-file-button-hover-bg: $primary;
+
+$input-group-addon-padding-y:           $input-padding-y;
+$input-group-addon-padding-x:           $input-padding-x;
+$input-group-addon-font-weight:         $input-font-weight;
+$input-group-addon-color:$success;
+$input-group-addon-bg: $success;
+$input-group-addon-border-color: $success;
 
 @import '../node_modules/bootstrap/scss/bootstrap';
 
@@ -116,14 +124,6 @@ input[type='file']{
   color: $secondary;
   padding: .4rem .6rem;
   font-size: 1em;
-  // &::file-selector-button{
-  //   background-color: $primary;
-  //   color:#fff;
-  //   &:hover{
-  //     background-color: $primary;
-  //     color:#fff;
-  //   }
-  // }
   &:focus{
     box-shadow: none;
   }

@@ -41,8 +41,8 @@ export default function Login() {
         const response = await loginUser(dispatch, { email, password });
         if (!response.token) return;
         navigate('/');
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        setAlertMessage(err.message);
       }
 
       setUserData({});
