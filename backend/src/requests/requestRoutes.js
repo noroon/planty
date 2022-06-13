@@ -4,7 +4,12 @@ import { requestController } from './requestController';
 
 const router = express.Router();
 
-router.get('/plant-requests', requestController.get);
+router.get(
+  '/plant-requests',
+  authorization.verifyToken,
+  authorization.isAdmin,
+  requestController.get
+);
 
 router.post(
   '/plant-request',
