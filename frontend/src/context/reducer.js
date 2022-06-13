@@ -7,7 +7,19 @@ export default function AuthReducer(initialState, action) {
         ...initialState,
         loading: true,
       };
+    case 'REQUEST_UPDATE':
+      return {
+        ...initialState,
+        loading: true,
+      };
     case 'LOGIN_SUCCESS':
+      return {
+        ...initialState,
+        userDetails: jwtDecode(JSON.parse(localStorage.getItem('currentUser'))),
+        token: JSON.parse(localStorage.getItem('currentUser')),
+        loading: false,
+      };
+    case 'UPDATE_SUCCESS':
       return {
         ...initialState,
         userDetails: jwtDecode(JSON.parse(localStorage.getItem('currentUser'))),
@@ -20,14 +32,18 @@ export default function AuthReducer(initialState, action) {
         userDetails: '',
         token: '',
       };
-
     case 'LOGIN_ERROR':
       return {
         ...initialState,
         loading: false,
         errorMessage: action.error,
       };
-
+    case 'UPDATE_ERROR':
+      return {
+        ...initialState,
+        loading: false,
+        errorMessage: action.error,
+      };
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }

@@ -32,7 +32,35 @@ export async function logout(dispatch) {
   localStorage.removeItem('currentUser');
 }
 
-export async function update(dispatch) {
-  dispatch({ type: 'LOGOUT' });
-  localStorage.removeItem('currentUser');
+export async function updateUser(dispatch, updatePayload, userToken) {
+  const requestOptions = {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${userToken}`,
+    },
+    body: JSON.stringify(updatePayload),
+  };
+
+  try {
+    dispatch({ type: 'REQUEST_UPDATE' });
+    const response = await fetch(
+      `${process.env.REACT_APP_API_SERVER}/users`,
+      requestOptions,
+    );
+    const data = await response.json();
+
+    if (data.token) {
+      dispatch({ type: 'UPDATE_SUCCESS', payload: data.token });
+      localStorage.removeItem('currentUser');
+      localStorage.setItem('currentUser', JSON.stringify(data.token));
+      return data;
+    }
+
+    dispatch({ type: 'UPDATE_ERROR', error: data.errors[0] });
+    return data;
+  } catch (error) {
+    dispatch({ type: 'UPDATE_ERROR', error });
+    return error;
+  }
 }

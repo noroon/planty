@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
-import { useAuthState } from '../context';
 import { handleChange } from '../utils';
 import validateForm from '../utils/validation';
+import { updateUser, useAuthDispatch, useAuthState } from '../context';
 
 import {
   Alert,
@@ -13,6 +12,8 @@ import {
 } from '../components/general';
 
 export default function Profile() {
+  const dispatch = useAuthDispatch();
+
   const [userData, setUserData] = useState({});
   const [alertMessage, setAlertMessage] = useState('');
 
@@ -27,44 +28,19 @@ export default function Profile() {
     });
   }, []);
 
-  const putUser = async () => {
-    const authAxios = axios.create({
-      baseURL: process.env.REACT_APP_API_SERVER,
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
-    try {
-      const { name, email, password } = userData;
-      const patchData = {
-        name,
-        email,
-        password,
-      };
-      const res = await authAxios.patch('/users', patchData);
-      console.log(res.data);
-      if (res.data.message) {
-        console.log(res.data.message);
-        setAlertMessage(res.data.message);
-      } else {
-        // const accessToken = res.data.token;
-        // setUser(accessToken);
-        localStorage.setItem('currentUser', JSON.stringify(res.data.token));
-
-        setUserData({});
-        setAlertMessage('');
-        navigate('/');
-      }
-    } catch (err) {
-      setAlertMessage('Sajnáljuk, valami hiba történt');
-    }
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (validateForm('profileSchema', userData, setAlertMessage)) {
-      putUser();
+      const { name, email, password } = userData;
+
+      try {
+        const response = await updateUser(dispatch, { name, email, password }, user.token);
+        if (!response.token) return;
+        navigate('/');
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
