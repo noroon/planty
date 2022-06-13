@@ -41,6 +41,11 @@ const navLinks = {
       path: '/add-plant',
       id: 'add-plant',
     },
+    {
+      title: 'Kérések',
+      path: '/plant-requests',
+      id: 'plant-requests',
+    },
   ],
 };
 

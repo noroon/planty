@@ -28,7 +28,11 @@ $secondary: #969696;
           border-bottom: 0rem $primary solid;
           color: #fff;
         }
+        &:focus{
+          border-bottom: 0rem $primary solid;
+          color: #fff;
         }
+      }
       }
   }
   button{
@@ -77,6 +81,7 @@ nav {
           color: $secondary;
         }
         &:focus {
+          border-bottom: 0.3rem $primary solid;
           color: $secondary;
         }
       }

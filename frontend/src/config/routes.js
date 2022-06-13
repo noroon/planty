@@ -4,6 +4,7 @@ import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 import AddPlant from '../pages/AddPlant';
 import Plant from '../pages/Plant';
+import PlantRequests from '../pages/PlantRequests';
 
 export const routes = [
   {
@@ -35,5 +36,9 @@ export const adminRoutes = [
   {
     path: '/add-plant',
     element: AddPlant,
+  },
+  {
+    path: '/plant-requests',
+    element: PlantRequests,
   },
 ];

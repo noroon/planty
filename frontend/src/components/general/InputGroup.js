@@ -19,9 +19,10 @@ export default function InputGroup({
         onChange={onChange}
         autoComplete="off"
       />
-      <span className="input-group-text" id={id} type="submit">
+      <button type="submit" className="input-group-text" id={id}>
+        {/* <button type="submit" /> */}
         {buttonText}
-      </span>
+      </button>
     </div>
   );
 }

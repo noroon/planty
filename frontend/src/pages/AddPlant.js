@@ -2,7 +2,7 @@ import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 
 import { handleChange } from '../utils';
-import { useAuthState } from '../context/context';
+import { useAuthState } from '../context';
 import axios from '../api/axios';
 
 import {

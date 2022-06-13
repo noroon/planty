@@ -1,14 +1,33 @@
 import { useState } from 'react';
 import { handleChange } from '../utils';
 import { Alert, InputGroup } from './general';
+import { useAuthState } from '../context';
+
 import './PlantRequest.scss';
+import axios from '../api/axios';
 
 export default function PlantRequest() {
+  const user = useAuthState();
+
   const [plant, setPlant] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
-  const postRequest = () => {};
+  const postRequest = async () => {
+    const { name } = plant;
+
+    try {
+      const res = await axios.post('/plant-request', { name }, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      return res.status;
+    } catch (err) {
+      return err;
+    }
+  };
 
   const validate = () => {
     let err = '';
@@ -28,8 +47,8 @@ export default function PlantRequest() {
 
     if (isValid) {
       postRequest()
-        .then((data) => {
-          if (data.status === 200) setSuccessMessage('A kérést elküldtük');
+        .then((status) => {
+          if (status === 200) setSuccessMessage('A kérést elküldtük');
         })
         .catch((err) => {
           setAlertMessage(err.message);
