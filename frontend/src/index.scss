@@ -1,6 +1,7 @@
 //////////// Content //////////////
 // FORMS
 //// inputs
+////// textarea
 ////// file
 ////// switch
 ////// range
@@ -37,9 +38,6 @@ $form-file-button-color: #fff;
 $form-file-button-bg: $primary;
 $form-file-button-hover-bg: $primary;
 
-$input-group-addon-padding-y:           $input-padding-y;
-$input-group-addon-padding-x:           $input-padding-x;
-$input-group-addon-font-weight:         $input-font-weight;
 $input-group-addon-color:$success;
 $input-group-addon-bg: $success;
 $input-group-addon-border-color: $success;
@@ -61,6 +59,11 @@ p {
 ul {
     list-style: none;
 }
+h6{
+  background-color: $primary;
+  color: #fff;
+  padding: .6rem;
+}
 
 //////////// FORMS //////////////
 @mixin form($name) {
@@ -70,7 +73,7 @@ ul {
     background: #ffffff;
     max-width: 400px;
     margin: 2rem auto;
-    padding: 55px 45px;
+    padding: 45px 55px 45px;
     text-align: center;
     border-radius: $border-radius;
     box-shadow: rgba(0, 0, 0, 0.336) 0px 18px 50px -10px;
@@ -95,6 +98,7 @@ ul {
 @include form('register');
 @include form('profile');
 @include form('plant');
+@include form('potting-mix');
 
 //////////// inputs //////////////
 label,
@@ -120,6 +124,18 @@ input.form-control {
       transform: translateY(-1.5rem);
     }
   }
+  margin-bottom: 1rem;
+}
+
+//////////// textarea //////////////
+textarea.form-control {
+  resize: none;
+  border-radius: 0px;
+  border-color: $primary;
+  background-color: #fff;
+  border: 2px solid $primary;
+  font-size: 1.125rem;
+  padding: 0.25rem 0;
   margin-bottom: 1rem;
 }
 

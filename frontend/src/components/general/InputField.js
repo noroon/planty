@@ -1,5 +1,3 @@
-import Icon from './Icon';
-
 export default function InputField({
   type,
   name,
@@ -7,29 +5,30 @@ export default function InputField({
   value = '',
   placeholder,
   onChange,
-  iconClass,
   autoComplete = 'on',
+  index=0,
 }) {
   return (
     <div className="input-group mb-2">
-      {iconClass && (
-        <div className="input-group-text">
-          <Icon className={iconClass} />
-        </div>
-      )}
       {type === 'textarea' ? (
-        <textarea
-          className="form-control"
-          // className={
-          //   'form-control ' + getValidationClassName(errorMessage, wasValidated)
-          // }
-          id={id}
-          name={name}
-          value={value}
-          placeholder={placeholder}
-          onChange={onChange}
-          autoComplete={autoComplete}
-        />
+        <div className="d-flex flex-column w-100">
+          <label htmlFor={id} className="form-label text-start">
+            {placeholder}
+          </label>
+          <textarea
+            className="form-control"
+            // className={
+            //   'form-control ' + getValidationClassName(errorMessage, wasValidated)
+            // }
+            id={id}
+            name={name}
+            value={value}
+            // placeholder={placeholder}
+            onChange={onChange}
+            autoComplete={autoComplete}
+            rows={4}
+          />
+        </div>
       ) : (
         <input
           type={type}
@@ -38,6 +37,7 @@ export default function InputField({
           //   'form-control ' + getValidationClassName(errorMessage, wasValidated)
           // }
           id={id}
+          index={index}
           name={name}
           value={value}
           placeholder={placeholder}

@@ -1,0 +1,60 @@
+// @mixin line-clamp($name, $number-of-lines) {
+//   .#{$name}-line-clamp {
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     display: -webkit-box;
+//     -webkit-line-clamp: #{$number-of-lines};
+//     line-clamp: #{$number-of-lines};
+//     -webkit-box-orient: vertical;
+//     box-orient: vertical;
+//   }
+// }
+
+// @include line-clamp('card-title', '1');
+
+div.potting-mix-card {
+  background-color: #fff;
+  border-radius: 1rem;
+  border-color: #fff;
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 0 2%;
+  min-width: 250px;
+  max-width: 300px;
+  padding: 1rem;
+  transition: all 350ms;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+  &:hover {
+    box-shadow: rgba(0, 12, 32, 0.04) 0 0 1px 0,
+      rgba(0, 12, 32, 0.04) 0 10px 16px 0;
+  }
+  .card-image {
+    border-radius: 100px;
+    max-height: 200px;
+    width: fit-content;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aquamarine;
+    img {
+      height: 100px;
+      // overflow: hidden;
+      // transition: all 200ms;
+      width: 100px;
+      margin: .6rem;
+      padding: 1rem;
+    }
+  }
+  .card-body {
+    padding: 0.8em 0.2em;
+    text-align: left;
+    p.card-title {
+      color: rgb(165, 165, 165);
+      font-size: 1em;
+      font-weight: 700;
+      margin-bottom: 0.7em;
+    }
+  }
+}
+

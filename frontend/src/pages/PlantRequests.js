@@ -10,7 +10,6 @@ export default function PlantRequests() {
     try {
       const res = await axios.get('/plant-requests', {
         headers: {
-          // 'Content-Type': 'application/json',
           Authorization: `Bearer ${user.token}`,
         },
       });

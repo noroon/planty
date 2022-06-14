@@ -5,13 +5,6 @@
       "node": true
     },  
     "root": true,
-    "extends": [
-      "prettier",
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:jest/recommended",
-      "airbnb"
-    ],
     "plugins": [
       "react",
       "testing-library",
@@ -32,12 +25,20 @@
       "react/prop-types": [0],
       "react/destructuring-assignment": [0]
     },
-  
+    
     "parserOptions": {
       "ecmaFeatures": {
         "jsx": true
       },
       "ecmaVersion": 12,
       "sourceType": "module"
-    }
-  }
+    },
+  "extends": [
+    "prettier",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jest/recommended",
+    "airbnb",
+    "prettier"
+  ]
+}

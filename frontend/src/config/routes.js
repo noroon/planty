@@ -5,6 +5,8 @@ import Profile from '../pages/Profile';
 import AddPlant from '../pages/AddPlant';
 import Plant from '../pages/Plant';
 import PlantRequests from '../pages/PlantRequests';
+import AddPottingMix from '../pages/AddPottingMix';
+import PottingMixes from '../pages/PottingMixes';
 
 export const routes = [
   {
@@ -29,6 +31,14 @@ export const privateRoutes = [
   {
     path: '/profile',
     element: Profile,
+  },
+  {
+    path: '/potting-mixes',
+    element: PottingMixes,
+  },
+  {
+    path: '/add-potting-mix',
+    element: AddPottingMix,
   },
 ];
 

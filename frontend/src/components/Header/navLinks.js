@@ -19,9 +19,14 @@ const navLinks = {
 
   registeredUser: [
     {
-      title: 'Főoldal',
+      title: 'Növények',
       path: '/',
       id: 'home',
+    },
+    {
+      title: 'Földkeverékek',
+      path: '/potting-mixes',
+      id: 'potting-mixes',
     },
     {
       title: 'Adatlap',

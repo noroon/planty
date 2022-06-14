@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div data-testid="home-container" className="container">
       <Plants />
-      {user.userDetails && <PlantRequest />}
+      {!user.userDetails.isAdmin && <PlantRequest />}
     </div>
   );
 }
