@@ -1,0 +1,17 @@
+type: object
+properties:
+  name:
+    type: string
+    description: The name of the potting mix
+  ingredients:
+    type: array
+    description: Ingredients of the potting mix
+  description:
+    type: string
+    description: Additional infos about the potting mix
+    minLength: 8
+minProperties: 1
+example:
+  name: Aroid földkeverék
+  ingredients: [20% perlite, 25% orchideaföld, 30% kókuszrost, 10% tőzeg, 10% gilisztahumusz, 5% faszén]
+  description: Ez a földkeverék kiválló azoknak a növénygazdiknak, akik hajlamosak a növényeiket túlöntözni.

@@ -4,3 +4,9 @@ Login:
   $ref: "./Login.yaml"
 Users:
   $ref: "./Users.yaml"
+Plants:
+  $ref: "./Plants.yaml"
+Potting-mixes:
+  $ref: "./PottingMixes.yaml"
+Requests:
+  $ref: "./Requests.yaml"

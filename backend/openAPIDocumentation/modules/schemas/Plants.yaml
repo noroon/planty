@@ -1,0 +1,35 @@
+type: object
+properties:
+  name:
+    type: string
+    description: The name of the plant
+  moisture:
+    type: number
+    description: The moisture that the plant needs
+  water:
+    type: number
+    description: The plant watering needs
+  light:
+    type: number
+    description: The light that the plant needs
+  petfriendly:
+    type: boolean
+    description: Is the plant petfriendly
+  edible:
+    type: boolean
+    description: Is the plant edible
+  easyToCare:
+    type: boolean
+    description: Is the plant easy to care
+  care:
+    type: string
+    description: Description about plant care
+example:
+    name: Alocasia Polly
+    moisture: 3
+    water: 2
+    light: 2
+    petfriendly: false
+    edible: false
+    easyToCare: false
+    care: Télen a növény visszahúzódik a rizómába

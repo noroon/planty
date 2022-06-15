@@ -1,9 +1,9 @@
 import {
   sprayer, sun, can, dog, cutlery, terrarium,
 } from '../assets/icons/32';
-import './PlantCard.scss';
+import './PlantDetails.scss';
 
-export default function PlantCard({ plant }) {
+export default function PlantDetails({ plant }) {
   const {
     name,
     moisture,

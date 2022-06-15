@@ -1,0 +1,9 @@
+type: object
+required:
+  - plant name
+properties:
+  plant name:
+    type: string
+    description: The name of the plant that the user wants to see in the application
+example:
+  plant name: alocasia polly

@@ -1,8 +1,8 @@
 openapi: 3.0.3
 
 info:
-  title: Foxticket
-  description: Foxticket backend OpenApi documentation
+  title: Planty
+  description: Planty backend OpenApi documentation
   version: 1.0.0
 
 externalDocs:
@@ -34,4 +34,4 @@ components:
     bearerAuth:            
       type: http
       scheme: bearer
-      bearerFormat: JWT 
+      bearerFormat: JWT

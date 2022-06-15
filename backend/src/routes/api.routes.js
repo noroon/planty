@@ -1,8 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 
-import { authorization } from '../middlewares/authorization';
-import { adminController } from "./../controllers/adminController";
 import users from '../users/userRoutes';
 import plants from '../plants/plantRoutes';
 import plantRequests from '../requests/requestRoutes';
@@ -26,7 +24,5 @@ router.get('/images/:key', (req, res) => {
 
   readStream.pipe(res);
 });
-
-router.all('/admin', authorization.verifyToken, authorization.isAdmin, adminController.sayHello);
 
 export default router;

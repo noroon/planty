@@ -22,10 +22,11 @@ export default function AddPottingMix() {
       realInputs.push({ name: '' });
       setIngredients(realInputs);
     }
-    const data2 = realInputs.map((item) => item.name);
+    
+    const ingredientList = realInputs.map((input) => input.name);
     setPottingMixData({
       ...pottingMixData,
-      ingredients: [...data2],
+      ingredients: [...ingredientList],
     });
   };
 
@@ -54,8 +55,6 @@ export default function AddPottingMix() {
   };
 
   async function postPottingMix() {
-    console.log(pottingMixData);
-
     const res = await axios.post('/new-potting-mix', pottingMixData, {
       headers: {
         'Content-Type': 'application/json',

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from '../api/axios';
 
 import { Alert } from '../components/general';
-import PlantCard from '../components/PlantCard';
+import PlantDetails from '../components/PlantDetails';
 
 export default function Plant() {
   const { id } = useParams();
@@ -28,7 +28,7 @@ export default function Plant() {
 
   return (
     <div className="container">
-      {plant && <PlantCard plant={plant} />}
+      {plant && <PlantDetails plant={plant} />}
       {alertMessage && <Alert className="alert-danger" value={alertMessage} />}
     </div>
   );
