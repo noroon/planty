@@ -38,7 +38,7 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:jest/recommended",
-    "airbnb",
-    "prettier"
+    "airbnb"
+    // "prettier"
   ]
 }

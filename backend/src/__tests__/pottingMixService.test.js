@@ -5,6 +5,7 @@ import app from '../app';
 import config from '../config';
 import PottingMix from '../pottingMixes/pottingMixModel';
 import User from '../users/userModel';
+import { loginUser } from './userService.test';
 
 let mongoServer;
 
@@ -59,14 +60,6 @@ describe('Potting mixes', () => {
   };
   const testMixes = [testMix1, testMix2, testMix3];
 
-  const testUser = {
-    name: 'user',
-    email: 'user@user.com',
-    password: '$2b$10$oyqtubNd4Z8fsDb78ALbjOkiJsN81.f5PRNOOixs9TbQS7sXo0B7e',
-    isAdmin: false,
-    isVerified: false,
-  };
-
   config.token_key = 'verySecretTokenKey';
 
   describe('get potting mixes from database', () => {
@@ -94,18 +87,11 @@ describe('Potting mixes', () => {
   });
   describe('add potting mix to database', () => {
     it('should add a potting mix to DB successfully', async () => {
-      await User.create(testUser);
-
-      const token = await request(app)
-        .post('/api/login')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .send({ email: 'user@user.com', password: 'Test1234' })
-        .expect(200)
-        .then(res => {
-          const { token } = res.body;
-          return token;
-        });
+      const token = await loginUser({
+        name: 'user',
+        email: 'user@user.com',
+        password: 'Test1234',
+      });
 
       await request(app)
         .post('/api/new-potting-mix')

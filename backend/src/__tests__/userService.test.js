@@ -15,7 +15,7 @@ const testUser = {
 
 config.token_key = 'verySecretTokenKey';
 
-const registerUser = async (user) => {
+const registerUser = async user => {
   await request(app)
     .post('/api/register')
     .set('Accept', 'application/json')
@@ -28,10 +28,10 @@ const registerUser = async (user) => {
     });
 };
 
-const loginUser = async (user) => {
+export const loginUser = async user => {
   await registerUser(user);
 
-  await request(app)
+  const token = await request(app)
     .post('/api/login')
     .set('Accept', 'application/json')
     .expect('Content-Type', /json/)
@@ -40,7 +40,9 @@ const loginUser = async (user) => {
     .then(res => {
       const { token } = res.body;
       expect(token).toBeDefined();
+      return token;
     });
+  return token;
 };
 
 describe('User routes', () => {
@@ -89,11 +91,22 @@ describe('User routes', () => {
     });
   });
 
-  // describe('/api/users', () => {
-  //   describe('when email and password is correct', () => {
-  //     it('should login a user', async () => {
-  //       await loginUser();
-  //     });
-  //   });
-  // });
+  describe('/api/users', () => {
+    describe('when a user is logged in and wants to change profile data', () => {
+      it('refresh data in DB', async () => {
+        const token = await loginUser(testUser);
+
+        await request(app)
+          .patch('/api/users')
+          .set('Authorization', `Bearer ${token}`)
+          .send({ name: 'userina' })
+          .expect(200)
+          .then(res => {
+            const { name, email } = res.body;
+            expect(name).toBe('userina');
+            expect(email).toBe(testUser.email);
+          });
+      });
+    });
+  });
 });

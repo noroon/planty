@@ -5,6 +5,7 @@ import app from '../app';
 import config from '../config';
 import PlantRequest from '../requests/requestModel';
 import User from '../users/userModel';
+import { loginUser } from './userService.test';
 
 let mongoServer;
 
@@ -35,14 +36,6 @@ describe('User requests for plants', () => {
   };
 
   const testRequests = [testRequest1, testRequest2, testRequest3];
-
-  const testUser = {
-    name: 'user',
-    email: 'user@user.com',
-    password: '$2b$10$oyqtubNd4Z8fsDb78ALbjOkiJsN81.f5PRNOOixs9TbQS7sXo0B7e',
-    isAdmin: false,
-    isVerified: false,
-  };
 
   const testAdmin = {
     name: 'Admin Adam',
@@ -81,21 +74,14 @@ describe('User requests for plants', () => {
         });
     });
   });
-  
+
   describe('add request to database', () => {
     it('should add a request to DB successfully', async () => {
-      await User.create(testUser);
-
-      const token = await request(app)
-        .post('/api/login')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .send({ email: 'user@user.com', password: 'Test1234' })
-        .expect(200)
-        .then(res => {
-          const { token } = res.body;
-          return token;
-        });
+      const token = await loginUser({
+        name: 'user',
+        email: 'user@user.com',
+        password: 'Test1234',
+      });
 
       await request(app)
         .post('/api/plant-request')

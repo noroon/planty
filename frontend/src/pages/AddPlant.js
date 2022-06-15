@@ -79,7 +79,7 @@ export default function AddPlant() {
     });
     return res;
   }
-  console.log(user.token)
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
 
