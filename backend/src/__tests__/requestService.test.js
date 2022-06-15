@@ -5,7 +5,7 @@ import app from '../app';
 import config from '../config';
 import PlantRequest from '../requests/requestModel';
 import User from '../users/userModel';
-import { loginUser } from './userService.test';
+import loginUser from './userService.test';
 
 let mongoServer;
 

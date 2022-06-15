@@ -28,10 +28,10 @@ const registerUser = async user => {
     });
 };
 
-export const loginUser = async user => {
+const loginUser = async user => {
   await registerUser(user);
 
-  const token = await request(app)
+  return await request(app)
     .post('/api/login')
     .set('Accept', 'application/json')
     .expect('Content-Type', /json/)
@@ -42,7 +42,6 @@ export const loginUser = async user => {
       expect(token).toBeDefined();
       return token;
     });
-  return token;
 };
 
 describe('User routes', () => {
@@ -110,3 +109,5 @@ describe('User routes', () => {
     });
   });
 });
+
+export default loginUser;

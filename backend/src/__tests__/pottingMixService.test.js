@@ -5,7 +5,7 @@ import app from '../app';
 import config from '../config';
 import PottingMix from '../pottingMixes/pottingMixModel';
 import User from '../users/userModel';
-import { loginUser } from './userService.test';
+import loginUser from './userService.test';
 
 let mongoServer;
 
@@ -85,6 +85,7 @@ describe('Potting mixes', () => {
         });
     });
   });
+
   describe('add potting mix to database', () => {
     it('should add a potting mix to DB successfully', async () => {
       const token = await loginUser({
