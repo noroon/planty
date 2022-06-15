@@ -1,4 +1,8 @@
-export default {
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const config = {
   port: process.env.PORT,
   mongo_uri: process.env.MONGO_URI,
   token_key: process.env.TOKEN_KEY,
@@ -14,3 +18,5 @@ export const mongodbMemoryServerOptions = {
   },
   autoStart: false,
 };
+
+export default config;
