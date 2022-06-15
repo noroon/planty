@@ -14,8 +14,12 @@ describe('Plants', () => {
     await mongoose.connect(mongoServer.getUri());
   });
 
-  afterAll(async () => {
+  afterEach(async () => {
     await Plant.deleteMany();
+    await User.deleteMany();
+  });
+
+  afterAll(async () => {
     await mongoose.disconnect();
     await mongoServer.stop();
   });
@@ -61,7 +65,7 @@ describe('Plants', () => {
   config.token_key = 'verySecretTokenKey';
 
   describe('get plants from database', () => {
-    it('should list of all Plants', async () => {
+    it('should list all of the plants', async () => {
       const testPlants = [testPlant1, testPlant2, testPlant3];
       await Plant.insertMany(testPlants);
 
@@ -105,11 +109,13 @@ describe('Plants', () => {
   //     await request(app)
   //       .post('/api/admin/new-plant')
   //       .set('Authorization', `Bearer ${token}`)
-  //       .expect('Content-Type', 'multipart/form-data')
-  //       // .send(testPlant1)
-  //       .field('name', 'valami')
-  //       .attach('file', '/path/to/file')
+  //       // .expect('Content-Type', 'multipart/form-data')
+  //       .send(testPlant1)
+  //       // .field('name', 'valami')
+  //       // .attach('file', '/path/to/file')
   //       .expect(200);
   //   });
   // });
 });
+
+

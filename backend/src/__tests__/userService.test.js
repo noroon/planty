@@ -6,6 +6,7 @@ import User from '../users/userModel';
 import config from '../config';
 
 let mongoServer;
+
 const testUser = {
   name: 'John Doe',
   email: 'any@email.com',
@@ -14,7 +15,7 @@ const testUser = {
 
 config.token_key = 'verySecretTokenKey';
 
-const registerUser = async user => {
+const registerUser = async (user) => {
   await request(app)
     .post('/api/register')
     .set('Accept', 'application/json')
@@ -23,11 +24,11 @@ const registerUser = async user => {
     .expect(200)
     .then(res => {
       const { email } = res.body;
-      expect(email).toBe('any@email.com');
+      expect(email).toBe(user.email);
     });
 };
 
-const loginUser = async user => {
+const loginUser = async (user) => {
   await registerUser(user);
 
   await request(app)

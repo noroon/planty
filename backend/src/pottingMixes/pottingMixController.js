@@ -19,12 +19,10 @@ export const pottingMixController = {
     }
   },
   async addNew(req, res, next) {
-    console.log(req.body);
     try {
       const { statusCode, responseObj } = await pottingMixService.addPottingMix(
         req.body,
       );
-
       res.status(statusCode).json(responseObj);
     } catch (err) {
       next(err);
