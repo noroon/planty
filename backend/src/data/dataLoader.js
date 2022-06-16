@@ -10,6 +10,8 @@ import pottingMixes from './pottingMixes';
 import PottingMix from '../pottingMixes/pottingMixModel';
 import requests from './requests';
 import Request from '../requests/requestModel';
+import subscribers from './subscribers';
+import NewsletterSubscriber from '../newsletter/newsletterModel';
 
 const loadData = async () => {
   await initDBConnection();
@@ -17,10 +19,12 @@ const loadData = async () => {
   await Plant.deleteMany();
   await PottingMix.deleteMany();
   await Request.deleteMany();
+  await NewsletterSubscriber.deleteMany();
   try {
     await Plant.insertMany(plants);
     await PottingMix.insertMany(pottingMixes);
     await Request.insertMany(requests);
+    await NewsletterSubscriber.insertMany(subscribers);
     await User.insertMany(users);
     logger.info('collections initialized');
   } catch (error) {
@@ -31,6 +35,6 @@ const loadData = async () => {
       process.exit(0);
     });
   }
-}
+};
 
 loadData();
