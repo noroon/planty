@@ -26,7 +26,6 @@ export const plantController = {
   },
   async addNew(req, res, next) {
     const file = req.file;
-console.log(file);
     try {
       const result = await uploadFile(file);
       await unlinkFile(file.path);

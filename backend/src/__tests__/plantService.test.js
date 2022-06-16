@@ -92,30 +92,34 @@ describe('Plants', () => {
     });
   });
 
-  // describe('add plant to database', () => {
-  //   it('should add a plant to DB successfully', async () => {
-  //     await User.create(testAdmin);
-  //     const token = await request(app)
-  //       .post('/api/login')
-  //       .set('Accept', 'application/json')
-  //       .expect('Content-Type', /json/)
-  //       .send({ email: 'admin@admin.com', password: 'Test1234' })
-  //       .expect(200)
-  //       .then(res => {
-  //         const { token } = res.body;
-  //         return token;
-  //       });
+  describe('add plant to database', () => {
+    it('should add a plant to DB successfully', async () => {
+      await User.create(testAdmin);
+      const token = await request(app)
+        .post('/api/login')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .send({ email: 'admin@admin.com', password: 'Test1234' })
+        .expect(200)
+        .then(res => {
+          const { token } = res.body;
+          return token;
+        });
     
-  //     await request(app)
-  //       .post('/api/admin/new-plant')
-  //       .set('Authorization', `Bearer ${token}`)
-  //       // .expect('Content-Type', 'multipart/form-data')
-  //       .send(testPlant1)
-  //       // .field('name', 'valami')
-  //       // .attach('file', '/path/to/file')
-  //       .expect(200);
-  //   });
-  // });
+      await request(app)
+        .post('/api/admin/new-plant')
+        .set('Authorization', `Bearer ${token}`)
+        // .expect('Content-Type', 'multipart/form-data')
+        // .send(testPlant1)
+        .field('name', 'valami')
+        .field('name', 'valami')
+        .field('name', 'valami')
+        .field('name', 'valami')
+        .field('name', 'valami')
+        .attach('file', '/path/to/file')
+        .expect(200);
+    });
+  });
 });
 
 
