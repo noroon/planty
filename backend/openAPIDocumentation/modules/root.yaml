@@ -16,6 +16,12 @@ tags:
     description: User login
   - name: Users
     description: User profile
+  - name: Plants
+    description: Operations with plants
+  - name: Potting mixes
+    description: Operations with potting mixes
+  - name: Plant requests
+    description: Operations with plant requests
 
 paths:
   /api/register:
@@ -24,6 +30,16 @@ paths:
     $ref: "./resources/login.yaml"
   /api/users:
     $ref: "./resources/users.yaml"
+  /api/plants:
+    $ref: "./resources/plants.yaml"
+  /api/admin/new-plant:
+    $ref: "./resources/new-plant.yaml"
+  /api/potting-mixes:
+    $ref: "./resources/potting-mixes.yaml"
+  /api/new-potting-mix:
+    $ref: "./resources/new-potting-mix.yaml"
+  /api/plant-request:
+    $ref: "./resources/requests.yaml"
 
 components:
   schemas:

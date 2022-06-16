@@ -5,7 +5,7 @@ import { requestController } from './requestController';
 const router = express.Router();
 
 router.get(
-  '/plant-requests',
+  '/plant-request',
   authorization.verifyToken,
   authorization.isAdmin,
   requestController.get

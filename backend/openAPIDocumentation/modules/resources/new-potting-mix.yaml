@@ -1,0 +1,39 @@
+post:
+  summary: Add new potting mix to database
+  tags: [Potting mixes]
+  security:
+  - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/PottingMixes.yaml'
+  responses:
+    200:
+      description: The potting mix was added to database
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              staus:
+                type: string
+                description: The status of the response
+              id:
+                type: string
+                description: The auto-generated id of the potting mix
+              name:
+                type: string
+                description: The name of the potting mix
+            example:
+              staus: ok
+              id: 62aaeabb2a2d7c8ab8758d09
+              name: Aroid földkeverék
+    400:
+      $ref: '../responses/ValidationError.yaml'
+    401:
+      $ref: '../responses/Unauthorized.yaml'
+    500:
+      $ref: '../responses/ServerError.yaml'
+      

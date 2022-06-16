@@ -18,15 +18,15 @@ const loadData = async () => {
   await PottingMix.deleteMany();
   await Request.deleteMany();
   try {
-    await User.insertMany(users);
     await Plant.insertMany(plants);
     await PottingMix.insertMany(pottingMixes);
     await Request.insertMany(requests);
+    await User.insertMany(users);
     logger.info('collections initialized');
   } catch (error) {
     logger.error(`MongoDB connection error: ${error.message}`);
   } finally {
-    await mongoose.disconnect(() => {
+    mongoose.disconnect(() => {
       logger.info('Mongoose connection closed');
       process.exit(0);
     });

@@ -109,14 +109,19 @@ describe('Plants', () => {
       await request(app)
         .post('/api/admin/new-plant')
         .set('Authorization', `Bearer ${token}`)
-        // .expect('Content-Type', 'multipart/form-data')
-        // .send(testPlant1)
-        .field('name', 'valami')
-        .field('name', 'valami')
-        .field('name', 'valami')
-        .field('name', 'valami')
-        .field('name', 'valami')
-        .attach('file', '/path/to/file')
+        .expect('Content-Type', 'multipart/form-data')
+        .field('name', 'Márványos szobafutóka (Scindapsus Pictus Aargyraeus)')
+        .field('moisture', 3)
+        .field('water', 2)
+        .field('light', 2)
+        .field('petfriendly', false)
+        .field('edible', false)
+        .field('easyToCare', false)
+        .field(
+          'care',
+          'A szobai futóka a kontyvirágfélék családjába tartozó kúszónövény.'
+        )
+        .attach('file', '../data/images/sarah-bronske-rGpZ6RKefXU-unsplash.jpg')
         .expect(200);
     });
   });

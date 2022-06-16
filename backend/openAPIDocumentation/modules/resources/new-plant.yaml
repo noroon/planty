@@ -1,6 +1,8 @@
-get:
-  summary: Get plants from database
+post:
+  summary: Add new plant to database
   tags: [Plants]
+  security:
+  - bearerAuth: []
   requestBody:
     required: true
     content:
@@ -9,7 +11,7 @@ get:
           $ref: '../schemas/Plants.yaml'
   responses:
     200:
-      description: List of plants
+      description: The plant was added to database
       content:
         application/json:
           schema:
@@ -18,21 +20,16 @@ get:
               staus:
                 type: string
                 description: The status of the response
-              plants:
-                type: object
-                description: The list of plants
+              id:
+                type: string
+                description: The auto-generated id of the plant
+              name:
+                type: string
+                description: The name of the plant
             example:
               staus: ok
-              plants:
-                _id: 62aaeabb2a2d7c8ab8758d09
-                name: Alocasia Polly
-                moisture: 3
-                water: 2
-                light: 2
-                petfriendly: false
-                edible: false
-                easyToCare: false
-                care: Télen a növény visszahúzódik a rizómába
+              _id: 62aaeabb2a2d7c8ab8758d09
+              name: Monstera Minima
     400:
       $ref: '../responses/ValidationError.yaml'
     401:

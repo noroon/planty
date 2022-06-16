@@ -1,0 +1,74 @@
+get:
+  summary: Get plants from database
+  tags: [Plant requests]
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Requests.yaml'
+  responses:
+    200:
+      description: List of requests
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              staus:
+                type: string
+                description: The status of the response
+              requests:
+                type: object
+                description: The list of requests
+            example:
+              staus: ok
+              requests:
+                _id: 62aaeabb2a2d7c8ab8758d09
+                name: Alocasia Polly
+                isDone: false
+                isDeleted: false
+    400:
+      $ref: '../responses/ValidationError.yaml'
+    401:
+      $ref: '../responses/Unauthorized.yaml'
+    500:
+      $ref: '../responses/ServerError.yaml'
+post:
+  summary: Add new request to database
+  tags: [Plant requests]
+  security:
+  - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Requests.yaml'
+  responses:
+    200:
+      description: The requests was added to database
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              staus:
+                type: string
+                description: The status of the request
+              id:
+                type: string
+                description: The auto-generated id of the request
+              name:
+                type: string
+                description: The name of the request
+            example:
+              staus: ok
+              _id: 62aaeabb2a2d7c8ab8758d09
+              name: Monstera Minima
+    400:
+      $ref: '../responses/ValidationError.yaml'
+    401:
+      $ref: '../responses/Unauthorized.yaml'
+    500:
+      $ref: '../responses/ServerError.yaml'

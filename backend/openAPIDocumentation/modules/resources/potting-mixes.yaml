@@ -1,15 +1,15 @@
 get:
-  summary: Get plants from database
-  tags: [Plants]
+  summary: Get potting mixes from database
+  tags: [Potting mixes]
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: '../schemas/Plants.yaml'
+          $ref: '../schemas/PottingMixes.yaml'
   responses:
     200:
-      description: List of plants
+      description: List of potting mixes
       content:
         application/json:
           schema:
@@ -18,21 +18,16 @@ get:
               staus:
                 type: string
                 description: The status of the response
-              plants:
+              pottingMixes:
                 type: object
-                description: The list of plants
+                description: The list of potting mixes
             example:
               staus: ok
-              plants:
+              pottingMixes:
                 _id: 62aaeabb2a2d7c8ab8758d09
-                name: Alocasia Polly
-                moisture: 3
-                water: 2
-                light: 2
-                petfriendly: false
-                edible: false
-                easyToCare: false
-                care: Télen a növény visszahúzódik a rizómába
+                name: Aroid földkeverék
+                ingredients: [20% perlite, 25% orchideaföld, 30% kókuszrost, 10% tőzeg, 10% gilisztahumusz, 5% faszén]
+                description: Ez a földkeverék kiválló azoknak a növénygazdiknak, akik hajlamosak a növényeiket túlöntözni.
     400:
       $ref: '../responses/ValidationError.yaml'
     401:

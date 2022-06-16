@@ -4,11 +4,12 @@ import { useAuthState } from '../context';
 
 export default function PlantRequests() {
   const user = useAuthState();
+
   const [requests, setRequests] = useState([]);
 
   const getRequests = async () => {
     try {
-      const res = await axios.get('/plant-requests', {
+      const res = await axios.get('/plant-request', {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
