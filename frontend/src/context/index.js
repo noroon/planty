@@ -1,4 +1,4 @@
-import { loginUser, logout, updateUser } from './actions';
+import { loginUser, logout, updateUser, updateMyCollection } from './actions';
 import { AuthProvider, useAuthDispatch, useAuthState } from './context';
 
 export {
@@ -8,4 +8,5 @@ export {
   loginUser,
   logout,
   updateUser,
+  updateMyCollection,
 };

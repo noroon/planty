@@ -1,9 +1,17 @@
-import {
-  sprayer, sun, can, dog, cutlery, terrarium,
-} from '../assets/icons/32';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { sprayer, sun, can, dog, cutlery, terrarium } from '../assets/icons/32';
 import './PlantDetails.scss';
+import { Button, Alert } from './general';
+import { useAuthState, updateMyCollection, useAuthDispatch } from '../context';
 
 export default function PlantDetails({ plant }) {
+  const navigate = useNavigate();
+  const dispatch = useAuthDispatch();
+  const [alertMessage, setAlertMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const user = useAuthState();
   const {
     name,
     moisture,
@@ -15,6 +23,29 @@ export default function PlantDetails({ plant }) {
     care,
     imageKey,
   } = plant;
+  const plantId = plant._id;
+console.log(user.userDetails.email);
+  const handleClick = async () => {
+    if (!user.userDetails) {
+      navigate('/register');
+    } else {
+      try {
+        const res = await updateMyCollection(
+          dispatch,
+          { plantId },
+          user.token,
+          user.userDetails.userId
+        );
+        if (res.message) {
+          setAlertMessage(res.message);
+        } else {
+          setSuccessMessage('Sikeresen betetted a gyűjteményedbe!');
+        }
+      } catch (err) {
+        setAlertMessage(err.message);
+      }
+    }
+  };
 
   return (
     <div className="plant-card default-bg mt-3 col">
@@ -26,14 +57,14 @@ export default function PlantDetails({ plant }) {
             alt=""
           />
         </div>
-        <div className="">
+        <div>
           <h1 className="card-title mb-5">{name}</h1>
           <div className="plant-needs">
             <div className="d-flex">
               <div className="image-container d-flex justify-content-center align-items-center mb-0 p-0">
                 <img src={sun} alt="" />
               </div>
-              <p className="">
+              <p>
                 {/* eslint-disable */}
                 {light < 2 ? 'alacsony ' : light > 2 ? 'nagy ' : 'közepes '}
                 fényigényű
@@ -43,7 +74,7 @@ export default function PlantDetails({ plant }) {
               <div className="image-container d-flex justify-content-center align-items-center mb-0 p-0">
                 <img src={can} alt="" />
               </div>
-              <p className="">
+              <p>
                 {/* eslint-disable */}
                 {water < 2 ? 'alacsony ' : water > 2 ? 'nagy ' : 'átlagos '}
                 vízigényű
@@ -88,6 +119,21 @@ export default function PlantDetails({ plant }) {
               </div>
             )}
           </div>
+          {alertMessage && (
+            <Alert className="alert-danger" value={alertMessage} />
+          )}
+          {successMessage && (
+            <Alert className="alert-success" value={successMessage} />
+          )}
+          <Button
+            className="btn-simple align-self-end mt-3"
+            value={
+              user.userDetails
+                ? 'Hozzáadom a gyűjteményemhez'
+                : 'Regisztrálj a gyűjteményhez való hozzáadáshoz'
+            }
+            onClick={handleClick}
+          />
         </div>
       </div>
       <div className="card-body">

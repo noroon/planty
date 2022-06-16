@@ -357,3 +357,14 @@ button.btn.btn-primary:hover:after {
   top: 0px;
   left: 0px;
 }
+button.btn-simple {
+  background-color: $primary;
+  color: #fff;
+  border: 2px solid $primary;
+  border-radius: 0;
+  padding: 0.4rem 1rem;
+  &:hover {
+    color: #fff;
+    opacity: .86;
+  }
+}

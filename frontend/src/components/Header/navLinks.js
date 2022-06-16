@@ -29,6 +29,11 @@ const navLinks = {
       id: 'potting-mixes',
     },
     {
+      title: 'Gyűjteményem',
+      path: '/my-collection',
+      id: 'my-collection',
+    },
+    {
       title: 'Adatlap',
       path: '/profile',
       id: 'my-profile',

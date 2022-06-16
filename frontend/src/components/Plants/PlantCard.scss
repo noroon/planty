@@ -20,6 +20,8 @@ div.card {
   box-sizing: border-box;
   display: inline-block;
   margin: 0 2%;
+  min-width: 240px;
+  min-height: 260px;
   max-width: 300px;
   padding: 8px;
   transition: all 350ms;

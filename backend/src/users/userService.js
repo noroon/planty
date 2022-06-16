@@ -49,7 +49,7 @@ export const userService = {
       const user = await User.findOne({ email });
 
       if (user && (await bcrypt.compare(password, user.password))) {
-        const { _id, name, isAdmin, isVerified } = user;
+        const { _id, name, isAdmin, isVerified, myCollection } = user;
 
         const token = jwt.sign(
           {
@@ -58,6 +58,7 @@ export const userService = {
             email,
             isAdmin,
             isVerified,
+            myCollection,
           },
           config.token_key,
           { expiresIn: '2h' }
@@ -118,6 +119,7 @@ export const userService = {
           isVerified: savedUser.isVerified,
           name: savedUser.name,
           email: savedUser.email,
+          myCollection: savedUser.myCollection,
         },
         config.token_key,
         { expiresIn: '2h' }
@@ -129,6 +131,56 @@ export const userService = {
           id: savedUser._id,
           email: savedUser.email,
           name: savedUser.name,
+          token: newToken,
+        },
+      };
+    } catch (err) {
+      throw createHttpError(400, { message: err.message });
+    }
+  },
+  async updateMyCollection(_id, reqBody) {
+    const { plantId } = reqBody;
+    // let userData;
+
+    // try {
+    //   userData = await User.findById({ _id });
+    // } catch (err) {
+    //   if (err instanceof mongoose.Error.CastError) {
+    //     throw createHttpError(400, { message: 'Invalid user id' });
+    //   } else if (!userData) {
+    //     throw createHttpError(400, { message: 'User not found' });
+    //   }
+    //   throw createHttpError(500, { message: err.message });
+    // }
+
+    const user = await User.findById({ _id });
+    let { myCollection } = user;
+    if (!myCollection.includes(plantId)) {
+      myCollection = [...myCollection, plantId];
+    } else {
+        throw createHttpError(400, { message: 'A növény már szerepel a gyűjteményedben' });
+    }
+    try {
+      await User.updateOne({ _id }, { $set: { myCollection: myCollection } });
+
+      const updatedUser = await User.findById({ _id });
+      const newToken = jwt.sign(
+        {
+          userId: updatedUser._id,
+          isAdmin: updatedUser.isAdmin,
+          isVerified: updatedUser.isVerified,
+          name: updatedUser.name,
+          email: updatedUser.email,
+          myCollection: updatedUser.myCollection,
+        },
+        config.token_key,
+        { expiresIn: '2h' }
+      );
+
+      return {
+        statusCode: 200,
+        resObj: {
+          id: updatedUser._id,
           token: newToken,
         },
       };

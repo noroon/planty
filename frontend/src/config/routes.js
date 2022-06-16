@@ -7,6 +7,7 @@ import Plant from '../pages/Plant';
 import PlantRequests from '../pages/PlantRequests';
 import AddPottingMix from '../pages/AddPottingMix';
 import PottingMixes from '../pages/PottingMixes';
+import MyCollection from '../pages/MyCollection';
 
 export const routes = [
   {
@@ -39,6 +40,10 @@ export const privateRoutes = [
   {
     path: '/add-potting-mix',
     element: AddPottingMix,
+  },
+  {
+    path: '/my-collection',
+    element: MyCollection,
   },
 ];
 

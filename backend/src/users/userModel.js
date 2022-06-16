@@ -23,6 +23,9 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  myCollection: [{
+    type: String,
+  }],
 });
 
 export default mongoose.model('user', userSchema);

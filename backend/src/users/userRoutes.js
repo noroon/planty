@@ -17,5 +17,10 @@ router.patch(
   updateUserValidator.validator,
   userController.update
 );
+router.patch(
+  '/user/:id',
+  authorization.verifyToken,
+  userController.updateCollection
+);
 
 export default router;

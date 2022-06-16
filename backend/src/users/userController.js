@@ -35,4 +35,16 @@ export const userController = {
       return next(error);
     }
   },
+  async updateCollection(req, res, next) {
+    const { userId } = req.user;
+    try {
+      const { statusCode, resObj } = await userService.updateMyCollection(
+        userId,
+        req.body
+      );
+      return res.status(statusCode).json(resObj);
+    } catch (error) {
+      return next(error);
+    }
+  },
 };
