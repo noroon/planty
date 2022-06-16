@@ -24,7 +24,7 @@ export default function PlantDetails({ plant }) {
     imageKey,
   } = plant;
   const plantId = plant._id;
-console.log(user.userDetails.email);
+
   const handleClick = async () => {
     if (!user.userDetails) {
       navigate('/register');

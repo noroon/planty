@@ -89,8 +89,6 @@ export async function updateMyCollection(dispatch, updatePayload, userToken, ude
       return data;
     }
 
-    // dispatch({ type: 'UPDATE_ERROR', error: data.errors[0] });
-    // dispatch({ type: 'UPDATE_ERROR', {error} });
     return data;
   } catch (error) {
     dispatch({ type: 'UPDATE_ERROR', error });
