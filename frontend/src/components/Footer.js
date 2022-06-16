@@ -15,13 +15,13 @@ export default function Footer() {
 
     try {
       const res = await axios.post(
-        '/news-letter',
+        '/newsletter',
         { email },
         {
           headers: {
             'Content-Type': 'application/json',
           },
-        },
+        }
       );
       return res.status;
     } catch (err) {
@@ -32,24 +32,22 @@ export default function Footer() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const isValid = validateForm('newsletterSchema', userData, setAlertMessage);
-
-    if (isValid) {
+    if (validateForm('newsletterSchema', userData, setAlertMessage)) {
       postRequest()
         .then((status) => {
           if (status === 200) {
             setSuccessMessage(
-              'Köszönjük, sikeresen feliratkoztál hírlevelünkre',
+              'Köszönjük, sikeresen feliratkoztál hírlevelünkre'
             );
           }
         })
         .catch((err) => {
           setAlertMessage(err.message);
         });
+      setUserData('');
+      setAlertMessage('');
+      setSuccessMessage('');
     }
-    setUserData('');
-    setAlertMessage('');
-    setSuccessMessage('');
   };
 
   return (

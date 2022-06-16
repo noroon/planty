@@ -51,11 +51,11 @@ $input-group-addon-border-color: $success;
 }
 body {
   margin: 0;
-  min-height: 100vh;
+  overflow-x: hidden;
 }
 #root {
   min-height: 100vh;
-  min-width: 99.1vw;
+  min-width: 100vw;
   display: table;
 }
 p {
@@ -286,6 +286,7 @@ input[type='checkbox']:checked + .check-trail {
   border-top: 5px solid $primary;
   padding-top: 2.2rem;
   background-color: #fff;
+  text-align: center;
   form {
     p {
       padding: 0 2rem;
