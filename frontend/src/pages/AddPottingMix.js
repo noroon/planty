@@ -22,7 +22,7 @@ export default function AddPottingMix() {
       realInputs.push({ name: '' });
       setIngredients(realInputs);
     }
-    
+
     const ingredientList = realInputs.map((input) => input.name);
     setPottingMixData({
       ...pottingMixData,

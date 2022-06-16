@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 
-export default function PottingMixCard({ name, ingredients, description, id }) {
+export default function PottingMixCard({
+  name, ingredients, description, id,
+}) {
   const navigate = useNavigate();
 
   const handleClick = () => {
