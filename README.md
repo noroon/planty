@@ -10,32 +10,27 @@
 
 
 ## Leírás
-A felhasználók az adatbázisban szereplő szobanövények között kereshetnek, megnézhetik a növények specifikációját, gondozási útmutatóját.
-Regisztrációt követően a felhasználónak lehetősége nyílik saját kollekció létrehozására a már meglévő növényei számára, illetve létre tud hozni kívánságlistát, amiben a még be nem szerzett növényeket tudja tárolni. A már meglévő növényekhez tartozik egy naptár, amiben vezetni lehet az ültetés idejét, az ültetéshez használt földkeverék arányait, összetételét, a tápoldatozást és az öntözést. Egy-egy növénykártya alatti kommentszekcióban lehetősége van a felhasználóknak egymással tippeket és bevált gondozási módszereket megosztani.
-A felhasználók létrehozhatnak új növénykártyákat.
-
+A felhasználók megnézhetik az adatbázisban szereplő növények specifikációját, gondozási útmutatóját, feliratkozhatnak hírlevélre.
+Regisztrációt követően a felhasználónak lehetősége nyílik saját gyűjtemény létrehozására az adatbázisban szereplő növényekből. Ha nem talál egy növényt, küldhet egy kérést az admin számára a növény nevével, aki a kéréseket látja és a későbbiekben kezelni tudja. A felhasználó képes földkeverékrecepteket felvinni az adatbázisba, illetve megnézni a már felvitt földkeverékeket.
+Növénykártyákat csak az admin tud felvinni.
 
 ## Funkciók
 
 ### Regisztráció nélküli felhasználó funkciói
-- Növények keresése név és egyéb jellemzők alapján
+- Növények megtekintése
 - Regisztráció email és jelszó alapján
 
 ### Regisztrációval rendelkező felhasználó funkciói
-- Minden regisztráció nélküli felhasználó által elérhető funkció
+- Növények megtekintése
 - Ki- és bejelentkezés
-- Saját profil adatok szerkesztése, avatar feltöltése, jelszó módosítása
-- Profil törlése
-- Saját kollekció szerkesztése
-- A saját kollekcióban szereplő növényekhez ültetőmixek hozzárendelése, gondozási naptár hozzáadása, szerkesztése  
-- Saját kívánságlista szerkesztése
-- A növénykártyákhoz komment írása
-- Növénykártyák létrehozása
+- Saját felhasználónevének és email-címének módosítása
+- Saját gyűjtemény létrehozása 
+- Földkeverékrecept felvitele
 
 ### Adminisztrátori funkciók
-- Felhasználók kezelése
-- A felhasználók által létrehozott növénykártyák szerkesztése, törlése
-
+- Felhasználói kérések megtekintése
+- Növénykártyák létrehozása
+- Földkeverékrecept felvitele
 
 ## Technikai követelmények
 
@@ -50,10 +45,8 @@ A felhasználók létrehozhatnak új növénykártyákat.
 - React
 - Bootstrap
 
-
 ### API dokumentáció
 - [OpenAPI/Swagger](open-api-doc)
-
 
 ## Használat
 
