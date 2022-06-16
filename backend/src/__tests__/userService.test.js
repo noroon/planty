@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import app from '../app';
 import User from '../users/userModel';
-import config from '../config';
 
 let mongoServer;
 
@@ -12,8 +11,6 @@ const testUser = {
   email: 'any@email.com',
   password: 'Test1234',
 };
-
-config.token_key = 'verySecretTokenKey';
 
 const registerUser = async user => {
   await request(app)

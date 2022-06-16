@@ -2,7 +2,6 @@ import request from 'supertest';
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import app from '../app';
-import config from '../config';
 import PottingMix from '../pottingMixes/pottingMixModel';
 import User from '../users/userModel';
 import loginUser from './userService.test';
@@ -59,8 +58,6 @@ describe('Potting mixes', () => {
     description: 'Szuper földmentes ültetőközeg',
   };
   const testMixes = [testMix1, testMix2, testMix3];
-
-  config.token_key = 'verySecretTokenKey';
 
   describe('get potting mixes from database', () => {
     it('should list all of the mixes', async () => {

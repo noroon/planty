@@ -2,7 +2,6 @@ import request from 'supertest';
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import app from '../app';
-import config from '../config';
 import PlantRequest from '../requests/requestModel';
 import User from '../users/userModel';
 import loginUser from './userService.test';
@@ -45,8 +44,6 @@ describe('User requests for plants', () => {
     isVerified: false,
   };
 
-  config.token_key = 'verySecretTokenKey';
-
   describe('get plant requests from database', () => {
     it('should list all of the requests', async () => {
       await PlantRequest.insertMany(testRequests);
@@ -64,7 +61,7 @@ describe('User requests for plants', () => {
         });
 
       await request(app)
-        .get('/api/plant-requests')
+        .get('/api/plant-request')
         .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .then(res => {

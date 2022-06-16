@@ -4,7 +4,6 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import app from '../app';
 import Plant from '../plants/plantModel';
 import User from '../users/userModel';
-import config from '../config';
 
 let mongoServer;
 
@@ -62,7 +61,6 @@ describe('Plants', () => {
     isAdmin: true,
     isVerified: false,
   };
-  config.token_key = 'verySecretTokenKey';
 
   describe('get plants from database', () => {
     it('should list all of the plants', async () => {
@@ -93,7 +91,7 @@ describe('Plants', () => {
   });
 
   describe('add plant to database', () => {
-    it('should add a plant to DB successfully', async () => {
+    fit('should add a plant to DB successfully', async () => {
       await User.create(testAdmin);
       const token = await request(app)
         .post('/api/login')
