@@ -16,7 +16,6 @@ export default function Plants() {
 
   useEffect(() => {
     getPlants().then((plantList) => {
-      console.log(plantList);
       setPlants(plantList);
     });
   }, []);

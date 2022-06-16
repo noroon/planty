@@ -6,7 +6,7 @@ export default function InputField({
   placeholder,
   onChange,
   autoComplete = 'on',
-  index=0,
+  index = 0,
 }) {
   return (
     <div className="input-group mb-2">
