@@ -1,0 +1,36 @@
+post:
+  summary: Add a new subscriber to database
+  tags: [Newsletter]
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/NewsletterSubscriber.yaml'
+  responses:
+    200:
+      description: The subscriber was added to database
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              staus:
+                type: string
+                description: The status of the request
+              id:
+                type: string
+                description: The auto-generated id of the subscriber
+              email:
+                type: string
+                description: The email of the subscriber
+            example:
+              staus: ok
+              _id: 62aaeabb2a2d7c8ab8758d09
+              email: visitor@visitor.com
+    400:
+      $ref: '../responses/ValidationError.yaml'
+    401:
+      $ref: '../responses/Unauthorized.yaml'
+    500:
+      $ref: '../responses/ServerError.yaml'

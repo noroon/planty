@@ -1,0 +1,9 @@
+type: object
+required:
+  - email
+properties:
+  email:
+    type: string
+    description: The email address of the subscriber
+example:
+  email: visitor@visitor.com

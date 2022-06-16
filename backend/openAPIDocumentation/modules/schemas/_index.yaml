@@ -10,3 +10,5 @@ Potting-mixes:
   $ref: "./PottingMixes.yaml"
 Requests:
   $ref: "./Requests.yaml"
+Newsletter subscriber:
+  $ref: "./NewsletterSubscriber.yaml"

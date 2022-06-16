@@ -22,6 +22,8 @@ tags:
     description: Operations with potting mixes
   - name: Plant requests
     description: Operations with plant requests
+  - name: Newsletter
+    description: Subscribing to newsletter 
 
 paths:
   /api/register:
@@ -40,6 +42,8 @@ paths:
     $ref: "./resources/new-potting-mix.yaml"
   /api/plant-request:
     $ref: "./resources/requests.yaml"
+  /api/newsletter:
+    $ref: "./resources/newsletter.yaml"
 
 components:
   schemas:
