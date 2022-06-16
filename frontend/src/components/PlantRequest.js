@@ -5,11 +5,12 @@ import { useAuthState } from '../context';
 
 import './PlantRequest.scss';
 import axios from '../api/axios';
+import validateForm from '../utils/validation';
 
 export default function PlantRequest() {
   const user = useAuthState();
 
-  const [plant, setPlant] = useState('');
+  const [plant, setPlant] = useState({ name: '' });
   const [alertMessage, setAlertMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -17,33 +18,26 @@ export default function PlantRequest() {
     const { name } = plant;
 
     try {
-      const res = await axios.post('/plant-request', { name }, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const res = await axios.post(
+        '/plant-request',
+        { name },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
       return res.status;
     } catch (err) {
       return err;
     }
   };
 
-  const validate = () => {
-    let err = '';
-
-    if (!plant.name) {
-      err = 'All fields are required.';
-      setAlertMessage(err);
-      return false;
-    }
-    return true;
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const isValid = validate();
+    const isValid = validateForm('requestSchema', plant, setAlertMessage);
 
     if (isValid) {
       postRequest()
@@ -53,10 +47,10 @@ export default function PlantRequest() {
         .catch((err) => {
           setAlertMessage(err.message);
         });
+      setPlant('');
+      setAlertMessage('');
+      setSuccessMessage('');
     }
-    setPlant('');
-    setAlertMessage('');
-    setSuccessMessage('');
   };
 
   return (

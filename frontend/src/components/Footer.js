@@ -6,7 +6,7 @@ import axios from '../api/axios';
 import validateForm from '../utils/validation';
 
 export default function Footer() {
-  const [userData, setUserData] = useState('');
+  const [userData, setUserData] = useState({});
   const [alertMessage, setAlertMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -32,7 +32,9 @@ export default function Footer() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (validateForm('newsletterSchema', userData, setAlertMessage)) {
+    const isValid = validateForm('newsletterSchema', userData, setAlertMessage);
+
+    if (isValid) {
       postRequest()
         .then((status) => {
           if (status === 200) {

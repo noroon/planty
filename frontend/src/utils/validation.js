@@ -49,6 +49,22 @@ const profileSchema = Joi.object({
   }),
 });
 
+const loginSchema = Joi.object({
+  email: Joi.string()
+    .required()
+    .email({ tlds: { allow: false } })
+    .messages({
+      'string.email': 'Létező email-címet adj meg!',
+      'string.empty': 'Add meg az email-címed!',
+      'any.required': 'Add meg az email-címed!',
+    }),
+  password: Joi.string().min(8).messages({
+    'any.required': 'Add meg a jelszavad!',
+    'string.empty': 'Add meg a jelszavad!',
+    'string.min': 'A jelszó minimum 8 karakter legyen!',
+  }),
+});
+
 const newsletterSchema = Joi.object({
   email: Joi.string()
     .required()
@@ -60,6 +76,14 @@ const newsletterSchema = Joi.object({
     }),
 });
 
+const requestSchema = Joi.object({
+  name: Joi.string().messages({
+    'any.required': 'Add meg a növény nevét!',
+    'string.empty': 'Add meg a növény nevét!',
+  }),
+});
+
+
 export default function validateForm(schemaName, formData, setState) {
   let schema;
   switch (schemaName) {
@@ -69,8 +93,14 @@ export default function validateForm(schemaName, formData, setState) {
     case 'registerSchema':
       schema = registerSchema;
       break;
+    case 'loginSchema':
+      schema = loginSchema;
+      break;
     case 'newsletterSchema':
       schema = newsletterSchema;
+      break;
+    case 'requestSchema':
+      schema = requestSchema;
       break;
     default:
       setState('Ne haragudj, valami hiba történt');

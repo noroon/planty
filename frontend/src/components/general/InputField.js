@@ -17,13 +17,9 @@ export default function InputField({
           </label>
           <textarea
             className="form-control"
-            // className={
-            //   'form-control ' + getValidationClassName(errorMessage, wasValidated)
-            // }
             id={id}
             name={name}
             value={value}
-            // placeholder={placeholder}
             onChange={onChange}
             autoComplete={autoComplete}
             rows={4}
@@ -33,9 +29,6 @@ export default function InputField({
         <input
           type={type}
           className="form-control"
-          // className={
-          //   'form-control ' + getValidationClassName(errorMessage, wasValidated)
-          // }
           id={id}
           index={index}
           name={name}

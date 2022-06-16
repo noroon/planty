@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { loginUser, useAuthDispatch } from '../context';
 import { handleChange } from '../utils';
+import validateForm from '../utils/validation';
 
 import {
   Alert,
@@ -12,27 +13,15 @@ import {
 
 export default function Login() {
   const dispatch = useAuthDispatch();
-  // const { loading, errorMessage } = useAuthState();
 
   const [userData, setUserData] = useState({});
   const [alertMessage, setAlertMessage] = useState('');
   const navigate = useNavigate();
 
-  const validate = () => {
-    let err = '';
-
-    if (!userData.email || !userData.password) {
-      err = 'All fields are required.';
-      setAlertMessage(err);
-      return false;
-    }
-    return true;
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const isValid = validate();
+    const isValid = validateForm('loginSchema', userData, setAlertMessage);
 
     if (isValid) {
       const { email, password } = userData;

@@ -47,10 +47,16 @@ export default function AddPottingMix() {
     let err = '';
 
     if (!pottingMixData.name) {
-      err = 'All fields are required.';
+      err = 'Add meg a növény nevét!';
       setAlertMessage(err);
       return false;
     }
+    if (!pottingMixData.ingredients || pottingMixData.ingredients.length < 2) {
+      err = 'Legalább két összetevőt meg kell adnod';
+      setAlertMessage(err);
+      return false;
+    }
+    setAlertMessage('');
     return true;
   };
 
@@ -77,17 +83,17 @@ export default function AddPottingMix() {
         .catch((err) => {
           setAlertMessage(err.message);
         });
+      setPottingMixData({});
+      setIngredients([{ name: '' }]);
+      setAlertMessage('');
+      setSuccessMessage('');
     }
-    setPottingMixData({});
-    setIngredients([{ name: '' }]);
-    setAlertMessage('');
-    setSuccessMessage('');
   };
 
   return (
     <div className="container potting-mix-form">
       {alertMessage && <Alert className="alert-danger" value={alertMessage} />}
-      {successMessage && (
+      {!alertMessage && successMessage && (
         <Alert className="alert-success" value={successMessage} />
       )}
       <form onSubmit={handleSubmit} noValidate>
@@ -121,7 +127,6 @@ export default function AddPottingMix() {
           type="textarea"
           name="description"
           id="description"
-          // placeholder="leírás"
           value={pottingMixData.description}
           onChange={(e) => handleChange(e, pottingMixData, setPottingMixData)}
           autoComplete="off"
