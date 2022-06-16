@@ -1,24 +1,10 @@
-// @mixin line-clamp($name, $number-of-lines) {
-//   .#{$name}-line-clamp {
-//     overflow: hidden;
-//     text-overflow: ellipsis;
-//     display: -webkit-box;
-//     -webkit-line-clamp: #{$number-of-lines};
-//     line-clamp: #{$number-of-lines};
-//     -webkit-box-orient: vertical;
-//     box-orient: vertical;
-//   }
-// }
-
-// @include line-clamp('card-title', '1');
-
 div.potting-mix-card {
   background-color: #fff;
   border-radius: 1rem;
   border-color: #fff;
   box-sizing: border-box;
   display: inline-block;
-  margin: 0 2%;
+  margin: 1rem;
   min-width: 250px;
   max-width: 300px;
   padding: 1rem;
@@ -39,8 +25,6 @@ div.potting-mix-card {
     background-color: aquamarine;
     img {
       height: 100px;
-      // overflow: hidden;
-      // transition: all 200ms;
       width: 100px;
       margin: .6rem;
       padding: 1rem;
@@ -49,12 +33,13 @@ div.potting-mix-card {
   .card-body {
     padding: 0.8em 0.2em;
     text-align: left;
-    p.card-title {
-      color: rgb(165, 165, 165);
-      font-size: 1em;
-      font-weight: 700;
-      margin-bottom: 0.7em;
-    }
+  }
+  p.card-title {
+    color: rgb(165, 165, 165);
+    font-size: 1em;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
   }
 }
 

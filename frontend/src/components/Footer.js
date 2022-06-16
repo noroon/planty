@@ -66,7 +66,7 @@ export default function Footer() {
           )}
           <InputGroup
             name="email"
-            id="email"
+            id="subscriber-email"
             value={userData.email}
             placeholder="email címed"
             onChange={(e) => handleChange(e, userData, setUserData)}

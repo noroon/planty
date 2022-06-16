@@ -11,6 +11,7 @@
 }
 
 @include line-clamp('card-title', '1');
+@include line-clamp('card-description', '4');
 
 div.card {
   background-color: #fff;

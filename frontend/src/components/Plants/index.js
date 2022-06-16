@@ -21,7 +21,7 @@ export default function Plants() {
   }, []);
 
   return (
-    <div className="d-flex justify-content-center">
+    <div className="d-flex justify-content-center mb-5">
       <div className="row row-cols-1 row-cols-lg-5 row-cols-sm-2 mx-auto">
         {plants.length > 0
         && plants.map((plant) => {

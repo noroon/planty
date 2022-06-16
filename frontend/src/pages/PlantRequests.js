@@ -28,8 +28,8 @@ export default function PlantRequests() {
 
   return (
     <div className="d-flex justify-content-center">
-      <div className="card mt-4 w-75">
-        <h2 className="text-center">Kérések</h2>
+      <div className="card mt-4 w-75 p-3 pt-4">
+        <h2 className="text-center mb-5">Kérések</h2>
         <ul>
           {/* eslint-disable */}
           {requests.length > 0 &&

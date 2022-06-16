@@ -34,12 +34,8 @@ export default function PottingMixes() {
             className="border border-0 bg-white d-flex flex-column align-items-center"
             onClick={() => navigate('../add-potting-mix')}
           >
-            <div className="card-body">
-              <p className="card-title card-title-line-clamp mb-0">
-                Földkeverék hozzáadása
-              </p>
-            </div>
-            <div className="card-image">
+            <p className="card-title mt-3 mb-3">Földkeverék hozzáadása</p>
+            <div className="card-image d-flex justify-content-center mb-2">
               <img src={soilIcon} className="card-img-top" alt="" />
             </div>
           </button>
@@ -51,13 +47,48 @@ export default function PottingMixes() {
             const id = pottingMix._id;
 
             return (
-              <PottingMixCard
-                key={id}
-                name={name}
-                ingredients={ingredients}
-                description={description}
-                id={id}
-              />
+              <div
+                className="potting-mix-card d-flex default-bg mt-3 col"
+                key={`mix-${description}`}
+              >
+                <PottingMixCard
+                  name={name}
+                  ingredients={ingredients}
+                  description={description}
+                  id={id}
+                />
+                <div
+                  className="modal fade"
+                  id={`pottingMixModal-${id}`}
+                  tabIndex={-1}
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div className="modal-dialog">
+                    <div className="modal-content default-bg">
+                      <div className="modal-header">
+                        <button
+                          type="button"
+                          className="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        />
+                      </div>
+                      <div className="modal-body">
+                        <p className="card-title">
+                          {name}
+                        </p>
+                        <ul>
+                          {ingredients.map((item) => (
+                            <li key={`${item}-${name}`}>{item}</li>
+                          ))}
+                        </ul>
+                        <p className="ps-4 pe-4 pb-3 pt-2">{description}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             );
           })}
       </div>
