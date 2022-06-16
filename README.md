@@ -65,12 +65,12 @@ A felhasználók létrehozhatnak új növénykártyákat.
   - `yarn test` - teszt fájlok futtatása
   - `yarn lint` - linter futtatása
   - `yarn build` - alkalmazás buildelése
+  - `yarn load-data` - adatbázis feltöltése
 
 ### Frontend
 - `.env` fájl létrehozása az `.env.example` alapján
 - Parancsok:
   - `yarn install` - függőségek installálása
   - `yarn start` - alkalmazás indítása
-  - `yarn test` - teszt fájlok futtatása
   - `yarn lint` - linter futtatása
   - `yarn build` - alkalmazás buildelése

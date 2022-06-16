@@ -6,6 +6,7 @@
 ////// switch
 ////// range
 // NAVBAR
+// FOOTER
 // COMMON
 //// button
 
@@ -18,8 +19,6 @@ $secondary: #969696;
 $turquoise: #1abc9c;
 $greensea: #16a085;
 $success: rgb(0, 202, 175);
-// $success: #5cefbd;
-// $success: #b5fec6;
 
 $theme-colors: (
   'primary': $primary,
@@ -38,7 +37,7 @@ $form-file-button-color: #fff;
 $form-file-button-bg: $primary;
 $form-file-button-hover-bg: $primary;
 
-$input-group-addon-color:$success;
+$input-group-addon-color: $success;
 $input-group-addon-bg: $success;
 $input-group-addon-border-color: $success;
 
@@ -52,17 +51,23 @@ $input-group-addon-border-color: $success;
 }
 body {
   margin: 0;
+  min-height: 100vh;
+}
+#root {
+  min-height: 100vh;
+  min-width: 99.1vw;
+  display: table;
 }
 p {
   color: #7c7c7c;
 }
 ul {
-    list-style: none;
+  list-style: none;
 }
-h6{
+h6 {
   background-color: $primary;
   color: #fff;
-  padding: .6rem;
+  padding: 0.6rem;
 }
 
 //////////// FORMS //////////////
@@ -140,12 +145,12 @@ textarea.form-control {
 }
 
 //////////// file //////////////
-input[type='file']{
+input[type='file'] {
   border: 2px solid $primary;
   color: $secondary;
-  padding: .4rem .6rem;
+  padding: 0.4rem 0.6rem;
   font-size: 1em;
-  &:focus{
+  &:focus {
     box-shadow: none;
   }
 }
@@ -202,33 +207,19 @@ input[type='checkbox']:checked + .check-trail {
 }
 
 //////////// range //////////////
-// input.form-range {
-//   z-index: 1;
-//   background-color: transparent;
-//   border-bottom: 2px solid #eee;
-//   // font: inherit;
-//   font-size: 1.125rem;
-//   padding: 0.25rem 0;
-// }
 .range-label {
   width: 40%;
   text-align: left;
 }
 .box-minmax {
-  // margin-top: .2rem;
   width: 100%;
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
   color: $primary;
   margin-top: -1rem;
-
-  // span:first-child {
-  //   margin-left: 10px;
-  // }
 }
 .rs-range {
-  // margin-top: 1rem;
   -webkit-appearance: none;
   &:focus {
     outline: none;
@@ -240,7 +231,6 @@ input[type='checkbox']:checked + .check-trail {
     box-shadow: none;
     background: $primary;
     border-radius: 0px;
-    // border: 0px solid #010101;
   }
   &::-moz-range-track {
     width: 100%;
@@ -249,7 +239,6 @@ input[type='checkbox']:checked + .check-trail {
     box-shadow: none;
     background: $primary;
     border-radius: 0px;
-    // border: 0px solid #010101;
   }
   &::-webkit-slider-thumb {
     box-shadow: none;
@@ -280,43 +269,52 @@ input[type='checkbox']:checked + .check-trail {
   }
 }
 
-// .rs-label {
-//   position: relative;
-//   transform-origin: center center;
-//   display: block;
-//   height: 98px;
-//   background: transparent;
-//   border-radius: 50%;
-//   line-height: 30px;
-//   text-align: center;
-//   font-weight: bold;
-//   padding-top: 22px;
-//   box-sizing: border-box;
-//   border: 2px solid #fff;
-//   margin-top: 20px;
-//   margin-left: -38px;
-//   left: attr(value);
-//   color: #fff;
-//   font-style: normal;
-//   font-weight: normal;
-//   line-height: normal;
-//   font-size: 36px;
-//   &::after {
-//     content: 'kg';
-//     display: block;
-//     font-size: 1rem;
-//     letter-spacing: 0.07em;
-//     margin-top: -2px;
-//   }
-// }
-
-// div.input-group-text {
-//   background: rgba(163, 255, 232, 0.349);
-// }
-
 //////////// NAVBAR //////////////
 .navbar {
   z-index: $zindex-sticky;
+}
+
+//////////// FOOTER //////////////
+#footer-positioner {
+  height: 100px;
+  display: table-row;
+}
+.footer {
+  z-index: 1;
+  width: 100%;
+  box-shadow: rgba(99, 99, 99, 0.418) 0px 2px 8px 0px;
+  border-top: 5px solid $primary;
+  padding-top: 2.2rem;
+  background-color: #fff;
+  form {
+    p {
+      padding: 0 2rem;
+    }
+    .input-group {
+      padding: 0.6rem 3rem 1.8rem;
+      max-width: 500px;
+      margin: auto;
+      ::placeholder {
+        font-size: 1.1rem;
+        color: $primary;
+      }
+      input {
+        height: 2.6rem;
+        border: 2px solid $primary;
+        padding-left: 1rem;
+        background-color: #fff;
+        color: $primary;
+      }
+      button {
+        border: 2px solid $primary;
+        border-radius: 0;
+        padding: 0 1rem;
+        height: 2.6rem;
+        color: #fff;
+        background-color: $primary;
+      }
+    }
+  }
 }
 
 ///////////// COMMON ////////////////
@@ -338,7 +336,7 @@ button.btn.btn-primary {
   border-radius: 0;
   margin: 1.2rem 0 0;
   color: #fff;
-  &:focus{
+  &:focus {
     box-shadow: none;
   }
 }

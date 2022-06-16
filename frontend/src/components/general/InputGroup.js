@@ -20,7 +20,6 @@ export default function InputGroup({
         autoComplete="off"
       />
       <button type="submit" className="input-group-text" id={id}>
-        {/* <button type="submit" /> */}
         {buttonText}
       </button>
     </div>
