@@ -28,41 +28,12 @@ export default function AddPlant() {
     handleChange(e, plantData, setPlantData);
   };
 
-  // const validate = () => {
-  //   let err = '';
-
-  //   if (!plantData.name) {
-  //     err = 'All fields are required.';
-  //     setAlertMessage(err);
-  //     return false;
-  //   }
-  //   return true;
-  // };
-
   async function postImage({ image }) {
     const formData = new FormData();
     formData.append('image', image);
     Object.entries(plantData).forEach(([key, value]) => {
       formData.append(`${key}`, value);
     });
-    // const {
-    //   name,
-    //   moisture,
-    //   water,
-    //   light,
-    //   petfriendly,
-    //   edible,
-    //   easyToCare,
-    //   care,
-    // } = plantData;
-    // formData.append('name', name);
-    // formData.append('moisture', moisture || 0);
-    // formData.append('water', water || 0);
-    // formData.append('light', light || 0);
-    // formData.append('petfriendly', petfriendly || false);
-    // formData.append('edible', edible || false);
-    // formData.append('easyToCare', easyToCare || false);
-    // formData.append('care', care || 'feltöltés alatt');
 
     const res = await axios.post('/admin/new-plant', formData, {
       headers: {
