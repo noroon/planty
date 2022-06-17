@@ -70,7 +70,6 @@ export default function Header() {
                       aria-labelledby="admin-dropdown"
                     >
                       {navLinks.admin.map((link) => {
-                        console.log(link);
                         const { title, id, path } = link;
                         return (
                           <li key={id} className="nav-item">
