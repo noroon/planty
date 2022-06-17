@@ -7,31 +7,31 @@ const plantSchema = new mongoose.Schema({
   },
   moisture: {
     type: Number,
-    // required: true,
+    required: true,
   },
   water: {
     type: Number,
-    // required: true,
+    required: true,
   },
   light: {
     type: Number,
-    // required: true,
+    required: true,
   },
   petfriendly: {
     type: Boolean,
-    // required: true,
+    default: false,
   },
   edible: {
     type: Boolean,
-    // required: true,
+    default: false,
   },
   easyToCare: {
     type: Boolean,
-    // required: true,
+    default: false,
   },
   care: {
     type: String,
-    // required: true,
+    required: true,
   },
   imageKey: {
     type: String,
