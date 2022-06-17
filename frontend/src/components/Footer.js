@@ -3,7 +3,7 @@ import { handleChange } from '../utils';
 import { Alert, InputGroup } from './general';
 
 import axios from '../api/axios';
-import validateForm from '../utils/validation';
+import validateForm, { newsletterSchema } from '../utils/validation';
 
 export default function Footer() {
   const [userData, setUserData] = useState({});
@@ -32,7 +32,7 @@ export default function Footer() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const isValid = validateForm('newsletterSchema', userData, setAlertMessage);
+    const isValid = validateForm(newsletterSchema, userData, setAlertMessage);
 
     if (isValid) {
       postRequest()

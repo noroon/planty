@@ -47,7 +47,7 @@ export default function AddPottingMix() {
     let err = '';
 
     if (!pottingMixData.name) {
-      err = 'Add meg a növény nevét!';
+      err = 'Add meg a földkeverék nevét!';
       setAlertMessage(err);
       return false;
     }

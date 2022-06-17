@@ -2,14 +2,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { handleChange } from '../utils';
-import validateForm from '../utils/validation';
+import validateForm, { profileSchema } from '../utils/validation';
 import { updateUser, useAuthDispatch, useAuthState } from '../context';
 
-import {
-  Alert,
-  Button,
-  InputField,
-} from '../components/general';
+import { Alert, Button, InputField } from '../components/general';
 
 export default function Profile() {
   const dispatch = useAuthDispatch();
@@ -31,11 +27,17 @@ export default function Profile() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (validateForm('profileSchema', userData, setAlertMessage)) {
+    const isValid = validateForm(profileSchema, userData, setAlertMessage);
+
+    if (isValid) {
       const { name, email, password } = userData;
 
       try {
-        const response = await updateUser(dispatch, { name, email, password }, user.token);
+        const response = await updateUser(
+          dispatch,
+          { name, email, password },
+          user.token
+        );
         if (!response.token) return;
         navigate('/');
       } catch (err) {
@@ -48,7 +50,9 @@ export default function Profile() {
     <div className="container profile-form">
       <form onSubmit={handleSubmit} noValidate>
         <legend className="mb-5">Profil szerkesztése</legend>
-        {alertMessage && (<Alert className="alert-danger" value={alertMessage} />)}
+        {alertMessage && (
+          <Alert className="alert-danger" value={alertMessage} />
+        )}
         <InputField
           type="text"
           name="name"

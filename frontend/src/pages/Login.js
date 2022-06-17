@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { loginUser, useAuthDispatch } from '../context';
 import { handleChange } from '../utils';
-import validateForm from '../utils/validation';
+import validateForm, { loginSchema } from '../utils/validation';
 
 import {
   Alert,
@@ -21,7 +21,7 @@ export default function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const isValid = validateForm('loginSchema', userData, setAlertMessage);
+    const isValid = validateForm(loginSchema, userData, setAlertMessage);
 
     if (isValid) {
       const { email, password } = userData;

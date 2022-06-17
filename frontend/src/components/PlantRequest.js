@@ -5,12 +5,12 @@ import { useAuthState } from '../context';
 
 import './PlantRequest.scss';
 import axios from '../api/axios';
-import validateForm from '../utils/validation';
+import validateForm, { requestSchema } from '../utils/validation';
 
 export default function PlantRequest() {
   const user = useAuthState();
 
-  const [plant, setPlant] = useState({ name: '' });
+  const [plant, setPlant] = useState({});
   const [alertMessage, setAlertMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -37,7 +37,7 @@ export default function PlantRequest() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const isValid = validateForm('requestSchema', plant, setAlertMessage);
+    const isValid = validateForm(requestSchema, plant, setAlertMessage);
 
     if (isValid) {
       postRequest()

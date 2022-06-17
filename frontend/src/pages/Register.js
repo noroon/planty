@@ -1,14 +1,10 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import validateForm from '../utils/validation';
+import validateForm, { registerSchema } from '../utils/validation';
 import { handleChange } from '../utils';
 
-import {
-  Alert,
-  Button,
-  InputField,
-} from '../components/general';
+import { Alert, Button, InputField } from '../components/general';
 
 export default function Register() {
   const [userData, setUserData] = useState({});
@@ -18,7 +14,9 @@ export default function Register() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (validateForm('registerSchema', userData, setAlertMessage)) {
+    const isValid = validateForm(registerSchema, userData, setAlertMessage);
+
+    if (isValid) {
       const { name, email, password } = userData;
 
       const options = {
@@ -52,10 +50,7 @@ export default function Register() {
 
   return (
     <div className="container register-form">
-      <form
-        onSubmit={handleSubmit}
-        noValidate
-      >
+      <form onSubmit={handleSubmit} noValidate>
         <legend className="mb-5">Regisztráció</legend>
         {alertMessage && (
           <Alert className="alert-danger" value={alertMessage} />
@@ -92,11 +87,7 @@ export default function Register() {
           value={userData.passwordConfirm}
           onChange={(e) => handleChange(e, userData, setUserData)}
         />
-        <Button
-          type="submit"
-          className="btn-primary"
-          value="Regisztrálok!"
-        />
+        <Button type="submit" className="btn-primary" value="Regisztrálok!" />
       </form>
       <div className="text-center card-info">
         Ha rendelkezel regisztrációval,

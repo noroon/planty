@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const registerSchema = Joi.object({
+export const registerSchema = Joi.object({
   name: Joi.string().required().messages({
     'any.required': 'Add meg a neved!',
     'string.empty': 'Add meg a neved!',
@@ -25,7 +25,7 @@ const registerSchema = Joi.object({
   }),
 });
 
-const profileSchema = Joi.object({
+export const profileSchema = Joi.object({
   name: Joi.string().messages({
     'any.required': 'Add meg a neved!',
     'string.empty': 'Add meg a neved!',
@@ -49,7 +49,7 @@ const profileSchema = Joi.object({
   }),
 });
 
-const loginSchema = Joi.object({
+export const loginSchema = Joi.object({
   email: Joi.string()
     .required()
     .email({ tlds: { allow: false } })
@@ -65,7 +65,7 @@ const loginSchema = Joi.object({
   }),
 });
 
-const newsletterSchema = Joi.object({
+export const newsletterSchema = Joi.object({
   email: Joi.string()
     .required()
     .email({ tlds: { allow: false } })
@@ -76,35 +76,41 @@ const newsletterSchema = Joi.object({
     }),
 });
 
-const requestSchema = Joi.object({
-  name: Joi.string().messages({
+export const requestSchema = Joi.object({
+  name: Joi.string().required().messages({
     'any.required': 'Add meg a növény nevét!',
     'string.empty': 'Add meg a növény nevét!',
   }),
 });
 
+export const plantSchema = Joi.object({
+  name: Joi.string().required().messages({
+    'any.required': 'Add meg a növény nevét!',
+    'string.empty': 'Add meg a növény nevét!',
+  }),
+  image: Joi.string().required().messages({
+    'any.required': 'Tölts fel képet!',
+    'string.empty': 'Tölts fel képet!',
+  }),
+  light: Joi.number().required().integer().min(1).messages({
+    'any.required': 'Add meg a fényigényt!',
+    'string.empty': 'Add meg a fényigényt!',
+  }),
+  water: Joi.number().required().integer().min(1).messages({
+    'any.required': 'Add meg a növény vízigényét!',
+    'string.empty': 'Add meg a növény vízigényét!',
+  }),
+  moisture: Joi.number().required().integer().min(1).messages({
+    'any.required': 'Add meg a növény páraigényét!',
+    'string.empty': 'Add meg a növény páraigényét!',
+  }),
+  care: Joi.string().required().messages({
+    'any.required': 'Adj leírást a gondozáshoz!',
+    'string.empty': 'Adj leírást a gondozáshoz!',
+  }),
+});
 
-export default function validateForm(schemaName, formData, setState) {
-  let schema;
-  switch (schemaName) {
-    case 'profileSchema':
-      schema = profileSchema;
-      break;
-    case 'registerSchema':
-      schema = registerSchema;
-      break;
-    case 'loginSchema':
-      schema = loginSchema;
-      break;
-    case 'newsletterSchema':
-      schema = newsletterSchema;
-      break;
-    case 'requestSchema':
-      schema = requestSchema;
-      break;
-    default:
-      setState('Ne haragudj, valami hiba történt');
-  }
+export default function validateForm(schema, formData, setState) {
   const result = schema.validate(formData);
   const { error } = result;
   if (error) {
