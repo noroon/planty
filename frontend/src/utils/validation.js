@@ -110,6 +110,27 @@ export const plantSchema = Joi.object({
   }),
 });
 
+export const pottingMixSchema = Joi.object({
+  name: Joi.string().required().messages({
+    'any.required': 'Add meg a földkeverék nevét!',
+    'string.empty': 'Add meg a földkeverék nevét!',
+  }),
+  ingredients: Joi.array()
+    .required()
+    .items(
+      Joi.string())
+    .required()
+    .min(2)
+    .messages({
+      'any.required': 'Adj meg legalább két összetevőt!',
+      'string.empty': 'Adj meg legalább két összetevőt!',
+    }),
+  description: Joi.string().required().messages({
+    'any.required': 'Adj leírást a földkeverékhez!',
+    'string.empty': 'Adj leírást a földkeverékhez!',
+  }),
+});
+
 export default function validateForm(schema, formData, setState) {
   const result = schema.validate(formData);
   const { error } = result;

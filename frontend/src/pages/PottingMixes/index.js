@@ -49,7 +49,7 @@ export default function PottingMixes() {
             return (
               <div
                 className="potting-mix-card d-flex default-bg mt-3 col"
-                key={`mix-${description}`}
+                key={`mix-${name}`}
               >
                 <PottingMixCard
                   name={name}

@@ -5,6 +5,7 @@ import { handleChange } from '../utils';
 import { useAuthState } from '../context';
 
 import { Alert, Button, InputField } from '../components/general';
+import validateForm, { pottingMixSchema } from '../utils/validation';
 
 export default function AddPottingMix() {
   const user = useAuthState();
@@ -43,23 +44,6 @@ export default function AddPottingMix() {
     deleteEmptyInputs();
   };
 
-  const validate = () => {
-    let err = '';
-
-    if (!pottingMixData.name) {
-      err = 'Add meg a földkeverék nevét!';
-      setAlertMessage(err);
-      return false;
-    }
-    if (!pottingMixData.ingredients || pottingMixData.ingredients.length < 2) {
-      err = 'Legalább két összetevőt meg kell adnod';
-      setAlertMessage(err);
-      return false;
-    }
-    setAlertMessage('');
-    return true;
-  };
-
   async function postPottingMix() {
     const res = await axios.post('/new-potting-mix', pottingMixData, {
       headers: {
@@ -73,7 +57,11 @@ export default function AddPottingMix() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const isValid = validate();
+    const isValid = validateForm(
+      pottingMixSchema,
+      pottingMixData,
+      setAlertMessage
+    );
 
     if (isValid) {
       postPottingMix()
