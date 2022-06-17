@@ -57,9 +57,9 @@ export default function AddPlant() {
         .catch((err) => {
           setAlertMessage(err.message);
         });
-        setPlantData({});
-        setAlertMessage('');
-        setSuccessMessage('');
+      setPlantData({});
+      setAlertMessage('');
+      setSuccessMessage('');
     }
   };
 

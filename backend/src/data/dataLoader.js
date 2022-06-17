@@ -14,13 +14,8 @@ import subscribers from './subscribers';
 import NewsletterSubscriber from '../newsletter/newsletterModel';
 
 const loadData = async () => {
-  await initDBConnection();
-  await User.deleteMany();
-  await Plant.deleteMany();
-  await PottingMix.deleteMany();
-  await Request.deleteMany();
-  await NewsletterSubscriber.deleteMany();
   try {
+    await initDBConnection();
     await Plant.insertMany(plants);
     await PottingMix.insertMany(pottingMixes);
     await Request.insertMany(requests);

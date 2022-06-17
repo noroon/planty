@@ -104,6 +104,9 @@ export const plantSchema = Joi.object({
     'any.required': 'Add meg a növény páraigényét!',
     'string.empty': 'Add meg a növény páraigényét!',
   }),
+  edible: Joi.boolean(),
+  petfriendly: Joi.boolean(),
+  easyToCare: Joi.boolean(),
   care: Joi.string().required().messages({
     'any.required': 'Adj leírást a gondozáshoz!',
     'string.empty': 'Adj leírást a gondozáshoz!',
