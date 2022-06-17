@@ -1,11 +1,10 @@
 import { userService } from './userService';
 
-
 export const userController = {
   async register(req, res, next) {
     try {
       const { statusCode, responseObj } = await userService.registerUser(
-        req.body
+        req.body,
       );
 
       res.status(statusCode).json(responseObj);
@@ -28,7 +27,7 @@ export const userController = {
     try {
       const { statusCode, resObj } = await userService.updateUser(
         userId,
-        req.body
+        req.body,
       );
       return res.status(statusCode).json(resObj);
     } catch (error) {
@@ -40,7 +39,7 @@ export const userController = {
     try {
       const { statusCode, resObj } = await userService.updateMyCollection(
         userId,
-        req.body
+        req.body,
       );
       return res.status(statusCode).json(resObj);
     } catch (error) {

@@ -1,0 +1,12 @@
+node_modules
+Dockerfile
+.env
+.env.dev
+.vscode
+logs
+.env
+yarn-error.log
+dist
+coverage
+globalConfig.json
+openAPIDocumentation/openapi.yaml

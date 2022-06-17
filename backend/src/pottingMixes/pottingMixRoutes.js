@@ -10,7 +10,7 @@ router.get('/potting-mix/:id', pottingMixController.getById);
 router.post(
   '/new-potting-mix',
   authorization.verifyToken,
-  pottingMixController.addNew
+  pottingMixController.addNew,
 );
 
 export default router;

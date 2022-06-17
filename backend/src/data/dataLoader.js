@@ -1,6 +1,6 @@
+import mongoose from 'mongoose';
 import logger from '../logger';
 import initDBConnection from './mongoDBConnect';
-import mongoose from 'mongoose';
 
 import users from './users';
 import User from '../users/userModel';

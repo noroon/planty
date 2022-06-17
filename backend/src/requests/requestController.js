@@ -1,7 +1,7 @@
 import { requestService } from './requestService';
 
 export const requestController = {
-  async get(req, res) {
+  async get(req, res, next) {
     try {
       const requests = await requestService.getRequests();
       res.status(200).json({ requests });
@@ -12,7 +12,7 @@ export const requestController = {
   async addNew(req, res, next) {
     try {
       const { statusCode, responseObj } = await requestService.addRequest(
-        req.body
+        req.body,
       );
       res.status(statusCode).json(responseObj);
     } catch (err) {

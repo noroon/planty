@@ -55,16 +55,13 @@ describe('User requests for plants', () => {
         .expect('Content-Type', /json/)
         .send({ email: 'admin@admin.com', password: 'Test1234' })
         .expect(200)
-        .then(res => {
-          const { token } = res.body;
-          return token;
-        });
+        .then((res) => res.body.token);
 
       await request(app)
         .get('/api/plant-request')
         .set('Authorization', `Bearer ${token}`)
         .expect(200)
-        .then(res => {
+        .then((res) => {
           const { requests } = res.body;
           expect(requests.length).toBe(3);
           expect(requests).toMatchObject(testRequests);
@@ -86,7 +83,7 @@ describe('User requests for plants', () => {
         .expect('Content-Type', /json/)
         .send(testRequest3)
         .expect(200)
-        .then(res => {
+        .then((res) => {
           const { name } = res.body;
           expect(name).toBe('hoya carnosa');
         });

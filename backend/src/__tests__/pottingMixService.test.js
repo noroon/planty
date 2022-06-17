@@ -65,7 +65,7 @@ describe('Potting mixes', () => {
       await request(app)
         .get('/api/potting-mixes')
         .expect(200)
-        .then(res => {
+        .then((res) => {
           const { pottingMixes } = res.body;
           expect(pottingMixes.length).toBe(3);
           expect(pottingMixes).toMatchObject(testMixes);
@@ -76,7 +76,7 @@ describe('Potting mixes', () => {
       await request(app)
         .get(`/api/potting-mix/${newMix._id}`)
         .expect(200)
-        .then(res => {
+        .then((res) => {
           const { pottingMixById } = res.body;
           expect(pottingMixById.name).toBe('fikusz mix');
         });
@@ -97,7 +97,7 @@ describe('Potting mixes', () => {
         .expect('Content-Type', /json/)
         .send(testMix2)
         .expect(200)
-        .then(res => {
+        .then((res) => {
           const { name } = res.body;
           expect(name).toBe('syngonium mix');
         });

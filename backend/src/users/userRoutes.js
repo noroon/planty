@@ -15,12 +15,12 @@ router.patch(
   '/users',
   authorization.verifyToken,
   updateUserValidator.validator,
-  userController.update
+  userController.update,
 );
 router.patch(
   '/user/:id',
   authorization.verifyToken,
-  userController.updateCollection
+  userController.updateCollection,
 );
 
 export default router;

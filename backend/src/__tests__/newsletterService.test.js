@@ -33,7 +33,7 @@ describe('Newsletter subscribers', () => {
         .expect('Content-Type', /json/)
         .send(testSubsriber)
         .expect(200)
-        .then(res => {
+        .then((res) => {
           const { email } = res.body;
           expect(email).toBe('hello@hello.com');
         });

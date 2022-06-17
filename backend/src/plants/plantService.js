@@ -30,14 +30,16 @@ export const plantService = {
       care,
     } = reqBody;
 
-    if (!name)
+    if (!name) {
       throw createHttpError(400, { message: 'Kérlek, adj nevet a növénynek!' });
+    }
 
     const nameExist = await Plant.findOne({ name });
-    if (nameExist)
+    if (nameExist) {
       throw createHttpError(400, {
         message: 'Ez a növény már megtalálható nálunk :)',
       });
+    }
 
     const plant = new Plant({
       name,

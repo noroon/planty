@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import createHttpError from 'http-errors';
 import jwt from 'jsonwebtoken';
@@ -39,17 +40,21 @@ export const userService = {
 
   async loginUser(reqBody) {
     const { email, password } = reqBody;
-    if (!email && !password)
+    if (!email && !password) {
       throw createHttpError(400, { message: 'All fields are required.' });
+    }
     if (!email) throw createHttpError(400, { message: 'Email is required.' });
-    if (!password)
+    if (!password) {
       throw createHttpError(400, { message: 'Password is required.' });
+    }
 
     try {
       const user = await User.findOne({ email });
 
       if (user && (await bcrypt.compare(password, user.password))) {
-        const { _id, name, isAdmin, isVerified, myCollection } = user;
+        const {
+          _id, name, isAdmin, isVerified, myCollection,
+        } = user;
 
         const token = jwt.sign(
           {
@@ -61,7 +66,7 @@ export const userService = {
             myCollection,
           },
           config.token_key,
-          { expiresIn: '2h' }
+          { expiresIn: '2h' },
         );
         return { statusCode: 200, resObj: { status: 'ok', token } };
       }
@@ -79,8 +84,9 @@ export const userService = {
     try {
       userData = await User.findById({ _id });
     } catch (err) {
-      if (err instanceof mongoose.Error.CastError)
+      if (err instanceof mongoose.Error.CastError) {
         throw createHttpError(400, { message: 'Invalid user id' });
+      }
       throw createHttpError(500, { message: err.message });
     }
 
@@ -122,7 +128,7 @@ export const userService = {
           myCollection: savedUser.myCollection,
         },
         config.token_key,
-        { expiresIn: '2h' }
+        { expiresIn: '2h' },
       );
 
       return {
@@ -140,28 +146,18 @@ export const userService = {
   },
   async updateMyCollection(_id, reqBody) {
     const { plantId } = reqBody;
-    // let userData;
-
-    // try {
-    //   userData = await User.findById({ _id });
-    // } catch (err) {
-    //   if (err instanceof mongoose.Error.CastError) {
-    //     throw createHttpError(400, { message: 'Invalid user id' });
-    //   } else if (!userData) {
-    //     throw createHttpError(400, { message: 'User not found' });
-    //   }
-    //   throw createHttpError(500, { message: err.message });
-    // }
 
     const user = await User.findById({ _id });
     let { myCollection } = user;
     if (!myCollection.includes(plantId)) {
       myCollection = [...myCollection, plantId];
     } else {
-        throw createHttpError(400, { message: 'A növény már szerepel a gyűjteményedben' });
+      throw createHttpError(400, {
+        message: 'A növény már szerepel a gyűjteményedben',
+      });
     }
     try {
-      await User.updateOne({ _id }, { $set: { myCollection: myCollection } });
+      await User.updateOne({ _id }, { $set: { myCollection } });
 
       const updatedUser = await User.findById({ _id });
       const newToken = jwt.sign(
@@ -174,7 +170,7 @@ export const userService = {
           myCollection: updatedUser.myCollection,
         },
         config.token_key,
-        { expiresIn: '2h' }
+        { expiresIn: '2h' },
       );
 
       return {

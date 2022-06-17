@@ -12,29 +12,29 @@ const testUser = {
   password: 'Test1234',
 };
 
-const registerUser = async user => {
+const registerUser = async (user) => {
   await request(app)
     .post('/api/register')
     .set('Accept', 'application/json')
     .expect('Content-Type', /json/)
     .send(user)
     .expect(200)
-    .then(res => {
+    .then((res) => {
       const { email } = res.body;
       expect(email).toBe(user.email);
     });
 };
 
-const loginUser = async user => {
+const loginUser = async (user) => {
   await registerUser(user);
 
-  return await request(app)
+  return request(app)
     .post('/api/login')
     .set('Accept', 'application/json')
     .expect('Content-Type', /json/)
     .send(user)
     .expect(200)
-    .then(res => {
+    .then((res) => {
       const { token } = res.body;
       expect(token).toBeDefined();
       return token;
@@ -71,7 +71,7 @@ describe('User routes', () => {
           .expect('Content-Type', /json/)
           .send(testUser)
           .expect(400)
-          .then(res => {
+          .then((res) => {
             const { message } = res.body;
             expect(message).toBe('Email is already taken.');
           });
@@ -97,7 +97,7 @@ describe('User routes', () => {
           .set('Authorization', `Bearer ${token}`)
           .send({ name: 'userina' })
           .expect(200)
-          .then(res => {
+          .then((res) => {
             const { name, email } = res.body;
             expect(name).toBe('userina');
             expect(email).toBe(testUser.email);

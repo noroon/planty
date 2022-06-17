@@ -18,11 +18,12 @@ export const requestService = {
     }
 
     const nameExist = await PlantRequest.findOne({ name });
-    if (nameExist)
+    if (nameExist) {
       throw createHttpError(400, {
         message:
           'Ezt a növényt már elültettük a kérések közé, hamarosan feltöltjük',
       });
+    }
 
     const request = new PlantRequest({ name });
 

@@ -8,13 +8,13 @@ router.get(
   '/plant-request',
   authorization.verifyToken,
   authorization.isAdmin,
-  requestController.get
+  requestController.get,
 );
 
 router.post(
   '/plant-request',
   authorization.verifyToken,
-  requestController.addNew
+  requestController.addNew,
 );
 
 export default router;

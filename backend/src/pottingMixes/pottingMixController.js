@@ -1,7 +1,7 @@
 import { pottingMixService } from './pottingMixService';
 
 export const pottingMixController = {
-  async get(req, res) {
+  async get(req, res, next) {
     try {
       const pottingMixes = await pottingMixService.getPottingMixes();
       res.status(200).json({ pottingMixes });
@@ -9,7 +9,7 @@ export const pottingMixController = {
       next(err);
     }
   },
-  async getById(req, res) {
+  async getById(req, res, next) {
     const { id } = req.params;
     try {
       const pottingMixById = await pottingMixService.getPottingMixById(id);

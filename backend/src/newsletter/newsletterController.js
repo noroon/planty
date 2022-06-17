@@ -4,7 +4,7 @@ export const newsletterController = {
   async addNew(req, res, next) {
     try {
       const { statusCode, responseObj } = await newsletterService.addSubscriber(
-        req.body
+        req.body,
       );
       res.status(statusCode).json(responseObj);
     } catch (err) {

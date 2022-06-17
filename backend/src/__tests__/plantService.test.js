@@ -70,7 +70,7 @@ describe('Plants', () => {
       await request(app)
         .get('/api/plants')
         .expect(200)
-        .then(res => {
+        .then((res) => {
           const { plants } = res.body;
           expect(plants.length).toBe(3);
           expect(plants).toMatchObject(testPlants);
@@ -83,7 +83,7 @@ describe('Plants', () => {
       await request(app)
         .get(`/api/plant/${newPlant._id}`)
         .expect(200)
-        .then(res => {
+        .then((res) => {
           const { plantById } = res.body;
           expect(plantById.name).toBe('Monstera Minima');
         });
@@ -99,30 +99,25 @@ describe('Plants', () => {
         .expect('Content-Type', /json/)
         .send({ email: 'admin@admin.com', password: 'Test1234' })
         .expect(200)
-        .then(res => {
-          const { token } = res.body;
-          return token;
-        });
+        .then((res) => res.body.token);
 
       await request(app)
         .post('/api/admin/new-plant')
         .set('Authorization', `Bearer ${token}`)
-        // .expect('Content-Type', 'multipart/form-data')
-        // .field('name', 'Márványos szobafutóka (Scindapsus Pictus Aargyraeus)')
-        // .field('moisture', 3)
-        // .field('water', 2)
-        // .field('light', 2)
-        // .field('petfriendly', false)
-        // .field('edible', false)
-        // .field('easyToCare', false)
-        // .field(
-        //   'care',
-        //   'A szobai futóka a kontyvirágfélék családjába tartozó kúszónövény.'
-        // )
-        // .attach('file', '../data/images/sarah-bronske-rGpZ6RKefXU-unsplash.jpg')
-        // .expect(200);
+        .expect('Content-Type', 'multipart/form-data')
+        .field('name', 'Márványos szobafutóka (Scindapsus Pictus Aargyraeus)')
+        .field('moisture', 3)
+        .field('water', 2)
+        .field('light', 2)
+        .field('petfriendly', false)
+        .field('edible', false)
+        .field('easyToCare', false)
+        .field(
+          'care',
+          'A szobai futóka a kontyvirágfélék családjába tartozó kúszónövény.',
+        )
+        .attach('file', '../data/images/sarah-bronske-rGpZ6RKefXU-unsplash.jpg')
+        .expect(200);
     });
   });
 });
-
-

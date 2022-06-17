@@ -6,15 +6,17 @@ export const newsletterService = {
     const { email } = reqBody;
 
     if (!email) {
-      throw createHttpError(400, { message: 'Kérlek, add meg az email-címed!' });
+      throw createHttpError(400, {
+        message: 'Kérlek, add meg az email-címed!',
+      });
     }
 
     const emailExist = await NewsletterSubscriber.findOne({ email });
-    if (emailExist)
+    if (emailExist) {
       throw createHttpError(400, {
-        message:
-          'Már feliratkoztál a hírlevelünkre',
+        message: 'Már feliratkoztál a hírlevelünkre',
       });
+    }
 
     const subscriber = new NewsletterSubscriber({ email });
 
