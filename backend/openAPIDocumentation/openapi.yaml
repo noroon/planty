@@ -1,0 +1,609 @@
+openapi: 3.0.3
+info:
+  title: Planty
+  description: Planty backend OpenApi documentation
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
+tags:
+  - name: Register
+    description: New user registration
+  - name: Login
+    description: User login
+  - name: Users
+    description: User profile
+  - name: Plants
+    description: Operations with plants
+  - name: Potting mixes
+    description: Operations with potting mixes
+  - name: Plant requests
+    description: Operations with plant requests
+  - name: Newsletter
+    description: Subscribing to newsletter
+paths:
+  /api/register:
+    post:
+      summary: Register a new user
+      tags:
+        - Register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+      responses:
+        '200':
+          description: The user was successfully registered
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The auto-generated id of the user
+                  email:
+                    type: string
+                    description: The user email
+                  name:
+                    type: string
+                    description: The user name
+                  password:
+                    type: string
+                    description: The user password
+                example:
+                  id: 1
+                  name: John Doe
+                  email: johndoe@test.com
+                  isAdmin: false
+                  isVerified: false
+        '400':
+          description: 'Validation error <br> <h4>The error messages are the following:</h4> <ul> <li>Name is required.</li> <li>Email is required.</li> <li>Password is required.</li> <li>Password must be at least 8 characters.</li> <li>Email is already taken. <small>(for testing - email@taken.com)</small></li> </ul>'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Validation error description
+                example:
+                  message: Validation error message
+        '500':
+          description: Some server error
+  /api/login:
+    post:
+      summary: Login a user
+      tags:
+        - Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        '200':
+          description: The user was successfully logged in
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  staus:
+                    type: string
+                    description: The status of the response
+                  token:
+                    type: string
+                    description: The user token
+                example:
+                  staus: ok
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /api/users:
+    patch:
+      summary: Update a user
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Users'
+      responses:
+        '200':
+          description: The user was successfully updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The auto-generated id of the user
+                  email:
+                    type: string
+                    description: The user email
+                  name:
+                    type: string
+                    description: The user name
+                  token:
+                    type: string
+                    description: The authorization JWT token
+                example:
+                  id: 1
+                  email: johndoe@test.com
+                  name: John Doe
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /api/plants:
+    get:
+      summary: Get plants from database
+      tags:
+        - Plants
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Plants'
+      responses:
+        '200':
+          description: List of plants
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  staus:
+                    type: string
+                    description: The status of the response
+                  plants:
+                    type: object
+                    description: The list of plants
+                example:
+                  staus: ok
+                  plants:
+                    _id: 62aaeabb2a2d7c8ab8758d09
+                    name: Alocasia Polly
+                    moisture: 3
+                    water: 2
+                    light: 2
+                    petfriendly: false
+                    edible: false
+                    easyToCare: false
+                    care: Télen a növény visszahúzódik a rizómába
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /api/admin/new-plant:
+    post:
+      summary: Add new plant to database
+      tags:
+        - Plants
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Plants'
+      responses:
+        '200':
+          description: The plant was added to database
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  staus:
+                    type: string
+                    description: The status of the response
+                  id:
+                    type: string
+                    description: The auto-generated id of the plant
+                  name:
+                    type: string
+                    description: The name of the plant
+                example:
+                  staus: ok
+                  _id: 62aaeabb2a2d7c8ab8758d09
+                  name: Monstera Minima
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /api/potting-mixes:
+    get:
+      summary: Get potting mixes from database
+      tags:
+        - Potting mixes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Potting-mixes'
+      responses:
+        '200':
+          description: List of potting mixes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  staus:
+                    type: string
+                    description: The status of the response
+                  pottingMixes:
+                    type: object
+                    description: The list of potting mixes
+                example:
+                  staus: ok
+                  pottingMixes:
+                    _id: 62aaeabb2a2d7c8ab8758d09
+                    name: Aroid földkeverék
+                    ingredients:
+                      - 20% perlite
+                      - 25% orchideaföld
+                      - 30% kókuszrost
+                      - 10% tőzeg
+                      - 10% gilisztahumusz
+                      - 5% faszén
+                    description: 'Ez a földkeverék kiválló azoknak a növénygazdiknak, akik hajlamosak a növényeiket túlöntözni.'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /api/new-potting-mix:
+    post:
+      summary: Add new potting mix to database
+      tags:
+        - Potting mixes
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Potting-mixes'
+      responses:
+        '200':
+          description: The potting mix was added to database
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  staus:
+                    type: string
+                    description: The status of the response
+                  id:
+                    type: string
+                    description: The auto-generated id of the potting mix
+                  name:
+                    type: string
+                    description: The name of the potting mix
+                example:
+                  staus: ok
+                  id: 62aaeabb2a2d7c8ab8758d09
+                  name: Aroid földkeverék
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /api/plant-request:
+    get:
+      summary: Get plants from database
+      tags:
+        - Plant requests
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Requests'
+      responses:
+        '200':
+          description: List of requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  staus:
+                    type: string
+                    description: The status of the response
+                  requests:
+                    type: object
+                    description: The list of requests
+                example:
+                  staus: ok
+                  requests:
+                    _id: 62aaeabb2a2d7c8ab8758d09
+                    name: Alocasia Polly
+                    isDone: false
+                    isDeleted: false
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      summary: Add new request to database
+      tags:
+        - Plant requests
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Requests'
+      responses:
+        '200':
+          description: The requests was added to database
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  staus:
+                    type: string
+                    description: The status of the request
+                  id:
+                    type: string
+                    description: The auto-generated id of the request
+                  name:
+                    type: string
+                    description: The name of the request
+                example:
+                  staus: ok
+                  _id: 62aaeabb2a2d7c8ab8758d09
+                  name: Monstera Minima
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /api/newsletter:
+    post:
+      summary: Add a new subscriber to database
+      tags:
+        - Newsletter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Newsletter%20subscriber'
+      responses:
+        '200':
+          description: The subscriber was added to database
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  staus:
+                    type: string
+                    description: The status of the request
+                  id:
+                    type: string
+                    description: The auto-generated id of the subscriber
+                  email:
+                    type: string
+                    description: The email of the subscriber
+                example:
+                  staus: ok
+                  _id: 62aaeabb2a2d7c8ab8758d09
+                  email: visitor@visitor.com
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+components:
+  schemas:
+    Register:
+      type: object
+      required:
+        - name
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          description: The user email
+        name:
+          type: string
+          description: The user name
+        password:
+          type: string
+          description: The user password
+      example:
+        name: John Doe
+        email: johndoe@test.com
+        password: password123
+    Login:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          description: The user email
+        password:
+          type: string
+          description: The user password
+      example:
+        email: johndoe@test.com
+        password: password123
+    Users:
+      type: object
+      properties:
+        email:
+          type: string
+          description: The user email
+        name:
+          type: string
+          description: The user name
+        password:
+          type: string
+          description: The user password
+          minLength: 8
+      minProperties: 1
+      example:
+        name: John Doe
+        email: johndoe@test.com
+        password: password123
+    Plants:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the plant
+        moisture:
+          type: number
+          description: The moisture that the plant needs
+        water:
+          type: number
+          description: The plant watering needs
+        light:
+          type: number
+          description: The light that the plant needs
+        petfriendly:
+          type: boolean
+          description: Is the plant petfriendly
+        edible:
+          type: boolean
+          description: Is the plant edible
+        easyToCare:
+          type: boolean
+          description: Is the plant easy to care
+        care:
+          type: string
+          description: Description about plant care
+      example:
+        name: Alocasia Polly
+        moisture: 3
+        water: 2
+        light: 2
+        petfriendly: false
+        edible: false
+        easyToCare: false
+        care: Télen a növény visszahúzódik a rizómába
+    Potting-mixes:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the potting mix
+        ingredients:
+          type: array
+          description: Ingredients of the potting mix
+        description:
+          type: string
+          description: Additional infos about the potting mix
+          minLength: 8
+      minProperties: 1
+      example:
+        name: Aroid földkeverék
+        ingredients:
+          - 20% perlite
+          - 25% orchideaföld
+          - 30% kókuszrost
+          - 10% tőzeg
+          - 10% gilisztahumusz
+          - 5% faszén
+        description: 'Ez a földkeverék kiválló azoknak a növénygazdiknak, akik hajlamosak a növényeiket túlöntözni.'
+    Requests:
+      type: object
+      required:
+        - plant name
+      properties:
+        name:
+          type: string
+          description: The name of the plant that the user wants to see in the application
+      example:
+        name: alocasia polly
+    Newsletter subscriber:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+          description: The email address of the subscriber
+      example:
+        email: visitor@visitor.com
+  responses:
+    '400':
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Validation error description
+                example: A field is required.
+    '401':
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Validation error description
+                example: Invalid token
+    '500':
+      description: Server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Validation error description
+                example: Server error
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
