@@ -10,6 +10,6 @@ COPY . .
 
 RUN yarn build-doc
 
-EXPOSE 4040
+EXPOSE 5000
 
 CMD ["yarn","start"]

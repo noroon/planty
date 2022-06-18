@@ -1,6 +1,6 @@
 import logger from './logger';
 import app from './app';
-import initDBConnection from './data/mongoDBConnect';
+import initDBConnection from './routes/mongoDBConnect';
 import config from './config';
 
 const PORT = config.port || 8080;
