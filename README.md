@@ -69,10 +69,11 @@ Növénykártyákat csak az admin tud felvinni.
   - `yarn build` - alkalmazás buildelése
 
 ## Applikáció indítása
+- Az adatbázis feltölthető a backend mappából `yarn load-data` paranccsal, ehhez a .env.example alapján létre kell hozni a .env fájlt
 - .env.dev létrehozása a .env.dev.example alapján
   - AWS S3 bucket: https://portal.aws.amazon.com/billing/signup#/start/email
   - MongoDB: https://account.mongodb.com/
 - docker-compose --env-file ./.env.dev build parancs futtatása a gyökérkönyvtárban
 - docker-compose --env-file ./.env.dev up parancs futtatása
-    Planty-app: http://localhost:3000/
-    Open API dokumentáció http://localhost:5500/api-docs/#/
+  - Planty-app: http://localhost:3000/
+  - Open API dokumentáció http://localhost:5500/api-docs/#/

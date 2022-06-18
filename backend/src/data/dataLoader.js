@@ -12,10 +12,17 @@ import requests from './requests';
 import Request from '../requests/requestModel';
 import subscribers from './subscribers';
 import NewsletterSubscriber from '../newsletter/newsletterModel';
+import { uploadFile } from '../utils/s3';
 
 const loadData = async () => {
   try {
     await initDBConnection();
+
+    await plants.forEach(async plant => {
+      const { path, filename } = plant.image;
+      await uploadFile({ path, filename });
+    });
+
     await Plant.insertMany(plants);
     await PottingMix.insertMany(pottingMixes);
     await Request.insertMany(requests);
