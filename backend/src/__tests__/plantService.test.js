@@ -113,7 +113,7 @@ describe('Plants', () => {
         .field('easyToCare', false)
         .field(
           'care',
-          'A szobai futóka a kontyvirágfélék családjába tartozó kúszónövény.'
+          'A szobai futóka a kontyvirágfélék családjába tartozó kúszónövény.',
         )
         .attach('image', 'src/data/images/severin-candrian-SVRKkENpalg-unsplash.jpg')
         .expect(200);

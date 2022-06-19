@@ -18,7 +18,7 @@ const loadData = async () => {
   try {
     await initDBConnection();
 
-    await plants.forEach(async plant => {
+    await plants.forEach(async (plant) => {
       const { path, filename } = plant.image;
       await uploadFile({ path, filename });
     });
