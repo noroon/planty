@@ -104,7 +104,6 @@ describe('Plants', () => {
       await request(app)
         .post('/api/admin/new-plant')
         .set('Authorization', `Bearer ${token}`)
-        // .expect('Content-Type', 'multipart/form-data')
         .field('name', 'Márványos szobafutóka (Scindapsus Pictus Aargyraeus)')
         .field('moisture', 3)
         .field('water', 2)
@@ -114,9 +113,9 @@ describe('Plants', () => {
         .field('easyToCare', false)
         .field(
           'care',
-          'A szobai futóka a kontyvirágfélék családjába tartozó kúszónövény.',
+          'A szobai futóka a kontyvirágfélék családjába tartozó kúszónövény.'
         )
-        .attach('image', '../data/images/sarah-bronske-rGpZ6RKefXU-unsplash.jpg')
+        .attach('image', 'src/data/images/severin-candrian-SVRKkENpalg-unsplash.jpg')
         .expect(200);
     });
   });
