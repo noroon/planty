@@ -57,7 +57,7 @@ export default function PlantDetails({ plant }) {
             alt=""
           />
         </div>
-        <div>
+        <div className="card-head-infos">
           <h1 className="card-title mb-5">{name}</h1>
           <div className="plant-needs">
             <div className="d-flex">

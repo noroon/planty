@@ -110,7 +110,7 @@ export default function AddPottingMix() {
             />
           );
         })}
-        <h6 className="text-start mt-4">Ha szeretnél, leírást is adhatsz:</h6>
+        <h6 className="text-start mt-4">Adj meg egy rövid leírást:</h6>
         <InputField
           type="textarea"
           name="description"
