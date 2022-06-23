@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 import axios from '../api/axios';
 import { handleChange } from '../utils';
@@ -14,6 +14,7 @@ import {
 } from '../components/general';
 
 export default function AddPlant() {
+  const formRef = useRef();
   const user = useAuthState();
 
   const [plantData, setPlantData] = useState({});
@@ -58,6 +59,7 @@ export default function AddPlant() {
           setAlertMessage(err.message);
         });
       setPlantData({});
+      formRef.current.reset();
       setAlertMessage('');
       setSuccessMessage('');
     }
@@ -69,7 +71,7 @@ export default function AddPlant() {
       {successMessage && (
         <Alert className="alert-success" value={successMessage} />
       )}
-      <form onSubmit={handleSubmit} noValidate>
+      <form ref={formRef} onSubmit={handleSubmit} noValidate>
         <legend className="mb-5">Növény hozzáadása</legend>
         <InputField
           type="text"

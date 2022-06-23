@@ -1,4 +1,5 @@
 /* eslint-disable */
+@import '~bootstrap/scss/bootstrap';
 
 //////////// Content //////////////
 // FORMS
@@ -12,9 +13,6 @@
 // COMMON
 //// button
 
-/* eslint-disable */
-@import '~bootstrap/scss/bootstrap';
-
 $primary: rgb(155, 123, 241);
 $primary-light: rgb(197, 181, 241);
 $secondary: #969696;
@@ -23,7 +21,6 @@ $greensea: #16a085;
 $success: rgb(0, 202, 175);
 
 $theme-colors: (
-
   'primary': $primary,
   'secondary': $secondary,
 );
@@ -43,7 +40,6 @@ $form-file-button-hover-bg: $primary;
 $input-group-addon-color: $success;
 $input-group-addon-bg: $success;
 $input-group-addon-border-color: $success;
-
 
 /* eslint-disable */
 @import '../node_modules/bootstrap/scss/bootstrap';
@@ -275,9 +271,9 @@ input[type='checkbox']:checked + .check-trail {
 }
 
 //////////// NAVBAR //////////////
-.navbar {
-  z-index: $zindex-sticky;
-}
+// .navbar {
+//   z-index: $zindex-sticky;
+// }
 
 //////////// FOOTER //////////////
 #footer-positioner {
