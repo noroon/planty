@@ -13,6 +13,7 @@
 A felhasználók megnézhetik az adatbázisban szereplő növények specifikációját, gondozási útmutatóját, feliratkozhatnak hírlevélre.
 Regisztrációt követően a felhasználónak lehetősége nyílik saját gyűjtemény létrehozására az adatbázisban szereplő növényekből. Ha nem talál egy növényt, küldhet egy kérést az admin számára a növény nevével, aki a kéréseket látja és a későbbiekben kezelni tudja. A felhasználó képes földkeverékrecepteket felvinni az adatbázisba, illetve megnézni a már felvitt földkeverékeket.
 Növénykártyákat csak az admin tud felvinni.
+Prezentáció: https://www.canva.com/design/DAFECIbudzk/1CS5wlvigE493pT15rhD2Q/view?utm_content=DAFECIbudzk&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink#1
 
 ## Funkciók
 
