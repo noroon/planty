@@ -77,4 +77,4 @@ Prezentáció: https://www.canva.com/design/DAFECIbudzk/1CS5wlvigE493pT15rhD2Q/v
 - docker-compose --env-file ./.env.dev build parancs futtatása a gyökérkönyvtárban
 - docker-compose --env-file ./.env.dev up parancs futtatása
   - Planty-app: http://localhost:3000/
-  - Open API dokumentáció http://localhost:5500/api-docs/#/
+  - Open API dokumentáció http://localhost:4000/

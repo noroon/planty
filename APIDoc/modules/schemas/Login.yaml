@@ -5,10 +5,8 @@ required:
 properties:
   email:
     type: string
-    description: The user email
   password:
     type: string
-    description: The user password
 example:
   email: johndoe@test.com
   password: password123

@@ -11,10 +11,6 @@
   - `yarn build` - build the app
   - `yarn build-doc` - build *openapi.yaml* file
 
-## Generate OpenAPI documentation
-
-Use `yarn build-doc` command in backend directory to build the ***openapi.yaml*** file.
-
 ## Load data into the database
 
 Use `yarn load-data` command in backend directory to load data into tha database.

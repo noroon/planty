@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "build-doc": "swagger-cli bundle modules/root.yaml --outfile openapi.yaml --type yaml"
+  },
+  "dependencies": {
+    "@apidevtools/swagger-cli": "^4.0.4",
+    "express": "^4.18.1",
+    "swagger-ui-express": "^4.5.0",
+    "yamljs": "^0.3.0",
+    "winston": "^3.7.2"
+  },
+  "type": "module",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}

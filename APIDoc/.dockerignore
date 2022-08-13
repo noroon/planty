@@ -1,0 +1,6 @@
+node_modules
+Dockerfile
+.env
+logs
+yarn-error.log
+openAPIDocumentation/openapi.yaml

@@ -1,12 +1,14 @@
 post:
   summary: Login a user
   tags: [Login]
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          $ref: '../schemas/Login.yaml'
+  consumes:
+    - application/json
+  parameters:
+    - in: body
+      name: Login
+      description: Login a user
+      schema:
+        $ref: '../schemas/Login.yaml'
   responses:
     200:
       description: The user was successfully logged in

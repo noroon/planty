@@ -73,17 +73,21 @@ paths:
                   message: Validation error message
         '500':
           description: Some server error
-  /api/login:
+  /login:
+    servers:
+      - url: 'http://localhost:5000/api'
     post:
       summary: Login a user
       tags:
         - Login
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Login'
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: Login
+          description: Login a user
+          schema:
+            $ref: '#/components/schemas/Login'
       responses:
         '200':
           description: The user was successfully logged in
@@ -463,10 +467,8 @@ components:
       properties:
         email:
           type: string
-          description: The user email
         password:
           type: string
-          description: The user password
       example:
         email: johndoe@test.com
         password: password123

@@ -28,7 +28,9 @@ tags:
 paths:
   /api/register:
     $ref: "./resources/register.yaml"
-  /api/login:
+  /login:
+    servers:
+      - url: http://localhost:5000/api
     $ref: "./resources/login.yaml"
   /api/users:
     $ref: "./resources/users.yaml"
