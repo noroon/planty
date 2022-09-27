@@ -1,0 +1,23 @@
+@import '~bootstrap/scss/bootstrap';
+
+$primary: rgb(155, 123, 241);
+$primary-light: rgb(197, 181, 241);
+$secondary: #969696;
+$turquoise: #1abc9c;
+$greensea: #16a085;
+$success: rgb(0, 202, 175);
+
+$theme-colors: (
+  'primary': $primary,
+  'secondary': $secondary,
+);
+
+$transition: all 0.5s ease;
+$border-radius: 1rem;
+$form-range-thumb-height: 2rem;
+$form-range-thumb-width: 1rem;
+$form-range-thumb-focus-box-shadow-width: 0px;
+$form-range-track-height: 1.2rem;
+$component-active-bg: $primary;
+
+@import '../../node_modules/bootstrap/scss/bootstrap';

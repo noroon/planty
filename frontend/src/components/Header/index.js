@@ -1,97 +1,57 @@
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 
-import { useAuthState } from '../../context';
+import AdminHeader from './AdminHeader/index.js';
+import Navigation from './Navigation';
 import PlantyLogo from '../../assets/images/planty_logo.png';
-import navLinks from './navLinks';
-import NavBar from './NavBar';
-import './style.scss';
+import { useAuthDispatch, logout } from '../../context';
+import { useAuthState } from '../../context';
+import { adminNavigation } from './navigation.config';
+import './index.scss';
 
 export default function Header() {
-  const user = useAuthState();
-  const [checked, setChecked] = useState(false);
+  const { userDetails } = useAuthState();
   const isMobile = useMediaQuery({ query: '(max-width: 760px)' });
+  const dispatch = useAuthDispatch();
+  const navigate = useNavigate();
+  
+  const [ checked, setChecked ] = useState(false);
 
   const handleChange = () => {
     if (isMobile) setChecked(!checked);
   };
 
+  const handleLogout = () => {
+    logout(dispatch);
+    navigate('/');
+  };
+
   return (
     <>
-      <section className="navigation">
-        <div className="nav-container d-flex">
+      <section className="nav-container">
+        {/* <div className="nav-container"> */}
           <div className="container d-flex">
-            <div className="brand">
-              <Link className="navbar-brand bg-white overflow-hidden" to="/">
-                <img src={PlantyLogo} alt="logo" width="70px" />
-              </Link>
-            </div>
-            <nav>
-              <div id="menuToggle">
-                <input
-                  onChange={handleChange}
-                  type="checkbox"
-                  id="hamburger"
-                  checked={checked ? 'checked' : ''}
-                />
-                <span />
-                <span />
-                <span />
-                <ul onFocus={handleChange}>
-                  {user.userDetails ? (
-                    <NavBar linkList={navLinks.registeredUser} />
-                  ) : (
-                    <NavBar linkList={navLinks.visitor} />
-                  )}
-                </ul>
-              </div>
-            </nav>
+            <Link className="logo-container bg-white" to="/">
+              <img src={PlantyLogo} alt="logo" width="70px" />
+            </Link>
+            <Navigation
+              userDetails={userDetails}
+              handleChange={handleChange}
+              handleLogout={handleLogout}
+              checked={checked}
+            />
           </div>
-        </div>
+          {userDetails.isAdmin && (
+            <AdminHeader
+              adminNavigation={adminNavigation}
+              isMobile={isMobile}
+            />
+          )}
+        {/* </div> */}
       </section>
-      {user.userDetails.isAdmin && (
-        <section className="navigation admin-nav">
-          <div className="admin-nav-container d-flex container">
-            {!isMobile && <p className="role">ADMIN</p>}
-            <nav>
-              {isMobile && (
-                <div className="dropdown">
-                  <button
-                    className="btn dropdown-toggle"
-                    type="button"
-                    id="admin-dropdown"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    ADMIN
-                  </button>
-                  <ul
-                    className="dropdown-menu"
-                    aria-labelledby="admin-dropdown"
-                  >
-                    {navLinks.admin.map((link) => {
-                      const { title, id, path } = link;
-                      return (
-                        <li key={id} className="nav-item">
-                          <NavLink id={id} className="dropdown-item" to={path}>
-                            {title}
-                          </NavLink>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              )}
-              {!isMobile && (
-                <ul>
-                  <NavBar linkList={navLinks.admin} />
-                </ul>
-              )}
-            </nav>
-          </div>
-        </section>
-      )}
+      <div className="navigation"/>
+      <Outlet />
     </>
   );
 }

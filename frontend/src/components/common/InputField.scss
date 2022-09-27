@@ -1,0 +1,52 @@
+@import '../../styles/custom.scss';
+
+//////////// inputs //////////////
+label {
+  font-size: 1.125rem;
+  font: inherit;
+  color: $secondary;
+}
+input.form-control {
+  border-radius: 0px;
+  border-color: #fff;
+  z-index: 1;
+  background-color: transparent;
+  border-bottom: 2px solid #eee;
+  font-size: 1.125rem;
+  padding: 0.25rem 0;
+  &:focus,
+  &:valid, 
+  &:active {
+    outline: 0px;
+    box-shadow: 0px;
+    border-bottom-color: $primary;
+    & + .input-label {
+      color: $primary;
+      transform: translateY(-1.5rem);
+    }
+  }
+  margin-bottom: 1rem;
+}
+
+//////////// textarea //////////////
+textarea.form-control {
+  resize: none;
+  border-radius: 0px;
+  border-color: $primary;
+  background-color: #fff;
+  border: 2px solid $primary;
+  font-size: 1.125rem;
+  padding: 0.25rem 0;
+  margin-bottom: 1rem;
+}
+
+//////////// file //////////////
+input[type='file'] {
+  border: 2px solid $primary;
+  color: $secondary;
+  padding: 0.4rem 0.6rem;
+  font-size: 1em;
+  &:focus {
+    box-shadow: none;
+  }
+}

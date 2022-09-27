@@ -1,9 +1,10 @@
 export const handleChange = ({ target }, formData, setFormData) => {
-  const isCheckbox = target.type === 'checkbox';
+  const {name, value, type, checked} = target
+  const isCheckbox = type === 'checkbox';
 
   setFormData({
     ...formData,
-    [target.name]: isCheckbox ? target.checked : target.value,
+    [name]: isCheckbox ? checked : value,
   });
 };
 

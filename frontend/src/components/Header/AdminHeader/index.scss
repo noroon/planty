@@ -1,0 +1,44 @@
+@import '../../../styles/custom.scss';
+
+.navigation.admin-nav {
+  height: 2rem;
+  background: $primary;
+  p,
+  a {
+    color: #fff;
+  }
+  .role {
+    margin: 0.4rem 0 0 0.5rem;
+    font-weight: 600;
+  }
+  ul {
+    padding: 0 0;
+    li {
+      a,
+      a:visited {
+        font-size: smaller;
+        background-color: transparent;
+        &:hover,
+        &:focus {
+          border-bottom: 0rem $primary solid;
+          color: #fff;
+        }
+      }
+    }
+  }
+  button {
+    color: #fff;
+    padding-bottom: 0;
+    margin: 0 1.2rem -0.4rem;
+    &:focus {
+      box-shadow: none;
+    }
+  }
+  .dropdown-menu.show {
+    background-color: $primary;
+    border: none;
+    border-radius: 0;
+    color: #fff;
+    margin-top: -1rem;
+  }
+}

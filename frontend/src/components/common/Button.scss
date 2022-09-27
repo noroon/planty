@@ -1,0 +1,45 @@
+@import '../../styles/custom.scss';
+
+/* From uiverse.io by @hritik5102 */
+button.btn.btn-primary {
+  position: relative;
+  font-weight: 600;
+  height: 3rem;
+  padding: 0.2rem 20px;
+  outline: none;
+  border: 1px solid $secondary;
+  background-color: transparent;
+  border-radius: 0;
+  margin: 1.2rem 0 0;
+  color: #fff;
+  &:focus {
+    box-shadow: none;
+  }
+}
+button.btn.btn-primary:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  top: 5px;
+  left: 5px;
+  height: 100%;
+  background-color: $primary;
+  z-index: -1;
+  transition: all 0.35s;
+  border-radius: inherit;
+}
+button.btn.btn-primary:hover:after {
+  top: 0px;
+  left: 0px;
+}
+button.btn-simple {
+  background-color: $primary;
+  color: #fff;
+  border: 2px solid $primary;
+  border-radius: 0;
+  padding: 0.4rem 1rem;
+  &:hover {
+    color: #fff;
+    opacity: 0.86;
+  }
+}

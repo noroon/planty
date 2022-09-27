@@ -1,0 +1,54 @@
+@import '../../styles/custom.scss';
+
+.switch-label {
+    width: 60%;
+    text-align: left;
+    font-size: 1.125rem;
+    font: inherit;
+    color: $secondary;
+  }
+  input[type='checkbox'] {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+  }
+  .check-trail {
+    display: flex;
+    align-items: center;
+    width: 2.6rem;
+    height: 1.6rem;
+    background: $primary-light;
+    border-radius: 0.8rem;
+    transition: $transition;
+    cursor: pointer;
+  }
+  .check-handler {
+    display: flex;
+    margin-left: 0.3rem;
+    justify-content: center;
+    align-items: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    background: $primary;
+    border-radius: 50%;
+    transition: $transition;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.171);
+    &:before {
+      content: '\00D7';
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      margin: 0.1rem 0 0 -0.1rem;
+    }
+  }
+  input[type='checkbox']:checked + .check-trail {
+    background: $greensea;
+    .check-handler {
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.171);
+      margin-left: 45%;
+      background: $turquoise;
+      &::before {
+        content: '\2714';
+      }
+    }
+  }

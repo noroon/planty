@@ -25,8 +25,8 @@ export default function Plants() {
       <div className="row row-cols-1 row-cols-lg-5 row-cols-sm-2 mx-auto">
         {plants.length > 0
         && plants.map((plant) => {
-          const { name, imageKey } = plant;
-          const id = plant._id;
+          const { name, imageKey, _id: id } = plant;
+          {/* const id = plant._id; */}
 
           return (
             <PlantCard key={id} name={name} imageKey={imageKey} id={id} />
